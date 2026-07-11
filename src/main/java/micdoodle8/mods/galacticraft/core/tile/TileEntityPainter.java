@@ -48,8 +48,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 
 import io.netty.buffer.ByteBuf;
-
-import biomesoplenty.api.item.BOPItems;
 import ic2.api.item.IC2Items;
 
 //import net.minecraft.item.EnumDyeColor;
