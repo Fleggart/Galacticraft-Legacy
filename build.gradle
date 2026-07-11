@@ -44,7 +44,7 @@ dependencies {
     
     implementation "curse.maven:mekanism-268560:2835175"
     implementation "net.industrial-craft:industrialcraft-2:2.8.222-ex112:dev"
-    implementation "com.mod-buildcraft.api:buildcraft-api:7.99.24.8"
+    compileOnly "com.mod-buildcraft.api:buildcraft-api:7.99.24.8"
     
    // compileOnly fg.deobf('mod.dependency:biomes-o-plenty:7.0.1.2445')
     implementation "curse.maven:redstoneflux-270789:2920436"
