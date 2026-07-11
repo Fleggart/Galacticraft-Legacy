@@ -34,7 +34,7 @@ dependencies {
     
    // compileOnly fg.deobf('mod.dependency:biomes-o-plenty:7.0.1.2445')
     implementation fg.deobf('curse.maven:applied-energistics-2-223794:2747063')
-    compileOnly fg.deobf('mod.dependency:redstoneflux:2.1.1.1')
+    implementation fg.deobf('curse.maven:redstoneflux:2.1.1.1')
     compileOnly fg.deobf('mod.dependency:actuallyadditions:r152')
     compileOnly fg.deobf('mod.dependency:playerapi:1.1')
     compileOnly fg.deobf('mod.dependency:journeymap:5.7.1')
