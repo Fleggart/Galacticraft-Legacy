@@ -59,42 +59,6 @@ clean {
     setDelete(filteredDelete)
 }
 
-// 💡 提示：下方由于没有相关自定义插件支持，全数做注释/移除处理以防构建卡死
-
-/* tokens {
-    replace('version', version)
-}
-
-changelog {
-    fromTag('4.0.5')
-}
-
-maven {
-    excludeDependencies('forge', 'jei')
-    artifacts(mavenJar, deobfJar, sourcesJar)
-}
-
-modpublishing {
-    changelogPath(changelog.changelogFile)
-    curseforge('564236') {
-        if (System.getenv().CI)
-            apiKey = 'none'
-        relations {
-            optional('mekanism', 'jei', 'journeymap', 'playerapi', 'actually-additions', 'redstone-flux', 'applied-energistics-2', 'biomes-o-plenty', 'buildcraft', 'industrial-craft')
-            incompatible('betterportals' , 'vics-modern-warfare-mod')
-        }
-    }
-    modrinth('ZnmdXAk2') {
-        if (System.getenv().CI)
-            token('none')
-        dependencies {
-            optional.version 'KIzASRO5'
-            optional.version 'vacvhRKp'
-        }
-    }
-}
-*/
-
 tasks.withType(GenerateModuleMetadata).configureEach {
     enabled = false
 }
