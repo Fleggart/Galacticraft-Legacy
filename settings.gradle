@@ -1,11 +1,10 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal() // 官方插件门户
+        gradlePluginPortal()
         maven {
             name = 'MinecraftForge'
-            url = 'https://maven.minecraftforge.net/' // 👈 核心：必须加上 Forge 的官方仓库！
+            url = 'https://maven.minecraftforge.net/'
         }
-        maven { url = 'https://maven.galacticraft.net/repository/internal-plugins/' }
-        maven { url = 'https://maven.galacticraft.net/repository/gradle/' }
     }
 }
+rootProject.name = 'Galacticraft-Legacy'
