@@ -43,17 +43,6 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
-spotless {
-	enforceCheck false
-    java {
-        target 'src/*/java/micdoodle8/mods/**/*.java'
-        endWithNewline()
-        trimTrailingWhitespace()
-        removeUnusedImports()
-        indentWithSpaces()
-    }
-}
-
 clean {
     def filteredDelete = new HashSet<>()
     for (def toDelete : getDelete()) {
