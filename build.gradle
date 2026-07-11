@@ -13,6 +13,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 // 👈 核心修复 1：读取 gradle.properties 里的变量，为 Forge 注入映射表配置
 minecraft {
     mappings channel: project.findProperty('mapping_channel') ?: 'stable', version: project.findProperty('mapping_version') ?: '39-1.12'
+    accessTransformer = project.file('src/main/resources/META-INF/accesstransformer.cfg')
 }
 
 repositories {
