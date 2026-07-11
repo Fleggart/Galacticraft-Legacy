@@ -10,20 +10,24 @@ version = "${mod_version}${version_suffix}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
+// 👈 核心修复 1：读取 gradle.properties 里的变量，为 Forge 注入映射表配置
+minecraft {
+    mappings channel: project.findProperty('mapping_channel') ?: 'stable', version: project.findProperty('mapping_version') ?: '39-1.12'
+}
+
 repositories {
     mavenCentral()
-    maven {
-        name 'galacticraft'
-        url 'https://maven.galacticraft.net/repository/legacy-common/'
-    }
+    // 💡 提示：因为 maven.galacticraft.net 网站已挂，原处的旧 maven 块已被移除
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${MC_VERSION}-${forge_version}"
 
-    compileRequired fg.deobf('mod.dependency:mekanism:9.8.3.390')
-    compileRequired fg.deobf('mod.dependency:industrialcraft-2:2.8.222-ex112')
-    compileRequired fg.deobf('mod.dependency:buildcraft-api:7.99.24.8')
+    // 👈 核心修复 2：将原本属于自定义插件的 compileRequired 换成标准的 implementation
+    implementation fg.deobf('mod.dependency:mekanism:9.8.3.390')
+    implementation fg.deobf('mod.dependency:industrialcraft-2:2.8.222-ex112')
+    implementation fg.deobf('mod.dependency:buildcraft-api:7.99.24.8')
+    
     compileOnly fg.deobf('mod.dependency:biomes-o-plenty:7.0.1.2445')
     compileOnly fg.deobf('mod.dependency:appliedenergistics2:rv6-stable-7')
     compileOnly fg.deobf('mod.dependency:redstoneflux:2.1.1.1')
@@ -52,58 +56,41 @@ clean {
     setDelete(filteredDelete)
 }
 
-tokens {
+// 💡 提示：下方由于没有相关自定义插件支持，全数做注释/移除处理以防构建卡死
+
+/* tokens {
     replace('version', version)
 }
 
 changelog {
-	fromTag('4.0.5')
+    fromTag('4.0.5')
 }
 
 maven {
-	excludeDependencies('forge', 'jei')
-	artifacts(mavenJar, deobfJar, sourcesJar)
+    excludeDependencies('forge', 'jei')
+    artifacts(mavenJar, deobfJar, sourcesJar)
 }
-
 
 modpublishing {
-
-	changelogPath(changelog.changelogFile)
-
+    changelogPath(changelog.changelogFile)
     curseforge('564236') {
-    	if (System.getenv().CI)
-    		apiKey = 'none'
-	    relations {
-	        optional(
-	        	'mekanism',
-	        	'jei', 
-	        	'journeymap',
-	        	'playerapi', 
-	        	'actually-additions',
-	        	'redstone-flux', 
-	        	'applied-energistics-2',
-	        	'biomes-o-plenty', 
-	        	'buildcraft',
-	        	'industrial-craft'
-	        )
-	        incompatible(
-	        	'betterportals' ,
-	        	'vics-modern-warfare-mod'
-	        )
-	    }
-	}
-
-	modrinth('ZnmdXAk2') {
-		if (System.getenv().CI)
-    		token('none')
-		dependencies {
-			// Mekanism
-			optional.version 'KIzASRO5'
-			// JourneyMap
-			optional.version 'vacvhRKp'
-		}
-	}
+        if (System.getenv().CI)
+            apiKey = 'none'
+        relations {
+            optional('mekanism', 'jei', 'journeymap', 'playerapi', 'actually-additions', 'redstone-flux', 'applied-energistics-2', 'biomes-o-plenty', 'buildcraft', 'industrial-craft')
+            incompatible('betterportals' , 'vics-modern-warfare-mod')
+        }
+    }
+    modrinth('ZnmdXAk2') {
+        if (System.getenv().CI)
+            token('none')
+        dependencies {
+            optional.version 'KIzASRO5'
+            optional.version 'vacvhRKp'
+        }
+    }
 }
+*/
 
 tasks.withType(GenerateModuleMetadata).configureEach {
     enabled = false
