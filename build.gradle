@@ -18,10 +18,6 @@ minecraft {
 repositories {
     mavenCentral()
     maven {
-        name = "CurseMaven"
-        url = "https://www.cursemaven.com"
-    }
-    maven {
         name 'JEI'
         url 'https://maven.blamejared.com/'
     }
@@ -36,6 +32,10 @@ repositories {
     maven {
         name 'AE2'
         url 'https://maven.ae2dev.com/'
+    }
+    maven {
+        name = "CurseMaven"
+        url = "https://www.cursemaven.com"
     }
 }
 
