@@ -48,7 +48,7 @@ dependencies {
     
    // compileOnly fg.deobf('mod.dependency:biomes-o-plenty:7.0.1.2445')
     implementation "curse.maven:redstoneflux-270789:2920436"
-    implementation "appeng:appliedenergistics2:rv6-stable-7"
+    implementation "curse.maven:appliedenergistics2-223794:2747063
     implementation "curse.maven:playerapi-449521:3212872"
     compileOnly "mezz.jei:jei_${MC_VERSION}:${jei_version}:api"
     runtimeOnly "mezz.jei:jei_${MC_VERSION}:${jei_version}"
