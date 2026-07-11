@@ -47,7 +47,6 @@ dependencies {
     implementation "com.mod-buildcraft.api:buildcraft-api:7.99.24.8"
     
    // compileOnly fg.deobf('mod.dependency:biomes-o-plenty:7.0.1.2445')
-    implementation fg.deobf('curse.maven:applied-energistics-2-223794:2747063')
     implementation fg.deobf('curse.maven:redstoneflux-270789:2920436')
     implementation "appeng:appliedenergistics2:rv6-stable-7"
     implementation fg.deobf('curse.maven:playerapi-449521:3212872')
