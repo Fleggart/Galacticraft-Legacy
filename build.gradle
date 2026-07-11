@@ -2,9 +2,6 @@ plugins {
     id 'java'
     id 'eclipse'
     id 'net.minecraftforge.gradle' version '6.+'
-    id 'net.galacticraft.changelog' version '1.0.4'
-    id 'net.galacticraft.internal.legacy' version '1.0.5'
-    id 'nexus-publishing' version '2.1'
 }
 
 group = "dev.galacticraft"
