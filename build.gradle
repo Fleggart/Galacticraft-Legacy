@@ -25,13 +25,17 @@ repositories {
         name 'JEI'
         url 'https://maven.blamejared.com/'
     }
+    maven {
+        name 'IC2'
+        url 'https://maven.ic2.player.to/'
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${MC_VERSION}-${forge_version}"
     
     implementation "curse.maven:mekanism-268560:2835175"
-    implementation fg.deobf('curse.maven:industrial-craft-242638:6833054')
+    implementation "net.industrial-craft:industrialcraft-2:2.8.222-ex112:dev"
     implementation fg.deobf('mod.dependency:buildcraft-api:7.99.24.8')
     
    // compileOnly fg.deobf('mod.dependency:biomes-o-plenty:7.0.1.2445')
