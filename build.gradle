@@ -30,7 +30,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${MC_VERSION}-${forge_version}"
     
-    implementation fg.deobf('curse.maven:mekanism-268560:2835175')
+    implementation "curse.maven:mekanism-268560:2835175"
     implementation fg.deobf('mod.dependency:industrialcraft-2:2.8.222-ex112')
     implementation fg.deobf('mod.dependency:buildcraft-api:7.99.24.8')
     
