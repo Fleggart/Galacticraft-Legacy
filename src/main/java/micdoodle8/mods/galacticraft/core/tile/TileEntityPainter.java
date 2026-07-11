@@ -369,20 +369,6 @@ public class TileEntityPainter extends TileEntityInventory implements IDisableab
             }
         }
 
-        if (CompatibilityManager.isBOPLoaded())
-        {
-            if (item == BOPItems.black_dye)
-                return ItemDye.DYE_COLORS[EnumDyeColor.BLACK.getDyeDamage()];
-            if (item == BOPItems.blue_dye)
-                return ItemDye.DYE_COLORS[EnumDyeColor.BLUE.getDyeDamage()];
-            if (item == BOPItems.brown_dye)
-                return ItemDye.DYE_COLORS[EnumDyeColor.BROWN.getDyeDamage()];
-            if (item == BOPItems.green_dye)
-                return ItemDye.DYE_COLORS[EnumDyeColor.GREEN.getDyeDamage()];
-            if (item == BOPItems.white_dye)
-                return ItemDye.DYE_COLORS[EnumDyeColor.WHITE.getDyeDamage()];
-        }
-
         return -1;
     }
 }
