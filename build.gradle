@@ -18,16 +18,16 @@ minecraft {
 repositories {
     mavenCentral()
     maven {
+        name = "BuildCraft"
+        url = "https://mod-buildcraft.com/maven"
+    }
+    maven {
         name 'JEI'
         url 'https://maven.blamejared.com/'
     }
     maven {
         name 'IC2'
         url 'https://maven.ic2.player.to/'
-    }
-    maven {
-        name = "BuildCraft"
-        url = "https://mod-buildcraft.com/maven"  
     }
     maven {
         name 'AE2'
