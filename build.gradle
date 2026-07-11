@@ -17,6 +17,10 @@ minecraft {
 
 repositories {
     mavenCentral()
+    maven {
+        name = "CurseMaven"
+        url = "https://www.cursemaven.com"
+    }
     // 💡 提示：因为 maven.galacticraft.net 网站已挂，原处的旧 maven 块已被移除
 }
 
