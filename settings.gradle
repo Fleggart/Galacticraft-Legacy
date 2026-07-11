@@ -1,12 +1,10 @@
-repositories {
-    mavenCentral()
-    maven {
-        name = "CurseMaven"
-        url = "https://www.cursemaven.com"
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven {
+            name = 'MinecraftForge'
+            url = 'https://maven.minecraftforge.net/'
+        }
     }
-    maven {
-        name = "MinecraftForge"
-        url = "https://maven.minecraftforge.net/"
-    }
-    // 如果有其他模组的官方 maven 也加进来
 }
+rootProject.name = 'Galacticraft-Legacy'
