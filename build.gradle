@@ -36,7 +36,7 @@ dependencies {
     implementation fg.deobf('curse.maven:applied-energistics-2-223794:2747063')
     implementation fg.deobf('curse.maven:redstoneflux-270789:2920436')
     implementation fg.deobf('curse.maven:actuallyadditions-228404:3117927')
-    compileOnly fg.deobf('mod.dependency:playerapi:1.1')
+    implementation fg.deobf('curse.maven:playerapi-449521:3212872')
     compileOnly fg.deobf('mod.dependency:journeymap:5.7.1')
     compileOnly fg.deobf('mod.dependency:jei:4.16.1.302:api')
     runtimeOnly fg.deobf('mod.dependency:jei:4.16.1.302')
