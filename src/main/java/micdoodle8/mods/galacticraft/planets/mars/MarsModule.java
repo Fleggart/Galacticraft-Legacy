@@ -42,7 +42,6 @@ import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityLandingBalloons;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityProjectileTNT;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySludgeling;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerElectrolyzer;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerGasLiquefier;
@@ -245,7 +244,6 @@ public class MarsModule implements IPlanetsModule
 
     public void registerCreatures()
     {
-        this.registerGalacticraftCreature(EntitySludgeling.class, "sludgeling", ColorUtil.to32BitColor(255, 0, 50, 0), ColorUtil.to32BitColor(255, 0, 150, 0));
         this.registerGalacticraftCreature(EntitySlimeling.class, "slimeling", ColorUtil.to32BitColor(255, 0, 50, 0), ColorUtil.to32BitColor(255, 0, 150, 0));
         this.registerGalacticraftCreature(EntityCreeperBoss.class, "creeper_boss", ColorUtil.to32BitColor(255, 0, 50, 0), ColorUtil.to32BitColor(255, 0, 150, 0));
     }
