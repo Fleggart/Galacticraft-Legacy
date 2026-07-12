@@ -10,7 +10,6 @@ package micdoodle8.mods.galacticraft.planets.mars.blocks;
 import com.google.common.base.Predicate;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.IPlantableBlock;
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
@@ -45,7 +44,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockBasicMars extends Block implements IDetectableResource, IPlantableBlock, ITerraformableBlock, ISortableBlock
+public class BlockBasicMars extends Block implements IDetectableResource, IPlantableBlock, ISortableBlock
 {
 
     public static final PropertyEnum<EnumBlockBasic> BASIC_TYPE = PropertyEnum.create("basictypemars", EnumBlockBasic.class);
@@ -243,14 +242,6 @@ public class BlockBasicMars extends Block implements IDetectableResource, IPlant
                 }
             }
         }
-    }
-
-    @Override
-    public boolean isTerraformable(World world, BlockPos pos)
-    {
-        IBlockState state = world.getBlockState(pos);
-        IBlockState stateAbove = world.getBlockState(pos.up());
-        return state.getValue(BASIC_TYPE) == EnumBlockBasic.SURFACE && !stateAbove.getBlock().isFullCube(stateAbove);
     }
 
     @Override
