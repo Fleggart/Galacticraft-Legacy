@@ -13,7 +13,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 import micdoodle8.mods.galacticraft.annotations.ForRemoval;
 import micdoodle8.mods.galacticraft.annotations.ReplaceWith;
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.api.tile.IDisableableMachine;
 import micdoodle8.mods.galacticraft.api.transmission.NetworkType;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
@@ -148,11 +147,8 @@ public class TileEntityTerraformer extends TileBaseElectricBlockWithInventory im
 
                             if (!(blockID.isAir(this.world.getBlockState(pos), this.world, pos)) && this.getDistanceFromServer(x, y, z) < bubbleSizeSq)
                             {
-                                if (doGrass && blockID instanceof ITerraformableBlock && ((ITerraformableBlock) blockID).isTerraformable(this.world, pos))
-                                {
-                                    this.terraformableBlocksList.add(new BlockPos(x, y, z));
-                                }
-                                else if (doTrees)
+                                
+                                if (doTrees)
                                 {
                                     Block blockIDAbove = this.world.getBlockState(pos.up()).getBlock();
                                     if (blockID == Blocks.GRASS && blockIDAbove.isAir(this.world.getBlockState(pos.up()), this.world, pos.up()))
@@ -165,52 +161,6 @@ public class TileEntityTerraformer extends TileBaseElectricBlockWithInventory im
                     }
                 }
             }
-        }
-
-        if (!this.world.isRemote && this.terraformableBlocksList.size() > 0 && this.ticks % 15 == 0)
-        {
-            ArrayList<BlockPos> terraformableBlocks2 = new ArrayList<>(this.terraformableBlocksList);
-
-            int randomIndex = this.world.rand.nextInt(this.terraformableBlocksList.size());
-            BlockPos vec = terraformableBlocks2.get(randomIndex);
-
-            if (this.world.getBlockState(vec).getBlock() instanceof ITerraformableBlock)
-            {
-                Block id;
-
-                switch (this.world.rand.nextInt(40))
-                {
-                    case 0:
-                        if (this.world.isBlockFullCube(new BlockPos(vec.getX() - 1, vec.getY(), vec.getZ())) && this.world.isBlockFullCube(new BlockPos(vec.getX() + 1, vec.getY(), vec.getZ())) && this.world.isBlockFullCube(new BlockPos(vec.getX(), vec.getY(), vec.getZ() - 1))
-                            && this.world.isBlockFullCube(new BlockPos(vec.getX(), vec.getY(), vec.getZ() + 1)))
-                        {
-                            id = Blocks.FLOWING_WATER;
-                        }
-                        else
-                        {
-                            id = Blocks.GRASS;
-                        }
-                        break;
-                    default:
-                        id = Blocks.GRASS;
-                        break;
-                }
-
-                this.world.setBlockState(vec, id.getDefaultState());
-
-                if (id == Blocks.GRASS)
-                {
-                    this.useCount[0]++;
-                    this.waterTank.drain(1, true);
-                    this.checkUsage(1);
-                }
-                else if (id == Blocks.FLOWING_WATER)
-                {
-                    this.checkUsage(2);
-                }
-            }
-
-            this.terraformableBlocksList.remove(randomIndex);
         }
 
         if (!this.world.isRemote && !this.treesDisabled && this.grassBlockList.size() > 0 && this.ticks % 50 == 0)
