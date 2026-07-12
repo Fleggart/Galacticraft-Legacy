@@ -119,7 +119,7 @@ public class ConfigManagerCore
     public static String[]                   oregenIDs                      = {};
     public static boolean                    enableOtherModsFeatures;
     public static boolean                    whitelistCoFHCoreGen;
-    public static boolean                    enableThaumCraftNodes;
+;
 
     // COMPATIBILITY
     public static String[]                   sealableIDs                    = {};
@@ -399,12 +399,6 @@ public class ConfigManagerCore
             prop.setComment("If generate other mods features is disabled as recommended, this setting can whitelist CoFHCore custom worldgen on planets.");
             prop.setLanguageKey("gc.configgui.whitelist_co_f_h_core_gen");
             whitelistCoFHCoreGen = prop.getBoolean(false);
-            finishProp(prop);
-
-            prop = getConfig(Constants.CONFIG_CATEGORY_WORLDGEN, "Generate ThaumCraft wild nodes on planetary surfaces", true);
-            prop.setComment("If ThaumCraft is installed, ThaumCraft wild nodes can generate on the Moon and planets.");
-            prop.setLanguageKey("gc.configgui.enable_thaum_craft_nodes");
-            enableThaumCraftNodes = prop.getBoolean(true);
             finishProp(prop);
 
             prop = getConfig(Constants.CONFIG_CATEGORY_WORLDGEN, "Other mods ores for GC to generate on the Moon and planets", new String[] {});
