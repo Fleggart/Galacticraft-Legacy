@@ -24,7 +24,6 @@ public class MarsBlocks
 {
 
     public static Block marsBlock;
-    // public static Block blockSludge;  ← 已删除
     public static Block vine;
     public static Block rock;
     public static Block treasureChestTier2;
@@ -38,7 +37,6 @@ public class MarsBlocks
     public static void initBlocks()
     {
         MarsBlocks.marsBlock = new BlockBasicMars("mars").setHardness(2.2F);
-        MarsBlocks.vine = new BlockCavernousVine("cavern_vines").setHardness(0.1F);
         MarsBlocks.rock = new BlockSlimelingEgg("slimeling_egg").setHardness(0.75F);
         MarsBlocks.treasureChestTier2 = new BlockTier2TreasureChest("treasure_t2");
         MarsBlocks.machine = new BlockMachineMars("mars_machine").setHardness(1.8F);
@@ -79,8 +77,6 @@ public class MarsBlocks
         setHarvestLevel(MarsBlocks.marsBlock, "shovel", 0, 5); // Top dirt
         setHarvestLevel(MarsBlocks.marsBlock, "shovel", 0, 6); // Dirt
         setHarvestLevel(MarsBlocks.rock, "pickaxe", 3);
-        // setHarvestLevel(MarsBlocks.marsCobblestoneStairs, "pickaxe", 0);
-        // setHarvestLevel(MarsBlocks.marsBricksStairs, "pickaxe", 3);
     }
 
     public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
