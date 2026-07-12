@@ -22,7 +22,7 @@ public class MarsItems
 
     public static Item marsItemBasic;
     public static Item deshPickaxe;
-    public static Item deshPickSlime;
+    // public static Item deshPickSlime;  // 已删除 - Slimeling 系统移除
     public static Item deshAxe;
     public static Item deshHoe;
     public static Item deshSpade;
@@ -45,7 +45,7 @@ public class MarsItems
     {
         MarsItems.marsItemBasic = new ItemBasicMars("item_basic_mars");
         MarsItems.deshPickaxe = new ItemPickaxeMars(MarsItems.TOOLDESH).setTranslationKey("desh_pick");
-        MarsItems.deshPickSlime = new ItemPickaxeStickyMars(MarsItems.TOOLDESH).setTranslationKey("desh_pick_slime");
+        // MarsItems.deshPickSlime = new ItemPickaxeStickyMars(MarsItems.TOOLDESH).setTranslationKey("desh_pick_slime");  // 已删除
         MarsItems.deshAxe = new ItemAxeMars(MarsItems.TOOLDESH).setTranslationKey("desh_axe");
         MarsItems.deshHoe = new ItemHoeMars(MarsItems.TOOLDESH).setTranslationKey("desh_hoe");
         MarsItems.deshSpade = new ItemSpadeMars(MarsItems.TOOLDESH).setTranslationKey("desh_spade");
@@ -66,7 +66,7 @@ public class MarsItems
     public static void registerHarvestLevels()
     {
         MarsItems.deshPickaxe.setHarvestLevel("pickaxe", 4);
-        MarsItems.deshPickSlime.setHarvestLevel("pickaxe", 4);
+        // MarsItems.deshPickSlime.setHarvestLevel("pickaxe", 4);  // 已删除
         MarsItems.deshAxe.setHarvestLevel("axe", 4);
         MarsItems.deshSpade.setHarvestLevel("shovel", 4);
     }
@@ -76,7 +76,7 @@ public class MarsItems
         MarsItems.registerItem(MarsItems.carbonFragments);
         MarsItems.registerItem(MarsItems.marsItemBasic);
         MarsItems.registerItem(MarsItems.deshPickaxe);
-        MarsItems.registerItem(MarsItems.deshPickSlime);
+        // MarsItems.registerItem(MarsItems.deshPickSlime);  // 已删除
         MarsItems.registerItem(MarsItems.deshAxe);
         MarsItems.registerItem(MarsItems.deshHoe);
         MarsItems.registerItem(MarsItems.deshSpade);
