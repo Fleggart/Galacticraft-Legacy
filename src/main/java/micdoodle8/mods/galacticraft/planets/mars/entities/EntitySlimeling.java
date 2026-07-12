@@ -106,7 +106,6 @@ public class EntitySlimeling extends EntityTameable implements IEntityBreathable
         this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
         this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
         this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(4, new EntityAITargetNonTamed(this, EntitySludgeling.class, false, p_apply_1_ -> p_apply_1_ instanceof EntitySludgeling));
         this.setTamed(false);
 
         switch (this.rand.nextInt(3))
