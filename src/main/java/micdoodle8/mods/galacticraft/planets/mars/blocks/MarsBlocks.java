@@ -12,7 +12,7 @@ import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.blocks.BlockStairsGC;
 import micdoodle8.mods.galacticraft.core.items.ItemBlockDesc;
 import micdoodle8.mods.galacticraft.core.items.ItemBlockGC;
-import micdoodle8.mods.galacticraft.planets.mars.items.ItemBlockEgg;
+// 删除 import micdoodle8.mods.galacticraft.planets.mars.items.ItemBlockEgg;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemBlockMachine;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemBlockMars;
 import net.minecraft.block.Block;
@@ -26,11 +26,11 @@ public class MarsBlocks
     public static Block marsBlock;
     public static Block blockSludge;
     public static Block vine;
-    public static Block rock;
+    // public static Block rock;  // 已删除 - Slimeling 系统移除
     public static Block treasureChestTier2;
     public static Block machine;
     public static Block machineT2;
-    public static Block creeperEgg;
+    // public static Block creeperEgg;  // 已删除 - Slimeling 系统移除
     public static Block marsCobblestoneStairs;
     public static Block marsBricksStairs;
     public static Block bossSpawner;
@@ -39,11 +39,11 @@ public class MarsBlocks
     {
         MarsBlocks.marsBlock = new BlockBasicMars("mars").setHardness(2.2F);
         MarsBlocks.vine = new BlockCavernousVine("cavern_vines").setHardness(0.1F);
-        MarsBlocks.rock = new BlockSlimelingEgg("slimeling_egg").setHardness(0.75F);
+        // MarsBlocks.rock = new BlockSlimelingEgg("slimeling_egg").setHardness(0.75F);  // 已删除
         MarsBlocks.treasureChestTier2 = new BlockTier2TreasureChest("treasure_t2");
         MarsBlocks.machine = new BlockMachineMars("mars_machine").setHardness(1.8F);
         MarsBlocks.machineT2 = new BlockMachineMarsT2("mars_machine_t2").setHardness(1.8F);
-        MarsBlocks.creeperEgg = new BlockCreeperEgg("creeper_egg").setHardness(-1.0F);
+        // MarsBlocks.creeperEgg = new BlockCreeperEgg("creeper_egg").setHardness(-1.0F);  // 已删除
         MarsBlocks.bossSpawner = new BlockBossSpawnerMars("boss_spawner_mars");
         MarsBlocks.marsCobblestoneStairs =
             new BlockStairsGC("mars_stairs_cobblestone", marsBlock.getDefaultState().withProperty(BlockBasicMars.BASIC_TYPE, BlockBasicMars.EnumBlockBasic.COBBLESTONE)).setHardness(1.5F);
@@ -74,14 +74,13 @@ public class MarsBlocks
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 1, 3); // Iron ore
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 0, 4); // Cobblestone
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 3, 7); // Dungeon brick
-        setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 0, 8); // Decoration
-        // block
+        setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 0, 8); // Decoration block
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 1, 9); // Stone
         setHarvestLevel(MarsBlocks.marsBlock, "shovel", 0, 5); // Top dirt
         setHarvestLevel(MarsBlocks.marsBlock, "shovel", 0, 6); // Dirt
-        setHarvestLevel(MarsBlocks.rock, "pickaxe", 3);
-        //        setHarvestLevel(MarsBlocks.marsCobblestoneStairs, "pickaxe", 0);
-        //        setHarvestLevel(MarsBlocks.marsBricksStairs, "pickaxe", 3);
+        // setHarvestLevel(MarsBlocks.rock, "pickaxe", 3);  // 已删除
+        // setHarvestLevel(MarsBlocks.marsCobblestoneStairs, "pickaxe", 0);
+        // setHarvestLevel(MarsBlocks.marsBricksStairs, "pickaxe", 3);
     }
 
     public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
@@ -94,8 +93,8 @@ public class MarsBlocks
         registerBlock(MarsBlocks.treasureChestTier2, ItemBlockDesc.class);
         registerBlock(MarsBlocks.marsBlock, ItemBlockMars.class);
         registerBlock(MarsBlocks.vine, ItemBlockDesc.class);
-        registerBlock(MarsBlocks.rock, ItemBlockEgg.class);
-        registerBlock(MarsBlocks.creeperEgg, ItemBlockDesc.class);
+        // registerBlock(MarsBlocks.rock, ItemBlockEgg.class);  // 已删除
+        // registerBlock(MarsBlocks.creeperEgg, ItemBlockDesc.class);  // 已删除
         registerBlock(MarsBlocks.machine, ItemBlockMachine.class);
         registerBlock(MarsBlocks.machineT2, ItemBlockMachine.class);
         registerBlock(MarsBlocks.bossSpawner, ItemBlockGC.class);
