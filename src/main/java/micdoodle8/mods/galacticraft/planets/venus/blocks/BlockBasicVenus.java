@@ -10,7 +10,6 @@ package micdoodle8.mods.galacticraft.planets.venus.blocks;
 import com.google.common.base.Predicate;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.IPlantableBlock;
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
@@ -49,7 +48,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BlockBasicVenus extends Block implements IDetectableResource, IPlantableBlock, ITerraformableBlock, ISortableBlock
+public class BlockBasicVenus extends Block implements IDetectableResource, IPlantableBlock, ISortableBlock
 {
 
     public static final PropertyEnum<EnumBlockBasicVenus> BASIC_TYPE_VENUS = PropertyEnum.create("basictypevenus", EnumBlockBasicVenus.class);
@@ -332,21 +331,6 @@ public class BlockBasicVenus extends Block implements IDetectableResource, IPlan
     @Override
     public boolean isPlantable(IBlockState state)
     {
-        return false;
-    }
-
-    @Override
-    public boolean isTerraformable(World world, BlockPos pos)
-    {
-        EnumBlockBasicVenus type = world.getBlockState(pos).getValue(BASIC_TYPE_VENUS);
-
-        if (type == EnumBlockBasicVenus.ROCK_HARD || type == EnumBlockBasicVenus.ROCK_SOFT)
-        {
-            BlockPos above = pos.offset(EnumFacing.UP);
-            IBlockState stateAbove = world.getBlockState(above);
-            return stateAbove.getBlock().isAir(stateAbove, world, above);
-        }
-
         return false;
     }
 
