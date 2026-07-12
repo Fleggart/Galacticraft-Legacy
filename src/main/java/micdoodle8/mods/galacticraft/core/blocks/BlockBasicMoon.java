@@ -40,7 +40,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.IPlantableBlock;
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3Dim;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
@@ -51,7 +50,7 @@ import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 
 import com.google.common.base.Predicate;
 
-public class BlockBasicMoon extends Block implements IDetectableResource, IPlantableBlock, ITerraformableBlock, ISortableBlock
+public class BlockBasicMoon extends Block implements IDetectableResource, IPlantableBlock, ISortableBlock
 {
 
     public static final PropertyEnum<EnumBlockBasicMoon> BASIC_TYPE_MOON = PropertyEnum.create("basictypemoon", EnumBlockBasicMoon.class);
@@ -279,21 +278,6 @@ public class BlockBasicMoon extends Block implements IDetectableResource, IPlant
     {
         return state.getValue(BASIC_TYPE_MOON) == EnumBlockBasicMoon.MOON_TURF;
 
-    }
-
-    @Override
-    public boolean isTerraformable(World world, BlockPos pos)
-    {
-        EnumBlockBasicMoon type = world.getBlockState(pos).getValue(BASIC_TYPE_MOON);
-
-        if (type == EnumBlockBasicMoon.MOON_TURF)
-        {
-            BlockPos above = pos.offset(EnumFacing.UP);
-            IBlockState stateAbove = world.getBlockState(above);
-            return stateAbove.getBlock().isAir(stateAbove, world, above);
-        }
-
-        return false;
     }
 
     @Override
