@@ -278,12 +278,6 @@ public class BiomeAdaptive extends BiomeGenBaseGC
     }
 
     @Override
-    public float getBaseHeight()
-    {
-        return biomeTrue == null ? 0.0F : biomeTrue.getBaseHeight();
-    }
-
-    @Override
     public float getRainfall()
     {
         return biomeTrue.getRainfall();
