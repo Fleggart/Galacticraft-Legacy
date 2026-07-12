@@ -28,7 +28,6 @@ public class ChunkProviderMars extends ChunkProviderSpace
 {
 
     private final BiomeDecoratorMars marsBiomeDecorator = new BiomeDecoratorMars();
-    private final MapGenCavernMars caveGenerator = new MapGenCavernMars();
     private final MapGenCaveMars cavernGenerator = new MapGenCaveMars();
 
     private final MapGenDungeon dungeonGenerator =
@@ -63,7 +62,6 @@ public class ChunkProviderMars extends ChunkProviderSpace
     protected List<MapGenBaseMeta> getWorldGenerators()
     {
         List<MapGenBaseMeta> generators = Lists.newArrayList();
-        generators.add(this.caveGenerator);
         generators.add(this.cavernGenerator);
         return generators;
     }
