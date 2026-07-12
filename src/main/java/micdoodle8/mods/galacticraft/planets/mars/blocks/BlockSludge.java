@@ -1,4 +1,4 @@
-/*
+
  * Copyright (c) 2023 Team Galacticraft
  *
  * Licensed under the MIT license.
@@ -40,7 +40,7 @@ public class BlockSludge extends BlockFluidClassic
     {
         if (!worldIn.isRemote)
         {
-            if (entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).capabilities.isFlying || entityIn instanceof EntitySludgeling)
+            if (entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).capabilities.isFlying)
             {
                 return;
             }
