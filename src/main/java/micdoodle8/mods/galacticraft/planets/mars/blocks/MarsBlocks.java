@@ -24,7 +24,6 @@ public class MarsBlocks
 {
 
     public static Block marsBlock;
-    public static Block vine;
     public static Block rock;
     public static Block treasureChestTier2;
     public static Block machine;
@@ -88,7 +87,6 @@ public class MarsBlocks
     {
         registerBlock(MarsBlocks.treasureChestTier2, ItemBlockDesc.class);
         registerBlock(MarsBlocks.marsBlock, ItemBlockMars.class);
-        registerBlock(MarsBlocks.vine, ItemBlockDesc.class);
         registerBlock(MarsBlocks.rock, ItemBlockEgg.class);
         registerBlock(MarsBlocks.creeperEgg, ItemBlockDesc.class);
         registerBlock(MarsBlocks.machine, ItemBlockMachine.class);
