@@ -40,7 +40,6 @@ import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCargoRocket;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityLandingBalloons;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityProjectileTNT;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerElectrolyzer;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerGasLiquefier;
@@ -58,7 +57,6 @@ import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityElectrolyzer;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
-import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntitySlimelingEgg;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTreasureChestMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeMars;
 import net.minecraft.block.Block;
@@ -211,7 +209,6 @@ public class MarsModule implements IPlanetsModule
 
     public void registerTileEntities()
     {
-        register(TileEntitySlimelingEgg.class, "gc_slimeling_egg");
         register(TileEntityTreasureChestMars.class, "gc_tier_2_treasure_chest");
         register(TileEntityCryogenicChamber.class, "gc_cryogenic_chamber");
         register(TileEntityGasLiquefier.class, "gc_gas_liquefier");
@@ -223,7 +220,6 @@ public class MarsModule implements IPlanetsModule
 
     public void registerCreatures()
     {
-        this.registerGalacticraftCreature(EntitySlimeling.class, "slimeling", ColorUtil.to32BitColor(255, 0, 50, 0), ColorUtil.to32BitColor(255, 0, 150, 0));
         this.registerGalacticraftCreature(EntityCreeperBoss.class, "creeper_boss", ColorUtil.to32BitColor(255, 0, 50, 0), ColorUtil.to32BitColor(255, 0, 150, 0));
     }
 
