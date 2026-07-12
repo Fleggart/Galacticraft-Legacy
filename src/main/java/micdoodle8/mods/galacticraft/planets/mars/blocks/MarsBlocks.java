@@ -24,7 +24,7 @@ public class MarsBlocks
 {
 
     public static Block marsBlock;
-    public static Block blockSludge;
+    // public static Block blockSludge;  ← 已删除
     public static Block vine;
     public static Block rock;
     public static Block treasureChestTier2;
@@ -74,14 +74,13 @@ public class MarsBlocks
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 1, 3); // Iron ore
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 0, 4); // Cobblestone
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 3, 7); // Dungeon brick
-        setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 0, 8); // Decoration
-        // block
+        setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 0, 8); // Decoration block
         setHarvestLevel(MarsBlocks.marsBlock, "pickaxe", 1, 9); // Stone
         setHarvestLevel(MarsBlocks.marsBlock, "shovel", 0, 5); // Top dirt
         setHarvestLevel(MarsBlocks.marsBlock, "shovel", 0, 6); // Dirt
         setHarvestLevel(MarsBlocks.rock, "pickaxe", 3);
-        //        setHarvestLevel(MarsBlocks.marsCobblestoneStairs, "pickaxe", 0);
-        //        setHarvestLevel(MarsBlocks.marsBricksStairs, "pickaxe", 3);
+        // setHarvestLevel(MarsBlocks.marsCobblestoneStairs, "pickaxe", 0);
+        // setHarvestLevel(MarsBlocks.marsBricksStairs, "pickaxe", 3);
     }
 
     public static void registerBlock(Block block, Class<? extends ItemBlock> itemClass)
