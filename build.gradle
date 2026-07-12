@@ -62,6 +62,13 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
+
+processResources {
+    filesMatching("mcmod.info") {
+        expand(version: project.version)
+    }
+}
+
 clean {
     def filteredDelete = new HashSet<>()
     for (def toDelete : getDelete()) {
