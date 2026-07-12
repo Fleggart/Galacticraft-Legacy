@@ -16,10 +16,10 @@ public class Constants
     public static final String MOD_ID_PLANETS                        = "galacticraftplanets";
     public static final String MOD_NAME_SIMPLE                       = "Galacticraft";
 
-    public static final String VERSION                               = "4.0.7";
+    public static final String VERSION                               = "${version}";
 
     public static final String DEPENDENCIES_FORGE                    = "required-after:forge@[14.23.5.2847,); ";
-    //public static final String DEPENDENCIES_MICCORE                  = "required-after:micdoodlecore; ";
+    public static final String DEPENDENCIES_MICCORE                  = "required-after:micdoodlecore; ";
     @Deprecated
     @ForRemoval(deadline = "4.1.0")
     public static final String DEPENDENCIES_MODS                     = "after:ic2; after:tconstruct; after:mantle;";
