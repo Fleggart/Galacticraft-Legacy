@@ -207,6 +207,12 @@ public class BiomeAdaptive extends BiomeGenBaseGC
     }
 
     @Override
+    public float getTemperature(BlockPos pos)
+    {
+        return biomeTrue.getTemperature(pos);
+    }
+
+    @Override
     public void decorate(World worldIn, Random rand, BlockPos pos)
     {
         if (worldIn.provider instanceof IGalacticraftWorldProvider)
@@ -277,20 +283,99 @@ public class BiomeAdaptive extends BiomeGenBaseGC
         return biomeTrue.ignorePlayerSpawnSuitability();
     }
 
-    // ====== 以下全部删除 ======
-    // 删除了 getRainfall()
-    // 删除了 getBiomeName()
-    // 删除了 getHeightVariation()
-    // 删除了 getDefaultTemperature()
-    // 删除了 getWaterColor()
-    // 删除了 isSnowyBiome()
-    // 删除了 getModdedBiomeDecorator()
-    // 删除了 getWaterColorMultiplier()
-    // 删除了 getModdedBiomeGrassColor()
-    // 删除了 getModdedBiomeFoliageColor()
-    // 删除了 addDefaultFlowers()
-    // 删除了 addFlower()
-    // 删除了 plantFlower()
+    @Override
+    public float getBaseHeight()
+    {
+        return biomeTrue == null ? 0.0F : biomeTrue.getBaseHeight();
+    }
+
+    @Override
+    public float getRainfall()
+    {
+        return biomeTrue.getRainfall();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getBiomeName()
+    {
+        return biomeTrue.getBiomeName();
+    }
+
+    @Override
+    public float getHeightVariation()
+    {
+        return biomeTrue.getHeightVariation();
+    }
+
+    @Override
+    public float getDefaultTemperature()
+    {
+        return biomeTrue.getDefaultTemperature();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int getWaterColor()
+    {
+        return biomeTrue.getWaterColor();
+    }
+
+    @Override
+    public boolean isSnowyBiome()
+    {
+        return biomeTrue.isSnowyBiome();
+    }
+
+    @Override
+    public BiomeDecorator getModdedBiomeDecorator(BiomeDecorator original)
+    {
+        return biomeTrue.getModdedBiomeDecorator(original);
+    }
+
+    @Override
+    public int getWaterColorMultiplier()
+    {
+        return biomeTrue.getWaterColorMultiplier();
+    }
+
+    @Override
+    public int getModdedBiomeGrassColor(int original)
+    {
+        return biomeTrue.getModdedBiomeGrassColor(original);
+    }
+
+    @Override
+    public int getModdedBiomeFoliageColor(int original)
+    {
+        return biomeTrue.getModdedBiomeFoliageColor(original);
+    }
+
+    @Override
+    public void addDefaultFlowers()
+    {
+        if (biomeTrue != null)
+            biomeTrue.addDefaultFlowers();
+    }
+
+    @Override
+    public void addFlower(IBlockState state, int weight)
+    {
+        biomeTrue.addFlower(state, weight);
+    }
+
+    @Override
+    public void plantFlower(World world, Random rand, BlockPos pos)
+    {
+        if (world.provider instanceof IGalacticraftWorldProvider)
+        {
+            this.setBodyInstance(((IGalacticraftWorldProvider) world.provider).getCelestialBody());
+        } else
+        {
+            reportBiomeIDconflict();
+        }
+        biomeTrue.plantFlower(world, rand, pos);
+    }
 
     private void reportBiomeIDconflict()
     {
