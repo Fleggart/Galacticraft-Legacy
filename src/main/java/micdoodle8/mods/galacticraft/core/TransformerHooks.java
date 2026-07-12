@@ -91,8 +91,6 @@ public class TransformerHooks
 {
 
     private static List<IWorldGenerator>     otherModGeneratorsWhitelist = new LinkedList<>();
-    private static IWorldGenerator           generatorTCAuraNodes        = null;
-    private static Method                    generateTCAuraNodes         = null;
     private static boolean                   generatorsInitialised       = false;
     public static List<Block>                spawnListAE2_GC             = new LinkedList<>();
     public static ThreadLocal<BufferBuilder> renderBuilder               = new ThreadLocal<>();
@@ -225,36 +223,9 @@ public class TransformerHooks
             addWorldGenForName("GalacticGreg oregen", "bloodasp.galacticgreg.GT_Worldgenerator_Space");
             addWorldGenForName("Dense Ores oregen", "com.rwtema.denseores.WorldGenOres");
             addWorldGenForName("AE2 meteorites worldgen", "appeng.worldgen.MeteoriteWorldGen");
-
-            try
-            {
-                Class genThaumCraft = Class.forName("thaumcraft.common.lib.world.ThaumcraftWorldGenerator");
-                if (genThaumCraft != null && ConfigManagerCore.enableThaumCraftNodes)
-                {
-                    final Field regField = GameRegistry.class.getDeclaredField("worldGenerators");
-                    regField.setAccessible(true);
-                    Set<IWorldGenerator> registeredGenerators = (Set<IWorldGenerator>) regField.get(null);
-                    for (IWorldGenerator gen : registeredGenerators)
-                    {
-                        if (genThaumCraft.isInstance(gen))
-                        {
-                            generatorTCAuraNodes = gen;
-                            break;
-                        }
-                    }
-                    if (generatorTCAuraNodes != null)
-                    {
-                        generateTCAuraNodes = genThaumCraft.getDeclaredMethod("generateWildNodes", World.class, Random.class, int.class, int.class, boolean.class, boolean.class);
-                        generateTCAuraNodes.setAccessible(true);
-                        GalacticraftCore.logger.info("Whitelisting ThaumCraft aura node generation on planets.");
-                    }
-                }
-            } catch (Exception e)
-            {
-            }
         }
 
-        if (otherModGeneratorsWhitelist.size() > 0 || generateTCAuraNodes != null)
+        if (otherModGeneratorsWhitelist.size() > 0)
         {
             try
             {
@@ -268,10 +239,6 @@ public class TransformerHooks
                 for (IWorldGenerator gen : otherModGeneratorsWhitelist)
                 {
                     gen.generate(fmlRandom, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
-                }
-                if (generateTCAuraNodes != null)
-                {
-                    generateTCAuraNodes.invoke(generatorTCAuraNodes, world, fmlRandom, chunkX, chunkZ, false, true);
                 }
             } catch (Exception e)
             {
