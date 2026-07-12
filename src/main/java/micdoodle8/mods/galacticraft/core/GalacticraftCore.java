@@ -216,7 +216,7 @@ import api.player.server.ServerPlayerAPI;
 	modid = Constants.MOD_ID_CORE, 
 	name = GalacticraftCore.NAME, 
 	version = Constants.VERSION, 
-	dependencies = Constants.DEPENDENCIES_FORGE, 
+	dependencies = Constants.DEPENDENCIES_FORGE + Constants.DEPENDENCIES_MICCORE, 
 	useMetadata = false, 
 	acceptedMinecraftVersions = "[1.12, 1.13)", 
 	guiFactory = "micdoodle8.mods.galacticraft.core.client.gui.screen.ConfigGuiFactoryCore"
