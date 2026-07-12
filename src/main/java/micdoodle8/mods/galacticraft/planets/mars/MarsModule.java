@@ -91,7 +91,7 @@ public class MarsModule implements IPlanetsModule
 
     public static Fluid sludge;
     public static Fluid sludgeGC;
-    public static Material sludgeMaterial = new MaterialLiquid(MapColor.FOLIAGE);
+    // public static Material sludgeMaterial = new MaterialLiquid(MapColor.FOLIAGE); // 已删除
 
     public static Planet planetMars;
 
@@ -116,28 +116,7 @@ public class MarsModule implements IPlanetsModule
 
         sludge = FluidRegistry.getFluid("bacterialsludge");
 
-        if (sludge.getBlock() == null)
-        {
-            MarsBlocks.blockSludge = new BlockSludge("sludge");
-            ((BlockSludge) MarsBlocks.blockSludge).setQuantaPerBlock(3);
-            MarsBlocks.registerBlock(MarsBlocks.blockSludge, ItemBlockDesc.class);
-            sludge.setBlock(MarsBlocks.blockSludge);
-        } else
-        {
-            MarsBlocks.blockSludge = sludge.getBlock();
-        }
-
-        if (MarsBlocks.blockSludge != null)
-        {
-            FluidRegistry.addBucketForFluid(sludge); // Create a Universal
-            // Bucket AS WELL AS our
-            // type, this is needed to
-            // pull fluids out of other
-            // mods tanks
-            MarsItems.bucketSludge = new ItemBucketGC(MarsBlocks.blockSludge, sludge).setTranslationKey("bucket_sludge");
-            MarsItems.registerItem(MarsItems.bucketSludge);
-            EventHandlerGC.bucketList.put(MarsBlocks.blockSludge, MarsItems.bucketSludge);
-        }
+        // BlockSludge 已移除，不再注册
 
         MarsBlocks.initBlocks();
         MarsItems.initItems();
@@ -177,7 +156,8 @@ public class MarsModule implements IPlanetsModule
         GalacticraftRegistry.addDungeonLoot(2, new ItemStack(MarsItems.schematic, 1, 1));
         GalacticraftRegistry.addDungeonLoot(2, new ItemStack(MarsItems.schematic, 1, 2));
 
-        GalacticraftCore.proxy.registerFluidTexture(MarsModule.sludge, new ResourceLocation(GalacticraftPlanets.ASSET_PREFIX, "textures/misc/underbecterial.png"));
+        // 已删除污泥流体纹理注册
+        // GalacticraftCore.proxy.registerFluidTexture(MarsModule.sludge, new ResourceLocation(GalacticraftPlanets.ASSET_PREFIX, "textures/misc/underbecterial.png"));
     }
 
     @Override
@@ -262,9 +242,6 @@ public class MarsModule implements IPlanetsModule
         if (nextEggID < 65536)
         {
             ResourceLocation resourcelocation = new ResourceLocation(Constants.MOD_ID_PLANETS, name);
-            //            name = Constants.MOD_ID_PLANETS + "." + name;
-            //            net.minecraftforge.fml.common.registry.EntityEntry entry = new net.minecraftforge.fml.common.registry.EntityEntry(clazz, name);
-            //            net.minecraftforge.fml.common.registry.GameData.getEntityRegistry().register(nextEggID, resourcelocation, entry);
             EntityList.ENTITY_EGGS.put(resourcelocation, new EntityList.EntityEggInfo(resourcelocation, back, fore));
         }
     }
