@@ -23,7 +23,6 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.BlockMachineMars;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.BlockMachineMars.EnumMachineType;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityCryogenicChamber;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.WorldGenEggs;
@@ -50,40 +49,6 @@ import org.lwjgl.opengl.GL11;
 public class EventHandlerMars
 {
 
-    @SubscribeEvent
-    public void onLivingDeath(LivingDeathEvent event)
-    {
-        if (event.getSource().damageType.equals("slimeling") && event.getSource() instanceof EntityDamageSource)
-        {
-            EntityDamageSource source = (EntityDamageSource) event.getSource();
-
-            if (source.getTrueSource() instanceof EntitySlimeling && !source.getTrueSource().world.isRemote)
-            {
-                ((EntitySlimeling) source.getTrueSource()).kills++;
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onLivingAttacked(LivingAttackEvent event)
-    {
-        if (!event.getEntity().isEntityInvulnerable(event.getSource()) && !event.getEntity().world.isRemote && event.getEntityLiving().getHealth() <= 0.0F
-            && !(event.getSource().isFireDamage() && event.getEntityLiving().isPotionActive(MobEffects.FIRE_RESISTANCE)))
-        {
-            Entity entity = event.getSource().getTrueSource();
-
-            if (entity instanceof EntitySlimeling)
-            {
-                EntitySlimeling entitywolf = (EntitySlimeling) entity;
-
-                if (entitywolf.isTamed())
-                {
-//                    event.entityLiving.recentlyHit = 100;
-//                    event.entityLiving.attackingPlayer = null; TODO
-                }
-            }
-        }
-    }
 
     @SubscribeEvent
     public void onPlayerWakeUp(EventWakePlayer event)
