@@ -25,7 +25,6 @@ import micdoodle8.mods.galacticraft.planets.GuiIdsPlanets;
 import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityCryogenicChamber;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
-import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTerraformer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -202,10 +201,9 @@ public class BlockMachineMars extends BlockTileGC implements IShiftDescription, 
         if (type == EnumMachineType.CRYOGENIC_CHAMBER)
         {
             return new TileEntityCryogenicChamber();
-        } else
-        {
-            return new TileEntityTerraformer();
         }
+        // Terraformer has been removed
+        return null;
     }
 
     @Override
@@ -219,10 +217,7 @@ public class BlockMachineMars extends BlockTileGC implements IShiftDescription, 
         return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
-    public ItemStack getTerraformer()
-    {
-        return new ItemStack(this, 1, BlockMachineMars.TERRAFORMER_METADATA);
-    }
+    // Terraformer removed - getTerraformer() method removed
 
     public ItemStack getChamber()
     {
@@ -237,7 +232,8 @@ public class BlockMachineMars extends BlockTileGC implements IShiftDescription, 
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        list.add(this.getTerraformer());
+        // Terraformer removed
+        // list.add(this.getTerraformer());
         list.add(this.getChamber());
         list.add(this.getLaunchController());
     }
@@ -249,13 +245,13 @@ public class BlockMachineMars extends BlockTileGC implements IShiftDescription, 
         if (type == EnumMachineType.LAUNCH_CONTROLLER)
         {
             return BlockMachineMars.LAUNCH_CONTROLLER_METADATA;
-        } else if (type == EnumMachineType.CRYOGENIC_CHAMBER)
+        }
+        if (type == EnumMachineType.CRYOGENIC_CHAMBER)
         {
             return BlockMachineMars.CRYOGENIC_CHAMBER_METADATA;
-        } else
-        {
-            return BlockMachineMars.TERRAFORMER_METADATA;
         }
+        // Terraformer has been removed, default to Launch Controller
+        return BlockMachineMars.LAUNCH_CONTROLLER_METADATA;
     }
 
     @Override
@@ -296,8 +292,9 @@ public class BlockMachineMars extends BlockTileGC implements IShiftDescription, 
                 return GCCoreUtil.translate("tile.cryo_chamber.description");
             case LAUNCH_CONTROLLER_METADATA:
                 return GCCoreUtil.translate("tile.launch_controller.description");
-            case TERRAFORMER_METADATA:
-                return GCCoreUtil.translate("tile.terraformer.description");
+            // Terraformer description removed
+            // case TERRAFORMER_METADATA:
+            //     return GCCoreUtil.translate("tile.terraformer.description");
         }
         return "";
     }
