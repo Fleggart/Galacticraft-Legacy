@@ -27,14 +27,12 @@ import micdoodle8.mods.galacticraft.planets.mars.client.fx.ParticleDrip;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiMethaneSynthesizer;
-import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimelingFeed;
+
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiWaterElectrolyzer;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderCargoRocket;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderLandingBalloons;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderProjectileTNT;
-import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderSlimeling;;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.item.ItemModelRocketT2;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.tile.TileEntityTreasureChestRenderer;
@@ -43,7 +41,6 @@ import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCargoRocket;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityLandingBalloons;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityProjectileTNT;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemSchematicTier2;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
@@ -93,7 +90,6 @@ public class MarsModuleClient implements IPlanetsModuleClient
     {
         MinecraftForge.EVENT_BUS.register(this);
 
-        RenderingRegistry.registerEntityRenderingHandler(EntitySlimeling.class, (RenderManager manager) -> new RenderSlimeling(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityCreeperBoss.class, (RenderManager manager) -> new RenderCreeperBoss(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityProjectileTNT.class, (RenderManager manager) -> new RenderProjectileTNT(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityCargoRocket.class, (RenderManager manager) -> new RenderCargoRocket(manager));
@@ -196,10 +192,7 @@ public class MarsModuleClient implements IPlanetsModuleClient
         {
             ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.marsBlock, blockBasic.getMeta(), blockBasic.getName());
         }
-
-        ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.rock, 0, "slimeling_egg_red");
-        ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.rock, 1, "slimeling_egg_blue");
-        ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.rock, 2, "slimeling_egg_yellow");
+        
         ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.creeperEgg);
         ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.machine, 0, "terraformer");
         ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsBlocks.machine, 4, "cryogenic_chamber");
@@ -215,7 +208,6 @@ public class MarsModuleClient implements IPlanetsModuleClient
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.marsItemBasic, 1, "desh_stick");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.marsItemBasic, 2, "ingot_desh");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.marsItemBasic, 3, "reinforced_plate_t2");
-        ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.marsItemBasic, 4, "slimeling_cargo");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.marsItemBasic, 5, "compressed_desh");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.marsItemBasic, 6, "fluid_manip");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, MarsItems.key, 0, "key");
@@ -287,19 +279,6 @@ public class MarsModuleClient implements IPlanetsModuleClient
     public void getGuiIDs(List<Integer> idList)
     {
         idList.add(GuiIdsPlanets.MACHINE_MARS);
-    }
-
-    public static void openSlimelingGui(EntitySlimeling slimeling, int gui)
-    {
-        switch (gui)
-        {
-            case 0:
-                FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSlimeling(slimeling));
-                break;
-            case 1:
-                FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSlimelingFeed(slimeling));
-                break;
-        }
     }
 
     public static class TickHandlerClient
