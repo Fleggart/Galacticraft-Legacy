@@ -1,4 +1,4 @@
-
+/*
  * Copyright (c) 2023 Team Galacticraft
  *
  * Licensed under the MIT license.
