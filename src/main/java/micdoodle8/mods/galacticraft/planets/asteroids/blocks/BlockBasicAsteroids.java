@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Random;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.block.IPlantableBlock;
-import micdoodle8.mods.galacticraft.api.block.ITerraformableBlock;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.blocks.ISortableBlock;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
@@ -38,7 +37,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockBasicAsteroids extends Block implements IDetectableResource, IPlantableBlock, ITerraformableBlock, ISortableBlock
+public class BlockBasicAsteroids extends Block implements IDetectableResource, IPlantableBlock, ISortableBlock
 {
 
     public static final PropertyEnum<EnumBlockBasic> BASIC_TYPE = PropertyEnum.create("basictypeasteroids", EnumBlockBasic.class);
@@ -187,12 +186,6 @@ public class BlockBasicAsteroids extends Block implements IDetectableResource, I
 
     @Override
     public boolean isPlantable(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isTerraformable(World world, BlockPos pos)
     {
         return false;
     }
