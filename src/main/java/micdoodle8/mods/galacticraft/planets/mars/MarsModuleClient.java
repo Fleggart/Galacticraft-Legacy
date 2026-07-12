@@ -53,7 +53,6 @@ import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTreasureChestMars;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.Particle;
@@ -88,7 +87,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class MarsModuleClient implements IPlanetsModuleClient
 {
 
-    private static ModelResourceLocation sludgeLocation = new ModelResourceLocation(GalacticraftPlanets.TEXTURE_PREFIX + "sludge", "fluid");
+    // private static ModelResourceLocation sludgeLocation = new ModelResourceLocation(GalacticraftPlanets.TEXTURE_PREFIX + "sludge", "fluid"); // 已删除
 
     @Override
     public void preInit(FMLPreInitializationEvent event)
@@ -125,18 +124,7 @@ public class MarsModuleClient implements IPlanetsModuleClient
         addPlanetVariants("mars_machine", "terraformer", "cryogenic_chamber", "launch_controller");
         addPlanetVariants("mars_machine_t2", "gas_liquefier", "methane_synthesizer", "electrolyzer");
 
-        Item sludge = Item.getItemFromBlock(MarsBlocks.blockSludge);
-        ModelBakery.registerItemVariants(sludge, new ResourceLocation(GalacticraftPlanets.TEXTURE_PREFIX + "sludge"));
-        ModelLoader.setCustomMeshDefinition(sludge, IItemMeshDefinitionCustom.create((ItemStack stack) -> sludgeLocation));
-        ModelLoader.setCustomStateMapper(MarsBlocks.blockSludge, new StateMapperBase()
-        {
-
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-            {
-                return sludgeLocation;
-            }
-        });
+        // 已删除 BlockSludge 的模型注册
 
         ModelResourceLocation modelResourceLocation = new ModelResourceLocation(GalacticraftPlanets.TEXTURE_PREFIX + "rocket_t2", "inventory");
         for (int i = 0; i < 5; ++i)
