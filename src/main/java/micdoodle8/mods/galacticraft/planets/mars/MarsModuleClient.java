@@ -30,7 +30,6 @@ import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiMethaneSynthesizer;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimeling;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimelingFeed;
-import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiTerraformer;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiWaterElectrolyzer;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderCargoRocket;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderCreeperBoss;
@@ -55,7 +54,6 @@ import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityElectrolyzer;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
-import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTerraformer;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTreasureChestMars;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -257,10 +255,7 @@ public class MarsModuleClient implements IPlanetsModuleClient
 
             if (ID == GuiIdsPlanets.MACHINE_MARS)
             {
-                if (tile instanceof TileEntityTerraformer)
-                {
-                    return new GuiTerraformer(player.inventory, (TileEntityTerraformer) tile);
-                } else if (tile instanceof TileEntityLaunchController)
+                if (tile instanceof TileEntityLaunchController)
                 {
                     return new GuiLaunchController(player.inventory, (TileEntityLaunchController) tile);
                 } else if (tile instanceof TileEntityElectrolyzer)
