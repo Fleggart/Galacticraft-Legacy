@@ -207,12 +207,6 @@ public class BiomeAdaptive extends BiomeGenBaseGC
     }
 
     @Override
-    public float getTemperature(BlockPos pos)
-    {
-        return biomeTrue.getTemperature(pos);
-    }
-
-    @Override
     public void decorate(World worldIn, Random rand, BlockPos pos)
     {
         if (worldIn.provider instanceof IGalacticraftWorldProvider)
