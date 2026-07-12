@@ -48,7 +48,6 @@ import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerElectrolyzer
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerMethaneSynthesizer;
-import micdoodle8.mods.galacticraft.planets.mars.inventory.ContainerTerraformer;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemSchematicTier2;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import micdoodle8.mods.galacticraft.planets.mars.network.PacketSimpleMars;
@@ -62,7 +61,6 @@ import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityGasLiquefier;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityMethaneSynthesizer;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntitySlimelingEgg;
-import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTerraformer;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityTreasureChestMars;
 import micdoodle8.mods.galacticraft.planets.mars.world.gen.BiomeMars;
 import net.minecraft.block.Block;
@@ -237,7 +235,6 @@ public class MarsModule implements IPlanetsModule
     {
         register(TileEntitySlimelingEgg.class, "gc_slimeling_egg");
         register(TileEntityTreasureChestMars.class, "gc_tier_2_treasure_chest");
-        register(TileEntityTerraformer.class, "gc_planet_terraformer");
         register(TileEntityCryogenicChamber.class, "gc_cryogenic_chamber");
         register(TileEntityGasLiquefier.class, "gc_gas_liquefier");
         register(TileEntityMethaneSynthesizer.class, "gc_methane_synthesizer");
@@ -297,10 +294,6 @@ public class MarsModule implements IPlanetsModule
 
             if (ID == GuiIdsPlanets.MACHINE_MARS)
             {
-                if (tile instanceof TileEntityTerraformer)
-                {
-                    return new ContainerTerraformer(player.inventory, (TileEntityTerraformer) tile, player);
-                }
                 if (tile instanceof TileEntityLaunchController)
                 {
                     return new ContainerLaunchController(player.inventory, (TileEntityLaunchController) tile, player);
