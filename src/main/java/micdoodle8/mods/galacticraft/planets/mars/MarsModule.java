@@ -33,7 +33,6 @@ import micdoodle8.mods.galacticraft.planets.GCPlanetDimensions;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.GuiIdsPlanets;
 import micdoodle8.mods.galacticraft.planets.IPlanetsModule;
-import micdoodle8.mods.galacticraft.planets.mars.blocks.BlockSludge;
 import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.TeleportTypeMars;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
