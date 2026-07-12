@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySludgeling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -41,23 +40,12 @@ public class BlockSludge extends BlockFluidClassic
     {
         if (!worldIn.isRemote)
         {
-            if (entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).capabilities.isFlying || entityIn instanceof EntitySludgeling)
+            if (entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).capabilities.isFlying)
             {
                 return;
             }
 
-            int range = 5;
-            List<?> l = worldIn.getEntitiesWithinAABB(EntitySludgeling.class,
-                new AxisAlignedBB(pos.getX() - range, pos.getY() - range, pos.getZ() - range, pos.getX() + range, pos.getY() + range, pos.getZ() + range));
-
-            if (l.size() < 3)
-            {
-                EntitySludgeling sludgeling = new EntitySludgeling(worldIn);
-                sludgeling.setPosition(pos.getX() + worldIn.rand.nextInt(5) - 2, pos.getY(), pos.getZ() + worldIn.rand.nextInt(5) - 2);
-                worldIn.spawnEntity(sludgeling);
-            }
         }
-
         super.onEntityCollision(worldIn, pos, state, entityIn);
     }
 

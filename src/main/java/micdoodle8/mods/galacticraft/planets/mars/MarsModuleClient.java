@@ -35,8 +35,7 @@ import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderCarg
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderLandingBalloons;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderProjectileTNT;
-import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderSlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderSludgeling;
+import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderSlimeling;;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.entity.RenderTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.item.ItemModelRocketT2;
 import micdoodle8.mods.galacticraft.planets.mars.client.render.tile.TileEntityTreasureChestRenderer;
@@ -46,7 +45,6 @@ import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCreeperBoss;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityLandingBalloons;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityProjectileTNT;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySludgeling;
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.items.ItemSchematicTier2;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
@@ -97,7 +95,6 @@ public class MarsModuleClient implements IPlanetsModuleClient
     {
         MinecraftForge.EVENT_BUS.register(this);
 
-        RenderingRegistry.registerEntityRenderingHandler(EntitySludgeling.class, (RenderManager manager) -> new RenderSludgeling(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntitySlimeling.class, (RenderManager manager) -> new RenderSlimeling(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityCreeperBoss.class, (RenderManager manager) -> new RenderCreeperBoss(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityProjectileTNT.class, (RenderManager manager) -> new RenderProjectileTNT(manager));
