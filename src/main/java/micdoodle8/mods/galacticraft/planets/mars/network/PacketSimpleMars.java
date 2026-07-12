@@ -22,9 +22,8 @@ import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.GuiIdsPlanets;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiCargoRocket;
 import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiLaunchControllerAdvanced;
-import micdoodle8.mods.galacticraft.planets.mars.client.gui.GuiSlimelingInventory;
+
 import micdoodle8.mods.galacticraft.planets.mars.entities.EntityCargoRocket;
-import micdoodle8.mods.galacticraft.planets.mars.entities.EntitySlimeling;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityCryogenicChamber;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
 import micdoodle8.mods.galacticraft.planets.mars.util.MarsUtil;
@@ -46,7 +45,7 @@ public class PacketSimpleMars extends PacketBase
     {
 
         // SERVER
-        S_UPDATE_SLIMELING_DATA(Side.SERVER, Integer.class, Integer.class, String.class),
+        
         S_WAKE_PLAYER(Side.SERVER),
         S_UPDATE_ADVANCED_GUI(Side.SERVER, Integer.class, BlockPos.class, Integer.class),
         S_UPDATE_CARGO_ROCKET_STATUS(Side.SERVER, Integer.class, Integer.class),
@@ -148,17 +147,6 @@ public class PacketSimpleMars extends PacketBase
 
                 switch ((Integer) this.data.get(1))
                 {
-                    case 0:
-                        entityID = (Integer) this.data.get(2);
-                        entity = player.world.getEntityByID(entityID);
-
-                        if (entity != null && entity instanceof EntitySlimeling)
-                        {
-                            FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSlimelingInventory(player, (EntitySlimeling) entity));
-                        }
-
-                        player.openContainer.windowId = (Integer) this.data.get(0);
-                        break;
                     case 1:
                         entityID = (Integer) this.data.get(2);
                         entity = player.world.getEntityByID(entityID);
@@ -216,66 +204,7 @@ public class PacketSimpleMars extends PacketBase
 
         switch (this.type)
         {
-            case S_UPDATE_SLIMELING_DATA:
-                Entity entity = player.world.getEntityByID((Integer) this.data.get(0));
-
-                if (entity instanceof EntitySlimeling)
-                {
-                    EntitySlimeling slimeling = (EntitySlimeling) entity;
-
-                    int subType = (Integer) this.data.get(1);
-
-                    switch (subType)
-                    {
-                        case 0:
-                            if (player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                slimeling.setSittingAI(!slimeling.isSitting());
-                                slimeling.setJumping(false);
-                                slimeling.getNavigator().clearPath();
-                                slimeling.setAttackTarget(null);
-                            }
-                            break;
-                        case 1:
-                            if (player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                slimeling.slimelingName = (String) this.data.get(2);
-                                slimeling.setName(slimeling.slimelingName);
-                            }
-                            break;
-                        case 2:
-                            if (player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                slimeling.age += 5000;
-                            }
-                            break;
-                        case 3:
-                            if (!slimeling.isInLove() && player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                slimeling.setInLove(playerBase);
-                            }
-                            break;
-                        case 4:
-                            if (player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                slimeling.attackDamage = Math.min(slimeling.attackDamage + 0.1F, 1.0F);
-                            }
-                            break;
-                        case 5:
-                            if (player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                slimeling.setHealth(slimeling.getHealth() + 5.0F);
-                            }
-                            break;
-                        case 6:
-                            if (player == slimeling.getOwner() && !slimeling.world.isRemote)
-                            {
-                                MarsUtil.openSlimelingInventory(playerBase, slimeling);
-                            }
-                            break;
-                    }
-                }
-                break;
+            
             case S_WAKE_PLAYER:
                 BlockPos c = playerBase.bedLocation;
 
