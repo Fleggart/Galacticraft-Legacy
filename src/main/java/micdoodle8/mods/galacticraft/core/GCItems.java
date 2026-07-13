@@ -46,7 +46,6 @@ import micdoodle8.mods.galacticraft.core.items.ItemFuelCanister;
 import micdoodle8.mods.galacticraft.core.items.ItemHoeGC;
 import micdoodle8.mods.galacticraft.core.items.ItemIC2Compat;
 import micdoodle8.mods.galacticraft.core.items.ItemKey;
-import micdoodle8.mods.galacticraft.core.items.ItemMeteorChunk;
 import micdoodle8.mods.galacticraft.core.items.ItemMeteoricIron;
 import micdoodle8.mods.galacticraft.core.items.ItemMoon;
 import micdoodle8.mods.galacticraft.core.items.ItemOilCanister;
@@ -116,7 +115,6 @@ public class GCItems
 	public static Item foodItem;
 	public static Item battery;
 	public static Item infiniteBatery;
-	public static Item meteorChunk;
 	public static Item wrench;
 	public static Item cheeseCurd;
 	public static Item meteoricIronRaw;
@@ -177,7 +175,6 @@ public class GCItems
         GCItems.foodItem = new ItemFood("food");
         GCItems.battery = new ItemBattery("battery");
         GCItems.infiniteBatery = new ItemBatteryInfinite("infinite_battery");
-        GCItems.meteorChunk = new ItemMeteorChunk("meteor_chunk");
         GCItems.wrench = new ItemUniversalWrench("standard_wrench");
         GCItems.cheeseCurd = new ItemCheese(1, 0.1F, false);
         GCItems.meteoricIronRaw = new ItemMeteoricIron("meteoric_iron_raw");
@@ -357,7 +354,6 @@ public class GCItems
         GCItems.registerItem(GCItems.foodItem);
         GCItems.registerItem(GCItems.battery);
         GCItems.registerItem(GCItems.infiniteBatery);
-        GCItems.registerItem(GCItems.meteorChunk);
         GCItems.registerItem(GCItems.cheeseCurd);
         GCItems.registerItem(GCItems.meteoricIronRaw);
         GCItems.registerItem(GCItems.itemBasicMoon);
