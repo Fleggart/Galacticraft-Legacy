@@ -30,8 +30,7 @@ public class AsteroidBlocks
     public static Block shortRangeTelepad;
     public static Block fakeTelepad;
     public static Block blockDenseIce;
-    public static Block blockMinerBase;
-    public static Block minerBaseFull;
+    // 删除了 blockMinerBase 和 minerBaseFull
     public static Block spaceWart;
 
     public static void initBlocks()
@@ -43,8 +42,7 @@ public class AsteroidBlocks
         AsteroidBlocks.shortRangeTelepad = new BlockShortRangeTelepad("telepad_short");
         AsteroidBlocks.fakeTelepad = new BlockTelepadFake("telepad_fake");
         AsteroidBlocks.blockDenseIce = new BlockIceAsteroids("dense_ice");
-        AsteroidBlocks.blockMinerBase = new BlockMinerBase("miner_base");
-        AsteroidBlocks.minerBaseFull = new BlockMinerBaseFull("miner_base_full");
+        // 删除了 BlockMinerBase 和 BlockMinerBaseFull 初始化
         AsteroidBlocks.spaceWart = new BlockSpaceWart("spacewart");
     }
 
@@ -62,8 +60,7 @@ public class AsteroidBlocks
         registerBlock(AsteroidBlocks.shortRangeTelepad, ItemBlockShortRangeTelepad.class);
         registerBlock(AsteroidBlocks.fakeTelepad, null);
         registerBlock(AsteroidBlocks.blockDenseIce, ItemBlockGC.class);
-        registerBlock(AsteroidBlocks.blockMinerBase, ItemBlockDesc.class);
-        registerBlock(AsteroidBlocks.minerBaseFull, null);
+        // 删除了 blockMinerBase 和 minerBaseFull 注册
         registerBlock(AsteroidBlocks.spaceWart, null);
     }
 
