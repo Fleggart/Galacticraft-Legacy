@@ -47,7 +47,7 @@ public class SpaceRace
     {
     }
 
-    public SpaceRace(List<String> playerNames, String teamName, FlagData flagData, Vector3 teamColor)
+    public SpaceRace(List<String> playerNames, String teamName, Vector3 teamColor)
     {
         this.playerNames = playerNames;
         this.teamName = teamName;
