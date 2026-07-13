@@ -110,7 +110,6 @@ import micdoodle8.mods.galacticraft.core.client.render.entities.RenderEvolvedSke
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderEvolvedWitch;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderEvolvedZombie;
-import micdoodle8.mods.galacticraft.core.client.render.entities.RenderFlag;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderLander;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderMeteor;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderMeteorChunk;
@@ -119,7 +118,6 @@ import micdoodle8.mods.galacticraft.core.client.render.entities.RenderPlayerGC;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderSchematic;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderTier1Rocket;
 import micdoodle8.mods.galacticraft.core.client.render.item.ItemModelBuggy;
-import micdoodle8.mods.galacticraft.core.client.render.item.ItemModelFlag;
 import micdoodle8.mods.galacticraft.core.client.render.item.ItemModelRocket;
 import micdoodle8.mods.galacticraft.core.client.render.item.ItemModelWorkbench;
 import micdoodle8.mods.galacticraft.core.client.render.item.TextureDungeonFinder;
@@ -144,7 +142,6 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSkeleton;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedSpider;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedWitch;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
-import micdoodle8.mods.galacticraft.core.entities.EntityFlag;
 import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
 import micdoodle8.mods.galacticraft.core.entities.EntityLander;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
@@ -226,7 +223,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
     private static ModelResourceLocation        fuelLocation         = new ModelResourceLocation(Constants.TEXTURE_PREFIX + "fuel", "fluid");
     private static ModelResourceLocation        oilLocation          = new ModelResourceLocation(Constants.TEXTURE_PREFIX + "oil", "fluid");
     private static List<PartialCanister>        canisters            = Lists.newArrayList();
-    public static Map<String, ResourceLocation> capeMap              = new HashMap<>();
 
     @Deprecated
     public static EnumRarity                    galacticraftItem     = EnumHelper.addRarity("GCRarity", TextFormatting.BLUE, "Space");
@@ -377,7 +373,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         }
 
         modelResourceLocation = new ModelResourceLocation("galacticraftcore:flag", "inventory");
-        ModelLoader.setCustomModelResourceLocation(GCItems.flag, 0, modelResourceLocation);
         ModelLoader.setCustomStateMapper(GCBlocks.oxygenDetector, new StateMap.Builder().ignore(BlockOxygenDetector.ACTIVE).build());
         ModelLoader.setCustomStateMapper(GCBlocks.panelLighting, new StateMap.Builder().ignore(BlockPanelLighting.TYPE).build());
         ModelLoader.setCustomStateMapper(GCBlocks.grating, new StateMap.Builder().ignore(BlockLiquid.LEVEL).ignore(BlockFluidBase.LEVEL).build());
@@ -476,7 +471,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         event.getMap().registerSprite(new ResourceLocation("galacticraftcore:model/buggy_main"));
         event.getMap().registerSprite(new ResourceLocation("galacticraftcore:model/buggy_storage"));
         event.getMap().registerSprite(new ResourceLocation("galacticraftcore:model/buggy_wheels"));
-        event.getMap().registerSprite(new ResourceLocation("galacticraftcore:model/flag0"));
         event.getMap().registerSprite(new ResourceLocation("galacticraftcore:model/frequency_module"));
         event.getMap().registerSprite(new ResourceLocation("galacticraftcore:blocks/fluids/oxygen_gas"));
         event.getMap().registerSprite(new ResourceLocation("galacticraftcore:blocks/fluids/hydrogen_gas"));
@@ -514,7 +508,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
             replaceModelDefault(event, "buggy" + (i > 0 ? "_" + i : ""), "buggy_inv.obj", objects, ItemModelBuggy.class, TRSRTransformation.identity());
         }
 
-        replaceModelDefault(event, "flag", "flag.obj", ImmutableList.of("Flag", "Pole"), ItemModelFlag.class, TRSRTransformation.identity());
         ModelResourceLocation blockLoc = new ModelResourceLocation(Constants.ASSET_PREFIX + ":panel_lighting", "normal");
         ModelResourceLocation defaultLoc;
         defaultLoc = new ModelResourceLocation(GalacticraftPlanets.ASSET_PREFIX + ":asteroids_block", "basictypeasteroids=asteroid_deco");
@@ -548,7 +541,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedSkeleton.class, (RenderManager manager) -> new RenderEvolvedSkeleton(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntitySkeletonBoss.class, (RenderManager manager) -> new RenderEvolvedSkeletonBoss(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityMeteor.class, (RenderManager manager) -> new RenderMeteor(manager));
-        RenderingRegistry.registerEntityRenderingHandler(EntityFlag.class, (RenderManager manager) -> new RenderFlag(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityParachest.class, (RenderManager manager) -> new RenderParaChest(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityAlienVillager.class, (RenderManager manager) -> new RenderAlienVillager(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityLander.class, (RenderManager manager) -> new RenderLander(manager));
@@ -811,9 +803,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.concealedRepeater_Powered);
         ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.concealedRepeater_Unpowered);
         ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.concealedDetector);
-        // TODO: doubleslabs, fluids - and all the remaining meta-dependent
-        // block models (e.g. machine, machine2) have no 'inventory' variant for
-        // the meta-less block...
     }
 
     private static void addVariants()
