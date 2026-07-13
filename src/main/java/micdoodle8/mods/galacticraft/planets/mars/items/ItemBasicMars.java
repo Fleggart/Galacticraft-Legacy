@@ -27,7 +27,7 @@ public class ItemBasicMars extends Item implements ISortableItem, GCRarity
 {
 
     public static String[] names =
-    {"raw_desh", "desh_stick", "ingot_desh", "reinforced_plate_t2", "slimeling_cargo", "compressed_desh", "fluid_manip"};
+    {"raw_desh", "desh_stick", "ingot_desh", "reinforced_plate_t2", "compressed_desh", "fluid_manip"};
 
     public ItemBasicMars(String name)
     {
@@ -91,7 +91,7 @@ public class ItemBasicMars extends Item implements ISortableItem, GCRarity
             case 2:
                 return EnumSortCategoryItem.INGOT;
             case 3:
-            case 5:
+            case 4:  // 注意：compressed_desh 现在是元数据 4
                 return EnumSortCategoryItem.PLATE;
         }
         return EnumSortCategoryItem.GENERAL;
@@ -104,7 +104,7 @@ public class ItemBasicMars extends Item implements ISortableItem, GCRarity
         {
             case 3:
                 return 1.5F;
-            case 5:
+            case 4:  // 注意：compressed_desh 现在是元数据 4
                 return 1F;
         }
         return -1F;
