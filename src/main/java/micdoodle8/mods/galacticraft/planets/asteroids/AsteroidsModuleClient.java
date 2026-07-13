@@ -91,7 +91,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
         addPlanetVariants("item_basic_asteroids", "item_basic_asteroids", "engine_t2", "rocket_fins_t2", "shard_iron", "shard_titanium", "ingot_titanium", "compressed_titanium", "thermal_cloth",
             "beam_core", "dust_titanium");
         addPlanetVariants("walkway", "walkway", "walkway_wire", "walkway_pipe");
-        addPlanetVariants("strange_seed", "strange_seed", "strange_seed1");
 
         Item receiver = Item.getItemFromBlock(AsteroidBlocks.beamReceiver);
         ModelResourceLocation modelResourceLocation = new ModelResourceLocation("galacticraftplanets:beam_receiver", "inventory");
