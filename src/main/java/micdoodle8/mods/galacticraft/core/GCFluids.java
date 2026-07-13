@@ -28,7 +28,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import micdoodle8.mods.galacticraft.core.blocks.MaterialOleaginous;
-import micdoodle8.mods.galacticraft.core.entities.EntityMeteorChunk;
 import micdoodle8.mods.galacticraft.core.event.EventHandlerGC;
 import micdoodle8.mods.galacticraft.core.items.ItemBucketGC;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
@@ -39,8 +38,7 @@ import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 
-import buildcraft.api.fuels.BuildcraftFuelRegistry;
-import buildcraft.api.mj.MjAPI;
+
 
 public class GCFluids
 {
@@ -230,29 +228,7 @@ public class GCFluids
         // The following code is for other objects, not liquids, but it's
         // convenient to keep it all together
 
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(GCItems.meteorChunk, new BehaviorProjectileDispense()
-        {
-
-            @Override
-            protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stack)
-            {
-                EntityMeteorChunk meteor = new EntityMeteorChunk(worldIn);
-                meteor.setPosition(position.getX(), position.getY(), position.getZ());
-                if (stack.getItemDamage() > 0)
-                {
-                    meteor.setFire(20);
-                    meteor.isHot = true;
-                }
-                meteor.canBePickedUp = 1;
-                return meteor;
-            }
-
-            @Override
-            protected float getProjectileVelocity()
-            {
-                return 1.0F;
-            }
-        });
+        // MeteorChunk dispenser behavior removed
 
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(GCItems.rocketTier1, new BehaviorDefaultDispenseItem()
         {
@@ -333,8 +309,5 @@ public class GCFluids
         });
     }
 
-    public static void registerBCFuel()
-    {
-        BuildcraftFuelRegistry.fuel.addFuel(GCFluids.fluidFuel, 5 * MjAPI.MJ, 9000);
-    }
+    
 }
