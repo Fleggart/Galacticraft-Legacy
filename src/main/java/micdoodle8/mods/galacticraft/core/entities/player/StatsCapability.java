@@ -39,7 +39,6 @@ import micdoodle8.mods.galacticraft.core.tile.TileEntityPanelLight;
 import micdoodle8.mods.galacticraft.core.util.ColorUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.planets.asteroids.tick.AsteroidsTickHandlerServer;
 
 import com.google.common.collect.Maps;
 
@@ -66,8 +65,6 @@ public class StatsCapability extends GCPlayerStats
     public int fuelLevel;
     public Item rocketItem;
     public ItemStack launchpadStack;
-    public int astroMinerCount = 0;
-    private List<BlockVec3> activeAstroMinerChunks = new LinkedList<>();
 
     public boolean usingParachute;
 
@@ -316,24 +313,6 @@ public class StatsCapability extends GCPlayerStats
     public void setLaunchpadStack(ItemStack launchpadStack)
     {
         this.launchpadStack = launchpadStack;
-    }
-
-    @Override
-    public int getAstroMinerCount()
-    {
-        return astroMinerCount;
-    }
-
-    @Override
-    public void setAstroMinerCount(int astroMinerCount)
-    {
-        this.astroMinerCount = astroMinerCount;
-    }
-
-    @Override
-    public List<BlockVec3> getActiveAstroMinerChunks()
-    {
-        return this.activeAstroMinerChunks;
     }
 
     @Override
@@ -1086,16 +1065,6 @@ public class StatsCapability extends GCPlayerStats
         nbt.setBoolean("ReceivedBedWarning", this.receivedBedWarning);
         nbt.setInteger("BuildFlags", this.buildFlags);
         nbt.setBoolean("ShownSpaceRace", this.openedSpaceRaceManager);
-        nbt.setInteger("AstroMinerCount", this.astroMinerCount);
-        NBTTagList astroList = new NBTTagList();
-        for (BlockVec3 data : this.activeAstroMinerChunks)
-        {
-            if (data != null)
-            {
-                astroList.appendTag(data.writeToNBT(new NBTTagCompound()));
-            }
-        }
-        nbt.setTag("AstroData", astroList);
 
         nbt.setInteger("GlassColor1", this.glassColor1);
         nbt.setInteger("GlassColor2", this.glassColor2);
@@ -1257,22 +1226,6 @@ public class StatsCapability extends GCPlayerStats
                 this.openedSpaceRaceManager = nbt.getBoolean("ShownSpaceRace");
             }
 
-            if (nbt.hasKey("AstroMinerCount"))
-            {
-                this.astroMinerCount = nbt.getInteger("AstroMinerCount");
-            }
-            if (nbt.hasKey("AstroData"))
-            {
-                this.activeAstroMinerChunks.clear();
-                NBTTagList astroList = nbt.getTagList("AstroData", 10);
-                for (int i = 0; i < astroList.tagCount(); ++i)
-                {
-                    final NBTTagCompound nbttagcompound = astroList.getCompoundTagAt(i);
-                    BlockVec3 data = BlockVec3.readFromNBT(nbttagcompound);
-                    this.activeAstroMinerChunks.add(data);
-                }
-                AsteroidsTickHandlerServer.loadAstroChunkList(this.activeAstroMinerChunks);
-            }
 
             if (nbt.hasKey("GlassColor1"))
             {
@@ -1331,8 +1284,6 @@ public class StatsCapability extends GCPlayerStats
         this.glassColor3 = oldData.getGlassColor3();
         this.panelLightingBases = oldData.getPanelLightingBases();
         this.panelLightingColor = oldData.getPanelLightingColor();
-        this.astroMinerCount = oldData.getAstroMinerCount();
-        this.activeAstroMinerChunks = oldData.getActiveAstroMinerChunks();
         this.sentFlags = false;
     }
 
