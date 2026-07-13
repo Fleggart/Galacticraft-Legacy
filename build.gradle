@@ -18,10 +18,6 @@ minecraft {
 repositories {
     mavenCentral()
     maven {
-        name = "BuildCraft"
-        url = "https://mod-buildcraft.com/maven"
-    }
-    maven {
         name 'JEI'
         url 'https://maven.blamejared.com/'
     }
@@ -44,7 +40,6 @@ dependencies {
     
     implementation "curse.maven:mekanism-268560:2835175"
     implementation "net.industrial-craft:industrialcraft-2:2.8.222-ex112:dev"
-   // compileOnly "curse.maven:buildcraft-61811:6376391"
     implementation "curse.maven:redstoneflux-270789:2920436"
     implementation "curse.maven:appliedenergistics2-223794:2747063"
     implementation "curse.maven:playerapi-449521:3212872"
