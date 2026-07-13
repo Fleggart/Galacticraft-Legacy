@@ -7,9 +7,6 @@
 
 package micdoodle8.mods.galacticraft.core.energy.tile;
 
-import buildcraft.api.mj.IMjConnector;
-import buildcraft.api.mj.IMjReceiver;
-import buildcraft.api.mj.MjAPI;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
@@ -18,7 +15,6 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.ISpecialElectricItem;
 import java.util.EnumSet;
-import javax.annotation.Nonnull;
 import mekanism.api.energy.EnergizedItemManager;
 import mekanism.api.energy.IEnergizedItem;
 import mekanism.api.energy.IStrictEnergyAcceptor;
@@ -47,15 +43,13 @@ import net.minecraftforge.items.CapabilityItemHandler;
 @InterfaceList(value = {
     @Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = CompatibilityManager.modidIC2),
     @Interface(iface = "ic2.api.energy.tile.IEnergyAcceptor", modid = CompatibilityManager.modidIC2),
-    @Interface(iface = "buildcraft.api.mj.IMjReceiver", modid = CompatibilityManager.modBCraftEnergy),
     @Interface(iface = "mekanism.api.energy.IStrictEnergyOutputter", modid = CompatibilityManager.modidMekanism),
     @Interface(iface = "mekanism.api.energy.IStrictEnergyAcceptor", modid = CompatibilityManager.modidMekanism)
 })
-public abstract class TileBaseUniversalElectrical extends EnergyStorageTile implements IEnergySink, IEnergyAcceptor, IMjReceiver, IStrictEnergyOutputter, IStrictEnergyAcceptor
+public abstract class TileBaseUniversalElectrical extends EnergyStorageTile implements IEnergySink, IEnergyAcceptor, IStrictEnergyOutputter, IStrictEnergyAcceptor
 {
 
     protected boolean isAddedToEnergyNet;
-    protected Object powerHandlerBC;
 
     private float IC2surplusInGJ = 0F;
 
@@ -342,50 +336,6 @@ public abstract class TileBaseUniversalElectrical extends EnergyStorageTile impl
         return this.getElectricalInputDirections().contains(direction);
     }
 
-    // BuildCraft
-    @Override
-    public boolean canReceive()
-    {
-        return !EnergyConfigHandler.disableBuildCraftInput;
-    }
-
-    // Buildcraft 7
-    @Override
-    @Method(modid = CompatibilityManager.modBCraftEnergy)
-    public long getPowerRequested()
-    {
-        if (EnergyConfigHandler.disableBuildCraftInput)
-        {
-            return 0L;
-        }
-
-        // Boost stated demand by factor of 30, otherwise Buildcraft seems to
-        // send only a trickle of power
-        return (long) (this.storage.receiveEnergyGC(Integer.MAX_VALUE, true) / EnergyConfigHandler.BC8_INTERNAL_RATIO * 30F);
-    }
-
-    // Buildcraft 7
-    @Override
-    @Method(modid = CompatibilityManager.modBCraftEnergy)
-    public long receivePower(long microJoules, boolean simulate)
-    {
-        if (EnergyConfigHandler.disableBuildCraftInput)
-        {
-            return microJoules;
-        }
-        float receiveGC = microJoules * EnergyConfigHandler.BC8_INTERNAL_RATIO;
-        float sentGC = receiveGC - super.receiveElectricity(null, receiveGC, 1, !simulate);
-        return (long) (sentGC / EnergyConfigHandler.BC8_INTERNAL_RATIO);
-    }
-
-    // Buildcraft 7
-    @Override
-    @Method(modid = CompatibilityManager.modBCraftEnergy)
-    public boolean canConnect(@Nonnull IMjConnector other)
-    {
-        return true;
-    }
-
     public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
     {
         if (EnergyConfigHandler.disableRFInput)
@@ -524,7 +474,7 @@ public abstract class TileBaseUniversalElectrical extends EnergyStorageTile impl
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
-        if (capability == CapabilityEnergy.ENERGY || (EnergyConfigHandler.isBuildcraftLoaded() && (capability == MjAPI.CAP_RECEIVER || capability == MjAPI.CAP_CONNECTOR)))
+        if (capability == CapabilityEnergy.ENERGY)
         {
             return this.getElectricalInputDirections().contains(facing);
         }
@@ -534,88 +484,10 @@ public abstract class TileBaseUniversalElectrical extends EnergyStorageTile impl
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
-        if (capability == CapabilityEnergy.ENERGY || (EnergyConfigHandler.isBuildcraftLoaded() && (capability == MjAPI.CAP_RECEIVER || capability == MjAPI.CAP_CONNECTOR)))
+        if (capability == CapabilityEnergy.ENERGY)
         {
-            return this.getElectricalInputDirections().contains(facing) ? (T) new ForgeReceiver(this) : null;
+            return this.getElectricalInputDirections().contains(facing) ? (T) this : null;
         }
         return super.getCapability(capability, facing);
-    }
-
-    @Interface(modid = CompatibilityManager.modBCraftEnergy, iface = "buildcraft.api.mj.IMjReceiver")
-    private static class ForgeReceiver implements net.minecraftforge.energy.IEnergyStorage, IMjReceiver
-    {
-
-        private TileBaseUniversalElectrical tile;
-
-        public ForgeReceiver(TileBaseUniversalElectrical tileElectrical)
-        {
-            this.tile = tileElectrical;
-        }
-
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate)
-        {
-            if (EnergyConfigHandler.disableFEInput)
-                return 0;
-
-            return MathHelper.floor(tile.receiveElectricity(null, maxReceive * EnergyConfigHandler.RF_RATIO, 1, !simulate) / EnergyConfigHandler.RF_RATIO);
-        }
-
-        @Override
-        public boolean canReceive()
-        {
-            return !EnergyConfigHandler.disableFEInput;
-        }
-
-        @Override
-        public int getEnergyStored()
-        {
-            if (EnergyConfigHandler.disableFEInput)
-                return 0;
-
-            return MathHelper.floor(tile.getEnergyStoredGC() / EnergyConfigHandler.RF_RATIO);
-        }
-
-        @Override
-        public int getMaxEnergyStored()
-        {
-            if (EnergyConfigHandler.disableFEInput)
-                return 0;
-
-            return MathHelper.floor(tile.getMaxEnergyStoredGC() / EnergyConfigHandler.RF_RATIO);
-        }
-
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate)
-        {
-            return 0;
-        }
-
-        @Override
-        public boolean canExtract()
-        {
-            return false;
-        }
-
-        @Override
-        @Method(modid = CompatibilityManager.modBCraftEnergy)
-        public boolean canConnect(@Nonnull IMjConnector other)
-        {
-            return true;
-        }
-
-        @Override
-        @Method(modid = CompatibilityManager.modBCraftEnergy)
-        public long getPowerRequested()
-        {
-            return tile.getPowerRequested();
-        }
-
-        @Override
-        @Method(modid = CompatibilityManager.modBCraftEnergy)
-        public long receivePower(long microJoules, boolean simulate)
-        {
-            return tile.receivePower(microJoules, simulate);
-        }
     }
 }
