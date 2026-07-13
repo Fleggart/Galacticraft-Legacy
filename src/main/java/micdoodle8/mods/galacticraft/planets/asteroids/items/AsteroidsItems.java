@@ -25,15 +25,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class AsteroidsItems
 {
 
-    public static Item grapple;
     public static Item tier3Rocket;
-    // 删除了 astroMiner
     public static Item thermalPadding;
     public static Item basicItem;
     public static Item methaneCanister;
     public static Item canisterLOX;
     public static Item canisterLN2;
-    // public static Item canisterLAr;
     public static Item atmosphericValve;
     public static ItemHeavyNoseCone heavyNoseCone;
     public static Item orionDrive;
@@ -53,16 +50,12 @@ public class AsteroidsItems
 
     public static void initItems()
     {
-        AsteroidsItems.grapple = new ItemGrappleHook("grapple");
         AsteroidsItems.tier3Rocket = new ItemTier3Rocket("rocket_t3");
-        // 删除了 AstroMiner 物品初始化
         AsteroidsItems.thermalPadding = new ItemThermalPadding("thermal_padding");
         AsteroidsItems.basicItem = new ItemBasicAsteroids("item_basic_asteroids");
         AsteroidsItems.methaneCanister = new ItemCanisterMethane("methane_canister_partial");
         AsteroidsItems.canisterLOX = new ItemCanisterLiquidOxygen("canister_partial_lox");
         AsteroidsItems.canisterLN2 = new ItemCanisterLiquidNitrogen("canister_partial_ln2");
-        // AsteroidsItems.canisterLAr = new
-        // ItemCanisterLiquidArgon("canisterPartialLAr");
         AsteroidsItems.atmosphericValve = new ItemAtmosphericValve("atmospheric_valve");
         AsteroidsItems.heavyNoseCone = new ItemHeavyNoseCone("heavy_nose_cone");
         AsteroidsItems.orionDrive = new ItemOrionDrive("orion_drive");
@@ -77,7 +70,6 @@ public class AsteroidsItems
         AsteroidsItems.titaniumSword = new ItemSwordAsteroids("titanium_sword");
 
         AsteroidsItems.registerItems();
-
         AsteroidsItems.registerHarvestLevels();
 
         GalacticraftCore.proxy.registerCanister(new PartialCanister(AsteroidsItems.methaneCanister, Constants.MOD_ID_PLANETS, "methane_canister_partial", 7));
@@ -103,15 +95,12 @@ public class AsteroidsItems
 
     private static void registerItems()
     {
-        registerItem(AsteroidsItems.grapple);
         registerItem(AsteroidsItems.tier3Rocket);
-        // 删除了 AstroMiner 物品注册
         registerItem(AsteroidsItems.thermalPadding);
         registerItem(AsteroidsItems.basicItem);
         registerItem(AsteroidsItems.methaneCanister);
         registerItem(AsteroidsItems.canisterLOX);
         registerItem(AsteroidsItems.canisterLN2);
-        // registerItem(AsteroidsItems.canisterLAr);
         registerItem(AsteroidsItems.atmosphericValve);
         registerItem(AsteroidsItems.heavyNoseCone);
         registerItem(AsteroidsItems.orionDrive);
