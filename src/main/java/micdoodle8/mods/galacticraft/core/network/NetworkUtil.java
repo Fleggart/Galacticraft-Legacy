@@ -37,7 +37,6 @@ import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.energy.tile.EnergyStorage;
 import micdoodle8.mods.galacticraft.core.tile.FluidTankGC;
-import micdoodle8.mods.galacticraft.core.wrappers.FlagData;
 import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 
 import com.google.common.math.DoubleMath;
@@ -124,22 +123,8 @@ public class NetworkUtil
             } else if (dataValue instanceof Collection)
             {
                 NetworkUtil.encodeData(buffer, (Collection<Object>) dataValue);
-            } else if (dataValue instanceof FlagData)
-            {
-                buffer.writeInt(((FlagData) dataValue).getWidth());
-                buffer.writeInt(((FlagData) dataValue).getHeight());
-
-                for (int i = 0; i < ((FlagData) dataValue).getWidth(); i++)
-                {
-                    for (int j = 0; j < ((FlagData) dataValue).getHeight(); j++)
-                    {
-                        Vector3 vec = ((FlagData) dataValue).getColorAt(i, j);
-                        buffer.writeByte((byte) (vec.x * 256 - 128));
-                        buffer.writeByte((byte) (vec.y * 256 - 128));
-                        buffer.writeByte((byte) (vec.z * 256 - 128));
-                    }
-                }
-            } else if (dataValue instanceof Integer[])
+            } 
+             else if (dataValue instanceof Integer[])
             {
                 Integer[] array = (Integer[]) dataValue;
                 buffer.writeInt(array.length);
@@ -254,22 +239,7 @@ public class NetworkUtil
             } else if (clazz.equals(Vector3.class))
             {
                 objList.add(new Vector3(buffer.readDouble(), buffer.readDouble(), buffer.readDouble()));
-            } else if (clazz.equals(FlagData.class))
-            {
-                int width = buffer.readInt();
-                int height = buffer.readInt();
-                FlagData flagData = new FlagData(width, height);
-
-                for (int i = 0; i < width; i++)
-                {
-                    for (int j = 0; j < height; j++)
-                    {
-                        flagData.setColorAt(i, j, new Vector3(buffer.readByte() + 128, buffer.readByte() + 128, buffer.readByte() + 128));
-                    }
-                }
-
-                objList.add(flagData);
-            } else if (clazz.equals(Integer[].class))
+            }  else if (clazz.equals(Integer[].class))
             {
                 int size = buffer.readInt();
 
