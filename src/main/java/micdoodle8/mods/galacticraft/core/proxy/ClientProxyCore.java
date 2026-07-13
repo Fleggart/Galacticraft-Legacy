@@ -247,7 +247,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
     {
         MUSIC_TYPE_MARS = EnumHelper.addEnum(MusicTicker.MusicType.class, "MARS_JC", new Class[] {SoundEvent.class, Integer.TYPE, Integer.TYPE}, GCSounds.music, 12000, 24000);
         ClientProxyCore.registerTileEntityRenderers();
-        ClientProxyCore.updateCapeList();
         ClientProxyCore.registerInventoryJsons();
 
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) ->
@@ -883,83 +882,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
     public void registerFluidTexture(Fluid fluid, ResourceLocation submergedTexture)
     {
         ClientProxyCore.submergedTextures.put(fluid, submergedTexture);
-    }
-
-    private static void updateCapeList()
-    {
-        int timeout = 10000;
-        URL capeListUrl;
-
-        try
-        {
-            capeListUrl = new URL("https://raw.github.com/micdoodle8/Galacticraft/master/capes-uuid.txt");
-        } catch (IOException e)
-        {
-            if (ConfigManagerCore.enableDebug)
-            {
-                GalacticraftCore.logger.noticableWarning(e, "Error getting capes list URL");
-            }
-            else
-            {
-                GalacticraftCore.logger.warn("Error getting capes list URL");
-            }
-            return;
-        }
-
-        URLConnection connection;
-
-        try
-        {
-            connection = capeListUrl.openConnection();
-        } catch (IOException e)
-        {
-            if (ConfigManagerCore.enableDebug)
-                e.printStackTrace();
-            return;
-        }
-
-        connection.setConnectTimeout(timeout);
-        connection.setReadTimeout(timeout);
-        InputStream stream;
-
-        try
-        {
-            stream = connection.getInputStream();
-        } catch (IOException e)
-        {
-            if (ConfigManagerCore.enableDebug)
-                e.printStackTrace();
-            return;
-        }
-
-        InputStreamReader streamReader = new InputStreamReader(stream);
-        BufferedReader reader = new BufferedReader(streamReader);
-
-        String line;
-        try
-        {
-            while ((line = reader.readLine()) != null)
-            {
-                if (line.contains(":"))
-                {
-                    capeMap.put(line.split(":")[0], new ResourceLocation(Constants.MOD_ID_CORE, "textures/misc/capes/cape_" + line.split(":")[1].split(" ")[0].substring(4).toLowerCase() + ".png"));
-                }
-            }
-        } catch (IOException e)
-        {
-            if (ConfigManagerCore.enableDebug)
-                e.printStackTrace();
-        } finally
-        {
-            try
-            {
-                reader.close();
-            } catch (IOException e)
-            {
-                if (ConfigManagerCore.enableDebug)
-                    e.printStackTrace();
-            }
-        }
     }
 
     public static class EventSpecialRender extends Event
