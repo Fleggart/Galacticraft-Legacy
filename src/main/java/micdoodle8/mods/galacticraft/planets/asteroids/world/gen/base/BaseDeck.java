@@ -43,8 +43,8 @@ public class BaseDeck extends SizedPiece
     {
 
         HUMANOID(5, 3, GCBlocks.basicBlock.getStateFromMeta(4), new ItemStack(Items.GHAST_TEAR, 3, 0)),
-        AVIAN(4, 3, GCBlocks.blockMoon.getStateFromMeta(4), new ItemStack(AsteroidsItems.strangeSeed, 1, 1)),
-        TUNNELER(4, 4, GCBlocks.blockMoon.getStateFromMeta(4), new ItemStack(AsteroidsItems.strangeSeed, 1, 0));
+        
+        
 
         public final int height;
         public final int width;
