@@ -58,7 +58,6 @@ import micdoodle8.mods.galacticraft.core.items.ItemPickaxeGC;
 import micdoodle8.mods.galacticraft.core.items.ItemPreLaunchChecklist;
 import micdoodle8.mods.galacticraft.core.items.ItemRocketEngineGC;
 import micdoodle8.mods.galacticraft.core.items.ItemSchematic;
-import micdoodle8.mods.galacticraft.core.items.ItemSensorGlasses;
 import micdoodle8.mods.galacticraft.core.items.ItemSpadeGC;
 import micdoodle8.mods.galacticraft.core.items.ItemSwordGC;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
@@ -84,7 +83,6 @@ public class GCItems
 	public static Item oxTankHeavy;
 	public static Item oxMask;
 	public static Item rocketTier1;
-	public static Item sensorGlasses;
 	public static Item sensorLens;
 	public static Item steelPickaxe;
 	public static Item steelAxe;
@@ -131,7 +129,6 @@ public class GCItems
 	public static Item emergencyKit;
 	//@format
 
-    public static ArmorMaterial                                ARMOR_SENSOR_GLASSES = EnumHelper.addArmorMaterial("SENSORGLASSES", "", 200, new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
     public static ArmorMaterial                                ARMOR_STEEL          = EnumHelper.addArmorMaterial("steel", "", 30, new int[] {3, 6, 8, 3}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F);
     public static ToolMaterial                                 TOOL_STEEL           = EnumHelper.addToolMaterial("steel", 3, 768, 5.0F, 2, 8);
 
@@ -147,7 +144,6 @@ public class GCItems
         GCItems.oxTankHeavy = new ItemOxygenTank(3, "oxygen_tank_heavy_full");
         GCItems.oxMask = new ItemOxygenMask("oxygen_mask");
         GCItems.rocketTier1 = new ItemTier1Rocket("rocket_t1");
-        GCItems.sensorGlasses = new ItemSensorGlasses("sensor_glasses");
         GCItems.steelPickaxe = new ItemPickaxeGC("steel_pickaxe");
         GCItems.steelAxe = new ItemAxeGC("steel_axe");
         GCItems.steelHoe = new ItemHoeGC("steel_hoe");
@@ -331,7 +327,6 @@ public class GCItems
         GCItems.registerItem(GCItems.oxTankHeavy);
         GCItems.registerItem(GCItems.oxygenCanisterInfinite);
         GCItems.registerItem(GCItems.sensorLens);
-        GCItems.registerItem(GCItems.sensorGlasses);
         GCItems.registerItem(GCItems.wrench);
         GCItems.registerItem(GCItems.steelPickaxe);
         GCItems.registerItem(GCItems.steelAxe);
