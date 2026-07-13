@@ -88,11 +88,7 @@ public abstract class GCPlayerStats
 
     public abstract void setLaunchpadStack(ItemStack launchpadStack);
 
-    public abstract int getAstroMinerCount();
-
-    public abstract void setAstroMinerCount(int astroMinerCount);
-
-    public abstract List<BlockVec3> getActiveAstroMinerChunks();
+    // 删除了 getAstroMinerCount、setAstroMinerCount、getActiveAstroMinerChunks
 
     public abstract boolean isUsingParachute();
 
