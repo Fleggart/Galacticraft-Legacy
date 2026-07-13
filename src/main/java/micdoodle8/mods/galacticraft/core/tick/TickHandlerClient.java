@@ -50,7 +50,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import micdoodle8.mods.galacticraft.api.block.IDetectableResource;
 import micdoodle8.mods.galacticraft.api.entity.IEntityNoisy;
 import micdoodle8.mods.galacticraft.api.entity.IIgnoreShift;
-import micdoodle8.mods.galacticraft.api.item.ISensorGlassesArmor;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntityAutoRocket;
 import micdoodle8.mods.galacticraft.api.prefab.entity.EntitySpaceshipBase;
 import micdoodle8.mods.galacticraft.api.recipe.CompressorRecipes;
@@ -413,56 +412,7 @@ public class TickHandlerClient
                     }
                 }
 
-                if (!player.inventory.armorItemInSlot(3).isEmpty() && player.inventory.armorItemInSlot(3).getItem() instanceof ISensorGlassesArmor)
-                {
-                    ClientProxyCore.valueableBlocks.clear();
-
-                    for (int i = -4; i < 5; i++)
-                    {
-                        int x = MathHelper.floor(player.posX + i);
-                        for (int j = -4; j < 5; j++)
-                        {
-                            int y = MathHelper.floor(player.posY + j);
-                            for (int k = -4; k < 5; k++)
-                            {
-                                int z = MathHelper.floor(player.posZ + k);
-                                BlockPos pos = new BlockPos(x, y, z);
-
-                                IBlockState state = player.world.getBlockState(pos);
-                                final Block block = state.getBlock();
-
-                                if (block.getMaterial(state) != Material.AIR)
-                                {
-                                    int metadata = block.getMetaFromState(state);
-                                    boolean isDetectable = false;
-
-                                    for (BlockMetaList blockMetaList : ClientProxyCore.detectableBlocks)
-                                    {
-                                        if (blockMetaList.getBlock() == block && blockMetaList.getMetaList().contains(metadata))
-                                        {
-                                            isDetectable = true;
-                                            break;
-                                        }
-                                    }
-
-                                    if (isDetectable || (block instanceof IDetectableResource && ((IDetectableResource) block).isValueable(state)))
-                                    {
-                                        ClientProxyCore.valueableBlocks.add(new BlockVec3(x, y, z));
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    TileEntityOxygenSealer nearestSealer = TileEntityOxygenSealer.getNearestSealer(world, MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ));
-                    if (nearestSealer != null && !nearestSealer.sealed)
-                    {
-                        ClientProxyCore.leakTrace = nearestSealer.getLeakTraceClient();
-                    } else
-                    {
-                        ClientProxyCore.leakTrace = null;
-                    }
-                } else
+                 else
                 {
                     ClientProxyCore.leakTrace = null;
                 }
