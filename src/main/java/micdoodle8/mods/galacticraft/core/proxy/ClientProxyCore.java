@@ -112,7 +112,6 @@ import micdoodle8.mods.galacticraft.core.client.render.entities.RenderEvolvedWit
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderEvolvedZombie;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderLander;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderMeteor;
-import micdoodle8.mods.galacticraft.core.client.render.entities.RenderMeteorChunk;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderParaChest;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderPlayerGC;
 import micdoodle8.mods.galacticraft.core.client.render.entities.RenderSchematic;
@@ -145,7 +144,6 @@ import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import micdoodle8.mods.galacticraft.core.entities.EntityHangingSchematic;
 import micdoodle8.mods.galacticraft.core.entities.EntityLander;
 import micdoodle8.mods.galacticraft.core.entities.EntityMeteor;
-import micdoodle8.mods.galacticraft.core.entities.EntityMeteorChunk;
 import micdoodle8.mods.galacticraft.core.entities.EntityParachest;
 import micdoodle8.mods.galacticraft.core.entities.EntitySkeletonBoss;
 import micdoodle8.mods.galacticraft.core.entities.EntityTier1Rocket;
@@ -545,7 +543,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         RenderingRegistry.registerEntityRenderingHandler(EntityLander.class, (RenderManager manager) -> new RenderLander(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityCelestialFake.class, (RenderManager manager) -> new RenderEntityFake(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityBuggy.class, (RenderManager manager) -> new RenderBuggy(manager));
-        RenderingRegistry.registerEntityRenderingHandler(EntityMeteorChunk.class, (RenderManager manager) -> new RenderMeteorChunk(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityHangingSchematic.class, (RenderManager manager) -> new RenderSchematic(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedEnderman.class, (RenderManager manager) -> new RenderEvolvedEnderman(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityEvolvedWitch.class, (RenderManager manager) -> new RenderEvolvedWitch(manager));
@@ -668,8 +665,8 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
             }
         }
 
-        ClientUtil.registerItemJson(Constants.TEXTURE_PREFIX, GCItems.meteorChunk, 0, "meteor_chunk");
-        ClientUtil.registerItemJson(Constants.TEXTURE_PREFIX, GCItems.meteorChunk, 1, "meteor_chunk_hot");
+        
+        
         ClientUtil.registerItemJson(Constants.TEXTURE_PREFIX, GCItems.buggy, 0, "buggy");
         ClientUtil.registerItemJson(Constants.TEXTURE_PREFIX, GCItems.buggy, 1, "buggy_1");
         ClientUtil.registerItemJson(Constants.TEXTURE_PREFIX, GCItems.buggy, 2, "buggy_2");
@@ -841,8 +838,7 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         addCoreVariant("basic_item", "basic_item", "solar_module_1", "raw_silicon", "ingot_copper", "ingot_tin", "ingot_aluminum", "compressed_copper", "compressed_tin", "compressed_aluminum", "compressed_steel", "compressed_bronze", "compressed_iron", "wafer_solar", "wafer_basic", "wafer_advanced", "food", "dehydrated_carrot", "dehydrated_melon", "dehydrated_potato", "frequency_module", "ambient_thermal_controller");
         addCoreVariant("food", "food", "dehydrated_carrot", "dehydrated_melon", "dehydrated_potato", ItemFood.names[4], ItemFood.names[5], ItemFood.names[6], ItemFood.names[7], ItemFood.names[8], ItemFood.names[9]);
         addCoreVariant("item_basic_moon", "item_basic_moon", "compressed_meteoric_iron", "lunar_sapphire");
-        addCoreVariant("meteor_chunk", "meteor_chunk", "meteor_chunk_hot");
-        addCoreVariant("buggy", "buggy", "buggy_1", "buggy_2", "buggy_3");
+                addCoreVariant("buggy", "buggy", "buggy_1", "buggy_2", "buggy_3");
         if (CompatibilityManager.isIc2Loaded())
             addCoreVariant("ic2compat", "ic2compat", "ic2_ore_purified_alu", "ic2_ore_crushed_alu", "ic2_dust_small_titanium");
 
