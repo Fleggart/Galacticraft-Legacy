@@ -18,7 +18,6 @@ import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.world.AtmosphereInfo;
 import micdoodle8.mods.galacticraft.core.Constants;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
-import micdoodle8.mods.galacticraft.core.command.CommandGCAstroMiner;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
 import micdoodle8.mods.galacticraft.planets.GCPlanetDimensions;
@@ -28,26 +27,20 @@ import micdoodle8.mods.galacticraft.planets.IPlanetsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.TeleportTypeAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.WorldProviderAsteroids;
-import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityAstroMiner;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityEntryPod;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityGrapple;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntitySmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.player.AsteroidsPlayerHandler;
 import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandler;
-import micdoodle8.mods.galacticraft.planets.asteroids.inventory.ContainerAstroMinerDock;
 import micdoodle8.mods.galacticraft.planets.asteroids.inventory.ContainerShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.network.PacketSimpleAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.CanisterRecipes;
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.RecipeManagerAsteroids;
-import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicAstroMiner;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
-import micdoodle8.mods.galacticraft.planets.asteroids.tick.AsteroidsTickHandlerServer;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReceiver;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReflector;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityMinerBase;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityMinerBaseSingle;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityTelepadFake;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.BiomeAsteroids;
@@ -148,17 +141,10 @@ public class AsteroidsModule implements IPlanetsModule
         AsteroidBlocks.oreDictRegistration();
         AsteroidsItems.oreDictRegistrations();
 
-        // Set creative tab item to AstroMiner
-        GalacticraftCore.galacticraftItemsTab.setItemForTab(new ItemStack(AsteroidsItems.astroMiner));
-
         this.registerMicroBlocks();
         SchematicRegistry.registerSchematicRecipe(new SchematicTier3Rocket());
-        SchematicRegistry.registerSchematicRecipe(new SchematicAstroMiner());
 
         GalacticraftCore.packetPipeline.addDiscriminator(7, PacketSimpleAsteroids.class);
-
-        AsteroidsTickHandlerServer eventHandler = new AsteroidsTickHandlerServer();
-        MinecraftForge.EVENT_BUS.register(eventHandler);
 
         this.registerEntities();
 
@@ -188,14 +174,12 @@ public class AsteroidsModule implements IPlanetsModule
     @Override
     public void serverStarting(FMLServerStartingEvent event)
     {
-        event.registerServerCommand(new CommandGCAstroMiner());
         ChunkProviderAsteroids.reset();
     }
 
     @Override
     public void serverInit(FMLServerStartedEvent event)
     {
-        AsteroidsTickHandlerServer.restart();
     }
 
     @Override
@@ -218,10 +202,6 @@ public class AsteroidsModule implements IPlanetsModule
                     if (tile instanceof TileEntityShortRangeTelepad)
                     {
                         return new ContainerShortRangeTelepad(player.inventory, ((TileEntityShortRangeTelepad) tile), player);
-                    }
-                    if (tile instanceof TileEntityMinerBase)
-                    {
-                        return new ContainerAstroMinerDock(player.inventory, (TileEntityMinerBase) tile);
                     }
 
                     break;
@@ -249,7 +229,6 @@ public class AsteroidsModule implements IPlanetsModule
         MarsModule.registerGalacticraftNonMobEntity(EntityGrapple.class, "grapple_hook", 150, 1, true);
         MarsModule.registerGalacticraftNonMobEntity(EntityTier3Rocket.class, "rocket_t3", 150, 1, false);
         MarsModule.registerGalacticraftNonMobEntity(EntityEntryPod.class, "entry_pod", 150, 1, true);
-        MarsModule.registerGalacticraftNonMobEntity(EntityAstroMiner.class, "astro_miner", 80, 1, true);
     }
 
     private void registerMicroBlocks()
@@ -286,8 +265,6 @@ public class AsteroidsModule implements IPlanetsModule
         register(TileEntityBeamReceiver.class, "gc_beam_receiver");
         register(TileEntityShortRangeTelepad.class, "gc_short_range_telepad");
         register(TileEntityTelepadFake.class, "gc_fake_short_range_telepad");
-        register(TileEntityMinerBaseSingle.class, "gc_astro_miner_base_builder");
-        register(TileEntityMinerBase.class, "gc_astro_miner_base");
     }
 
     @Override
