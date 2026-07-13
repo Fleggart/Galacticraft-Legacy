@@ -131,25 +131,7 @@ public class RecipeManagerAsteroids
             GalacticraftRegistry.addT3RocketRecipe(new NasaWorkbenchRecipe(new ItemStack(AsteroidsItems.tier3Rocket, 1, 3), input2));
         }
 
-        for (ItemStack woodChest : woodChests)
-        {
-            input = new HashMap<Integer, ItemStack>();
-            input.put(1, new ItemStack(GCItems.heavyPlatingTier1));
-            input.put(3, new ItemStack(GCItems.heavyPlatingTier1));
-            input.put(5, new ItemStack(GCItems.heavyPlatingTier1));
-            input.put(11, new ItemStack(GCItems.heavyPlatingTier1));
-            input.put(2, new ItemStack(AsteroidsItems.orionDrive));
-            input.put(4, new ItemStack(AsteroidsItems.orionDrive));
-            input.put(9, new ItemStack(AsteroidsItems.orionDrive));
-            input.put(10, new ItemStack(AsteroidsItems.orionDrive));
-            input.put(12, new ItemStack(AsteroidsItems.orionDrive));
-            input.put(6, new ItemStack(GCItems.basicItem, 1, 14));
-            input.put(7, woodChest);
-            input.put(8, woodChest);
-            input.put(13, new ItemStack(AsteroidsItems.basicItem, 1, 8));
-            input.put(14, new ItemStack(GCItems.flagPole));
-            GalacticraftRegistry.addAstroMinerRecipe(new NasaWorkbenchRecipe(new ItemStack(AsteroidsItems.astroMiner, 1, 0), input));
-        }
+        // 删除了 AstroMiner 配方注册
 
         // All this is for NEI's benefit
         NonNullList<Ingredient> list1 = NonNullList.create();
