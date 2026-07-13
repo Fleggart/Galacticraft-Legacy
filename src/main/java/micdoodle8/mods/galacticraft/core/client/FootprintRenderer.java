@@ -26,7 +26,6 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlaySensorGlasses;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 
@@ -81,11 +80,6 @@ public class FootprintRenderer
         GlStateManager.alphaFunc(GL11.GL_GREATER, 0.1F);
         float lightMapSaveX = OpenGlHelper.lastBrightnessX;
         float lightMapSaveY = OpenGlHelper.lastBrightnessY;
-        boolean sensorGlasses = OverlaySensorGlasses.overrideMobTexture();
-        if (sensorGlasses)
-        {
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
-        }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -93,12 +87,9 @@ public class FootprintRenderer
         {
             GL11.glPushMatrix();
 
-            if (!sensorGlasses)
-            {
-                int j = footprint.lightmapVal % 65536;
-                int k = footprint.lightmapVal / 65536;
-                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-            }
+            int j = footprint.lightmapVal % 65536;
+            int k = footprint.lightmapVal / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
 
             float ageScale = footprint.age / (float) Footprint.MAX_AGE;
             BufferBuilder worldRenderer = tessellator.getBuffer();
@@ -127,11 +118,6 @@ public class FootprintRenderer
 
             tessellator.draw();
             GlStateManager.popMatrix();
-        }
-
-        if (sensorGlasses)
-        {
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lightMapSaveX, lightMapSaveY);
         }
 
         GlStateManager.popMatrix();
