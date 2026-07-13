@@ -112,7 +112,6 @@ import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.MapUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.core.util.WorldUtil;
-import micdoodle8.mods.galacticraft.core.wrappers.FlagData;
 import micdoodle8.mods.galacticraft.core.wrappers.Footprint;
 import micdoodle8.mods.galacticraft.core.wrappers.PlayerGearData;
 import micdoodle8.mods.galacticraft.core.wrappers.ScheduledDimensionChange;
@@ -150,7 +149,7 @@ public class PacketSimple extends PacketBase implements Packet<INetHandler>
         S_ON_ADVANCED_GUI_CLICKED_INT(Side.SERVER, Integer.class, BlockPos.class, Integer.class),
         S_ON_ADVANCED_GUI_CLICKED_STRING(Side.SERVER, Integer.class, BlockPos.class, String.class),
         S_UPDATE_SHIP_MOTION_Y(Side.SERVER, Integer.class, Boolean.class),
-        S_START_NEW_SPACE_RACE(Side.SERVER, Integer.class, String.class, FlagData.class, Vector3.class, String[].class),
+        S_START_NEW_SPACE_RACE(Side.SERVER, Integer.class, String.class, Vector3.class, String[].class),
         S_REQUEST_FLAG_DATA(Side.SERVER, String.class),
         S_INVITE_RACE_PLAYER(Side.SERVER, String.class, Integer.class),
         S_REMOVE_RACE_PLAYER(Side.SERVER, String.class, Integer.class),
@@ -226,8 +225,7 @@ public class PacketSimple extends PacketBase implements Packet<INetHandler>
         C_OPEN_PARACHEST_GUI(Side.CLIENT, Integer.class, Integer.class, Integer.class),
         C_UPDATE_WIRE_BOUNDS(Side.CLIENT, BlockPos.class),
         C_OPEN_SPACE_RACE_GUI(Side.CLIENT),
-        C_UPDATE_SPACE_RACE_DATA(Side.CLIENT, Integer.class, String.class, FlagData.class, Vector3.class, String[].class),
-        C_OPEN_JOIN_RACE_GUI(Side.CLIENT, Integer.class),
+        C_UPDATE_SPACE_RACE_DATA(Side.CLIENT, Integer.class, String.class, Vector3.class, String[].class),        C_OPEN_JOIN_RACE_GUI(Side.CLIENT, Integer.class),
         C_UPDATE_FOOTPRINT_LIST(Side.CLIENT, Long.class, Footprint[].class),
         C_UPDATE_DUNGEON_DIRECTION(Side.CLIENT, Float.class),
         C_FOOTPRINTS_REMOVED(Side.CLIENT, Long.class, BlockVec3.class),
@@ -666,18 +664,17 @@ public class PacketSimple extends PacketBase implements Packet<INetHandler>
             case C_UPDATE_SPACE_RACE_DATA:
                 Integer teamID = (Integer) this.data.get(0);
                 String teamName = (String) this.data.get(1);
-                FlagData flagData = (FlagData) this.data.get(2);
-                Vector3 teamColor = (Vector3) this.data.get(3);
+                Vector3 teamColor = (Vector3) this.data.get(2);
                 List<String> playerList = new ArrayList<>();
 
-                for (int i = 4; i < this.data.size(); i++)
+                for (int i = 3; i < this.data.size(); i++)
                 {
                     String playerName = (String) this.data.get(i);
                     ClientProxyCore.flagRequestsSent.remove(playerName);
                     playerList.add(playerName);
                 }
 
-                SpaceRace race = new SpaceRace(playerList, teamName, flagData, teamColor);
+                SpaceRace race = new SpaceRace(playerList, teamName, teamColor);
                 race.setSpaceRaceID(teamID);
                 SpaceRaceManager.addSpaceRace(race);
                 break;
@@ -1102,18 +1099,17 @@ public class PacketSimple extends PacketBase implements Packet<INetHandler>
             case S_START_NEW_SPACE_RACE:
                 Integer teamID = (Integer) this.data.get(0);
                 String teamName = (String) this.data.get(1);
-                FlagData flagData = (FlagData) this.data.get(2);
-                Vector3 teamColor = (Vector3) this.data.get(3);
+                Vector3 teamColor = (Vector3) this.data.get(2);
                 List<String> playerList = new ArrayList<>();
 
-                for (int i = 4; i < this.data.size(); i++)
+                for (int i = 3; i < this.data.size(); i++)
                 {
                     playerList.add((String) this.data.get(i));
                 }
 
                 boolean previousData = SpaceRaceManager.getSpaceRaceFromID(teamID) != null;
 
-                SpaceRace newRace = new SpaceRace(playerList, teamName, flagData, teamColor);
+                SpaceRace newRace = new SpaceRace(playerList, teamName, teamColor);
 
                 if (teamID > 0)
                 {
