@@ -38,7 +38,6 @@ public class MarsBlocks
     public static void initBlocks()
     {
         MarsBlocks.marsBlock = new BlockBasicMars("mars").setHardness(2.2F);
-        MarsBlocks.vine = new BlockCavernousVine("cavern_vines").setHardness(0.1F);
         // MarsBlocks.rock = new BlockSlimelingEgg("slimeling_egg").setHardness(0.75F);  // 已删除
         MarsBlocks.treasureChestTier2 = new BlockTier2TreasureChest("treasure_t2");
         MarsBlocks.machine = new BlockMachineMars("mars_machine").setHardness(1.8F);
