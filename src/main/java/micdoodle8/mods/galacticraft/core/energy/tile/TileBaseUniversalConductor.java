@@ -7,9 +7,6 @@
 
 package micdoodle8.mods.galacticraft.core.energy.tile;
 
-import buildcraft.api.mj.IMjConnector;
-import buildcraft.api.mj.IMjReceiver;
-import buildcraft.api.mj.MjAPI;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
@@ -42,9 +39,9 @@ import net.minecraftforge.fml.common.eventhandler.Event;
     @Interface(iface = "ic2.api.energy.tile.IEnergyEmitter", modid = CompatibilityManager.modidIC2),
     @Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = CompatibilityManager.modidIC2),
     @Interface(iface = "mekanism.api.energy.IStrictEnergyAcceptor", modid = CompatibilityManager.modidMekanism),
-    @Interface(iface = "buildcraft.api.mj.IMjReceiver", modid = CompatibilityManager.modBCraftEnergy)
+    
 })
-public abstract class TileBaseUniversalConductor extends TileBaseConductor implements IEnergyStorage, ITickable, IMjReceiver, IEnergyAcceptor, IEnergyEmitter, IEnergySink, IStrictEnergyAcceptor
+public abstract class TileBaseUniversalConductor extends TileBaseConductor implements IEnergyStorage, ITickable, IEnergyAcceptor, IEnergyEmitter, IEnergySink, IStrictEnergyAcceptor
 {
 
     protected boolean isAddedToEnergyNet;
@@ -260,7 +257,7 @@ public abstract class TileBaseUniversalConductor extends TileBaseConductor imple
     @Override
     public boolean canReceive()
     {
-        return !EnergyConfigHandler.disableBuildCraftInput || !EnergyConfigHandler.disableFEInput;
+        return !EnergyConfigHandler.disableFEInput;
     }
 
     // ForgeEnergy
@@ -294,41 +291,6 @@ public abstract class TileBaseUniversalConductor extends TileBaseConductor imple
     public boolean canExtract()
     {
         return false;
-    }
-
-    // Buildcraft 7
-    @Override
-    @Method(modid = CompatibilityManager.modBCraftEnergy)
-    public long getPowerRequested()
-    {
-        if (this.getNetwork() == null || EnergyConfigHandler.disableBuildCraftInput)
-        {
-            return 0L;
-        }
-
-        return (long) (this.getNetwork().getRequest(this) / EnergyConfigHandler.BC8_INTERNAL_RATIO);
-    }
-
-    // Buildcraft 7
-    @Override
-    @Method(modid = CompatibilityManager.modBCraftEnergy)
-    public long receivePower(long microJoules, boolean simulate)
-    {
-        if (this.getNetwork() == null || EnergyConfigHandler.disableBuildCraftInput)
-        {
-            return microJoules;
-        }
-        float receiveGC = microJoules * EnergyConfigHandler.BC8_INTERNAL_RATIO;
-        float sentGC = receiveGC - this.getNetwork().produce(receiveGC, !simulate, 1);
-        return (long) (sentGC / EnergyConfigHandler.BC8_INTERNAL_RATIO);
-    }
-
-    // Buildcraft 7
-    @Override
-    @Method(modid = CompatibilityManager.modBCraftEnergy)
-    public boolean canConnect(@Nonnull IMjConnector other)
-    {
-        return true;
     }
 
     public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
@@ -461,12 +423,7 @@ public abstract class TileBaseUniversalConductor extends TileBaseConductor imple
     {
         if (capability == CapabilityEnergy.ENERGY)
         {
-            return true;
-        }
-        if (EnergyConfigHandler.isBuildcraftLoaded() && (capability == MjAPI.CAP_RECEIVER || capability == MjAPI.CAP_CONNECTOR))
-        {
-            TileEntity tile = new BlockVec3(this).getTileEntityOnSide(this.world, facing);
-            return !(CompatibilityManager.classBCTransportPipeTile.isInstance(tile));
+           return true;
         }
         return super.hasCapability(capability, facing);
     }
@@ -476,18 +433,10 @@ public abstract class TileBaseUniversalConductor extends TileBaseConductor imple
     {
         if (capability == CapabilityEnergy.ENERGY)
         {
-            if (EnergyUtil.clazzEnderIOCable == null)
-                return (T) this;
-            TileEntity tile = new BlockVec3(this).getTileEntityOnSide(this.world, facing);
-            return EnergyUtil.clazzEnderIOCable.isInstance(tile) ? null : (T) this;
-        }
-        if (EnergyConfigHandler.isBuildcraftLoaded() && (capability == MjAPI.CAP_RECEIVER || capability == MjAPI.CAP_CONNECTOR))
-        {
-            TileEntity tile = new BlockVec3(this).getTileEntityOnSide(this.world, facing);
-            if (!(CompatibilityManager.classBCTransportPipeTile.isInstance(tile)))
-            {
-                return (T) this;
-            }
+           if (EnergyUtil.clazzEnderIOCable == null)
+              return (T) this;
+           TileEntity tile = new BlockVec3(this).getTileEntityOnSide(this.world, facing);
+           return EnergyUtil.clazzEnderIOCable.isInstance(tile) ? null : (T) this;
         }
         return super.getCapability(capability, facing);
     }
