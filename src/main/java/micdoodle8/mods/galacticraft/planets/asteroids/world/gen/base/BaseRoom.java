@@ -125,7 +125,7 @@ public class BaseRoom extends SizedPiece
                     if (xx == 0 || xx == maxX || yy == 0 || yy == this.sizeY || zz == maxZ)
                     {
                         boolean xEntrance = maxX > 6 ? (xx > 2 && xx < maxX - 2) : (xx > 1 && xx < maxX - 1);
-                        if (this.type.blockEntrance != null && yy == 0 && zz == 0 && xEntrance && this.configuration.getDeckType() != EnumBaseType.TUNNELER)
+                        if (this.type.blockEntrance != null && yy == 0 && zz == 0 && xEntrance)
                         {
                             this.setBlockState(worldIn, this.type.blockEntrance, xx, yy, zz, chunkBoundary);
                             this.setBlockState(worldIn, this.configuration.getWallBlock(), xx, yy - 1, zz, chunkBoundary);
@@ -155,7 +155,7 @@ public class BaseRoom extends SizedPiece
                             {
                                 this.buildRoomContents(worldIn, xx, yy, zz, maxX - 1, maxZ - 1, blockpos, randomInt);
                             }
-                        } else if (this.configuration.getDeckType() == EnumBaseType.TUNNELER && (yy == 1 || yy == this.sizeY - 1))
+                        } else if ((yy == 1 || yy == this.sizeY - 1))
                         {
                             int meta = 1;
                             if (xx == 1)
@@ -458,7 +458,7 @@ public class BaseRoom extends SizedPiece
                 break;
             case CRYO:
                 boolean xEntrance = maxX > 5 ? (x > 2 && x < maxX - 1) : (x > 1 && x < maxX);
-                boolean highEntrance = this.configuration.isHangarDeck() && this.configuration.getDeckType() == EnumBaseType.AVIAN;
+                boolean highEntrance = false;
                 if (y == 1)
                 {
                     // Build a dark plinth for it all at y == 1
