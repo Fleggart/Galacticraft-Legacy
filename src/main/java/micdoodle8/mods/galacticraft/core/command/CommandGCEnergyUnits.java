@@ -28,10 +28,6 @@ public class CommandGCEnergyUnits extends CommandBase
     public String getUsage(ICommandSender var1)
     {
         String options = " [gJ";
-        if (EnergyConfigHandler.isBuildcraftLoaded())
-        {
-            options = options + "|MJ";
-        }
         if (EnergyConfigHandler.isIndustrialCraft2Loaded())
         {
             options = options + "|EU";
@@ -80,9 +76,6 @@ public class CommandGCEnergyUnits extends CommandBase
                 if ("gj".equals(param))
                 {
                     paramvalue = 1;
-                } else if ("mj".equals(param) && EnergyConfigHandler.isBuildcraftLoaded())
-                {
-                    paramvalue = 2;
                 } else if ("eu".equals(param) && EnergyConfigHandler.isIndustrialCraft2Loaded())
                 {
                     paramvalue = 3;
@@ -113,16 +106,6 @@ public class CommandGCEnergyUnits extends CommandBase
     {
         if (param == 1)
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
-            EnergyConfigHandler.displayEnergyUnitsIC2 = false;
-            EnergyConfigHandler.displayEnergyUnitsMek = false;
-            EnergyConfigHandler.displayEnergyUnitsRF = false;
-            return;
-        }
-
-        if (param == 2 && EnergyConfigHandler.isBuildcraftLoaded())
-        {
-            EnergyConfigHandler.displayEnergyUnitsBC = true;
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
             EnergyConfigHandler.displayEnergyUnitsMek = false;
             EnergyConfigHandler.displayEnergyUnitsRF = false;
@@ -131,7 +114,6 @@ public class CommandGCEnergyUnits extends CommandBase
 
         if (param == 3 && EnergyConfigHandler.isIndustrialCraft2Loaded())
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
             EnergyConfigHandler.displayEnergyUnitsIC2 = true;
             EnergyConfigHandler.displayEnergyUnitsMek = false;
             EnergyConfigHandler.displayEnergyUnitsRF = false;
@@ -140,7 +122,6 @@ public class CommandGCEnergyUnits extends CommandBase
 
         if (param == 4 && EnergyConfigHandler.isMekanismLoaded())
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
             EnergyConfigHandler.displayEnergyUnitsMek = true;
             EnergyConfigHandler.displayEnergyUnitsRF = false;
@@ -149,7 +130,6 @@ public class CommandGCEnergyUnits extends CommandBase
 
         if (param == 5)
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
             EnergyConfigHandler.displayEnergyUnitsMek = false;
             EnergyConfigHandler.displayEnergyUnitsRF = true;
