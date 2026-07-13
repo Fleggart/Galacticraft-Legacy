@@ -306,8 +306,6 @@ public class TickHandlerClient
         {
             if (player != null && player.getRidingEntity() != null && player.getRidingEntity() instanceof IIgnoreShift && ((IIgnoreShift) player.getRidingEntity()).shouldIgnoreShiftExit())
             {
-                // Remove "Press shift to dismount" message when shift-exiting
-                // is disabled (not ideal, but the only option)
                 String str = I18n.format("mount.onboard", new Object[]
                 {GameSettings.getKeyDisplayString(minecraft.gameSettings.keyBindSneak.getKeyCode())});
                 if (minecraft.ingameGUI.overlayMessage.equals(str))
@@ -412,11 +410,6 @@ public class TickHandlerClient
                     }
                 }
 
-                 else
-                {
-                    ClientProxyCore.leakTrace = null;
-                }
-
                 if (world != null)
                 {
                     if (MapUtil.resetClientFlag.getAndSet(false))
@@ -428,13 +421,6 @@ public class TickHandlerClient
 
             if (ClientProxyCore.leakTrace != null)
                 this.spawnLeakParticles();
-
-            // Removed: Space Race GUI scheduling
-            // if (world != null && TickHandlerClient.spaceRaceGuiScheduled && minecraft.currentScreen == null && ConfigManagerCore.enableSpaceRaceManagerPopup)
-            // {
-            //     player.openGui(GalacticraftCore.instance, GuiIdsCore.SPACE_RACE_START, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
-            //     TickHandlerClient.spaceRaceGuiScheduled = false;
-            // }
 
             boolean inSpaceShip = false;
             if (player.getRidingEntity() instanceof EntitySpaceshipBase)
@@ -620,12 +606,6 @@ public class TickHandlerClient
     private boolean alreadyContainsBlock(int x1, int y1, int z1)
     {
         return ClientProxyCore.valueableBlocks.contains(new BlockVec3(x1, y1, z1));
-    }
-
-    public static void zoom(float value)
-    {
-//        FMLClientHandler.instance().getClient().entityRenderer.thirdPersonDistance = value;
-//        FMLClientHandler.instance().getClient().entityRenderer.thirdPersonDistancePrev = value;
     }
 
     private void drawGradientRect(int par1, int par2, int par3, int par4, int par5, int par6)
