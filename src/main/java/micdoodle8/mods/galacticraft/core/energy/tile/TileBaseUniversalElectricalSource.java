@@ -7,7 +7,6 @@
 
 package micdoodle8.mods.galacticraft.core.energy.tile;
 
-import buildcraft.api.mj.MjAPI;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySource;
@@ -256,10 +255,6 @@ public abstract class TileBaseUniversalElectricalSource extends TileBaseUniversa
         {
             return this.canOutputEnergy(side);
         }
-        if (EnergyConfigHandler.isBuildcraftLoaded() && cap == MjAPI.CAP_CONNECTOR && this.canOutputEnergy(side))
-        {
-            return true;
-        }
         return super.hasCapability(cap, side);
     }
 
@@ -269,10 +264,6 @@ public abstract class TileBaseUniversalElectricalSource extends TileBaseUniversa
         if (cap == CapabilityEnergy.ENERGY && this.getElectricalOutputDirections().contains(side))
             return (T) new ForgeEmitter(this);
         if (cap != null && (cap == EnergyUtil.mekCableOutput || cap == EnergyUtil.mekEnergyStorage))
-        {
-            return (T) this;
-        }
-        if (EnergyConfigHandler.isBuildcraftLoaded() && cap == MjAPI.CAP_CONNECTOR && this.canOutputEnergy(side))
         {
             return (T) this;
         }
