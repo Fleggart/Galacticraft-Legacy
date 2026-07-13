@@ -45,6 +45,12 @@ dependencies {
     implementation "curse.maven:playerapi-449521:3212872"
     compileOnly "mezz.jei:jei_${MC_VERSION}:${jei_version}:api"
     runtimeOnly "mezz.jei:jei_${MC_VERSION}:${jei_version}"
+    
+    // Project lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 
@@ -68,4 +74,4 @@ clean {
 
 tasks.withType(GenerateModuleMetadata).configureEach {
     enabled = false
-}
+}  
