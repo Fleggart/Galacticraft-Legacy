@@ -74,7 +74,6 @@ import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlayOxygenTanks;
 import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlayOxygenWarning;
 import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlayRocket;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
-import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiNewSpaceRace;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiTeleporting;
 import micdoodle8.mods.galacticraft.core.client.jei.GalacticraftJEI;
 import micdoodle8.mods.galacticraft.core.dimension.WorldProviderMoon;
@@ -233,40 +232,10 @@ public class TickHandlerClient
 
         if (event.phase == Phase.END)
         {
+            // Space Race button removed from main menu
             if (minecraft.currentScreen instanceof GuiIngameMenu)
             {
-                int i = Mouse.getEventX() * minecraft.currentScreen.width / minecraft.displayWidth;
-                int j = minecraft.currentScreen.height - Mouse.getEventY() * minecraft.currentScreen.height / minecraft.displayHeight - 1;
-
-                int k = Mouse.getEventButton();
-
-                int deltaColor = 0;
-
-                if (i > minecraft.currentScreen.width - 100 && j > minecraft.currentScreen.height - 35)
-                {
-                    deltaColor = 20;
-
-                    if (k == 0)
-                    {
-                        if (Mouse.getEventButtonState())
-                        {
-                            minecraft.displayGuiScreen(new GuiNewSpaceRace(playerBaseClient));
-                        }
-                    }
-                }
-
-                this.drawGradientRect(minecraft.currentScreen.width - 100, minecraft.currentScreen.height - 35, minecraft.currentScreen.width, minecraft.currentScreen.height,
-                    ColorUtil.to32BitColor(150, 10 + deltaColor, 10 + deltaColor, 10 + deltaColor), ColorUtil.to32BitColor(250, 10 + deltaColor, 10 + deltaColor, 10 + deltaColor));
-                minecraft.fontRenderer.drawString(GCCoreUtil.translate("gui.space_race.create.title.name.0"),
-                    minecraft.currentScreen.width - 50 - minecraft.fontRenderer.getStringWidth(GCCoreUtil.translate("gui.space_race.create.title.name.0")) / 2, minecraft.currentScreen.height - 26,
-                    ColorUtil.to32BitColor(255, 240, 240, 240));
-                minecraft.fontRenderer.drawString(GCCoreUtil.translate("gui.space_race.create.title.name.1"),
-                    minecraft.currentScreen.width - 50 - minecraft.fontRenderer.getStringWidth(GCCoreUtil.translate("gui.space_race.create.title.name.1")) / 2, minecraft.currentScreen.height - 16,
-                    ColorUtil.to32BitColor(255, 240, 240, 240));
-                Gui.drawRect(minecraft.currentScreen.width - 100, minecraft.currentScreen.height - 35, minecraft.currentScreen.width - 99, minecraft.currentScreen.height,
-                    ColorUtil.to32BitColor(255, 0, 0, 0));
-                Gui.drawRect(minecraft.currentScreen.width - 100, minecraft.currentScreen.height - 35, minecraft.currentScreen.width, minecraft.currentScreen.height - 34,
-                    ColorUtil.to32BitColor(255, 0, 0, 0));
+                // Removed: Space Race button in main menu
             }
 
             ClientProxyCore.playerPosX = player.prevPosX + (player.posX - player.prevPosX) * event.renderTickTime;
@@ -510,11 +479,12 @@ public class TickHandlerClient
             if (ClientProxyCore.leakTrace != null)
                 this.spawnLeakParticles();
 
-            if (world != null && TickHandlerClient.spaceRaceGuiScheduled && minecraft.currentScreen == null && ConfigManagerCore.enableSpaceRaceManagerPopup)
-            {
-                player.openGui(GalacticraftCore.instance, GuiIdsCore.SPACE_RACE_START, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
-                TickHandlerClient.spaceRaceGuiScheduled = false;
-            }
+            // Removed: Space Race GUI scheduling
+            // if (world != null && TickHandlerClient.spaceRaceGuiScheduled && minecraft.currentScreen == null && ConfigManagerCore.enableSpaceRaceManagerPopup)
+            // {
+            //     player.openGui(GalacticraftCore.instance, GuiIdsCore.SPACE_RACE_START, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+            //     TickHandlerClient.spaceRaceGuiScheduled = false;
+            // }
 
             boolean inSpaceShip = false;
             if (player.getRidingEntity() instanceof EntitySpaceshipBase)
