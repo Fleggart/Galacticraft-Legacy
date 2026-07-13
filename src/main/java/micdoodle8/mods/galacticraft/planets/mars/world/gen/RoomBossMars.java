@@ -93,10 +93,13 @@ public class RoomBossMars extends RoomBoss
                         {
                             this.setBlockState(worldIn, this.configuration.getBrickBlock(), i, j, k, chunkBox);
                         }
-                    } else if (j == 1 && (i <= 2 || k <= 2 || i >= this.sizeX - 2 || k >= this.sizeZ - 2) && random.nextInt(6) == 0)
-                    {
-                        this.setBlockState(worldIn, MarsBlocks.creeperEgg.getDefaultState(), i, j, k, chunkBox);
-                    } else
+                    } 
+                    // 删除 BOSS 蛋生成
+                    // else if (j == 1 && (i <= 2 || k <= 2 || i >= this.sizeX - 2 || k >= this.sizeZ - 2) && random.nextInt(6) == 0)
+                    // {
+                    //     this.setBlockState(worldIn, MarsBlocks.creeperEgg.getDefaultState(), i, j, k, chunkBox);
+                    // }
+                    else
                     {
                         this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), i, j, k, chunkBox);
                     }
