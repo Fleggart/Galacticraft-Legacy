@@ -41,7 +41,6 @@ import micdoodle8.mods.galacticraft.core.items.ItemCanisterGeneric;
 import micdoodle8.mods.galacticraft.core.items.ItemCanisterOxygenInfinite;
 import micdoodle8.mods.galacticraft.core.items.ItemCheese;
 import micdoodle8.mods.galacticraft.core.items.ItemEmergencyKit;
-import micdoodle8.mods.galacticraft.core.items.ItemFlag;
 import micdoodle8.mods.galacticraft.core.items.ItemFood;
 import micdoodle8.mods.galacticraft.core.items.ItemFuelCanister;
 import micdoodle8.mods.galacticraft.core.items.ItemHoeGC;
@@ -105,7 +104,6 @@ public class GCItems
 	public static Item partNoseCone;
 	public static Item partFins;
 	public static Item buggy;
-	public static Item flag;
 	public static Item oxygenGear;
 	public static Item parachute;
 	public static Item canvas;
@@ -369,8 +367,6 @@ public class GCItems
         GCItems.registerItem(GCItems.cheeseCurd);
         GCItems.registerItem(GCItems.meteoricIronRaw);
         GCItems.registerItem(GCItems.itemBasicMoon);
-        //		GCItems.registerItem(GCItems.cheeseBlock);
-        GCItems.registerItem(GCItems.flag);
         GCItems.registerItem(GCItems.parachute);
         GCItems.registerItem(GCItems.prelaunchChecklist);
         GCItems.registerItem(GCItems.dungeonFinder);
