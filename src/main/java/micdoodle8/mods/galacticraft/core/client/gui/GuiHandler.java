@@ -37,7 +37,6 @@ import micdoodle8.mods.galacticraft.core.client.gui.container.GuiRocketInventory
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiSolar;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiCelestialSelection;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiJoinSpaceRace;
-import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiNewSpaceRace;
 import micdoodle8.mods.galacticraft.core.client.gui.screen.GuiPreLaunchChecklist;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStatsClient;
@@ -234,9 +233,6 @@ public class GuiHandler implements IGuiHandler
         } else if (ID == GuiIdsCore.EXTENDED_INVENTORY)
         {
             return new GuiExtendedInventory(player, ClientProxyCore.dummyInventory);
-        } else if (ID == GuiIdsCore.SPACE_RACE_START)
-        {
-            return new GuiNewSpaceRace(player);
         } else if (ID == GuiIdsCore.SPACE_RACE_JOIN)
         {
             return new GuiJoinSpaceRace(playerClient);
