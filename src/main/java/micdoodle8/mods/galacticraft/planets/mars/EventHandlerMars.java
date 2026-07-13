@@ -111,10 +111,6 @@ public class EventHandlerMars
     @SubscribeEvent
     public void onPlanetDecorated(GCCoreEventPopulate.Post event)
     {
-        if (this.eggGenerator == null)
-        {
-            this.eggGenerator = new WorldGenEggs(MarsBlocks.rock);
-        }
 
         if (event.world.provider instanceof WorldProviderMars)
         {
