@@ -113,6 +113,7 @@ public class MarsModuleClient implements IPlanetsModuleClient
     {
         addPlanetVariants("mars", "ore_copper_mars", "ore_tin_mars", "ore_desh_mars", "ore_iron_mars", "cobblestone", "mars_surface", "mars_middle", "dungeon_brick", "desh_block", "mars_stone");
         addPlanetVariants("schematic", "schematic_rocket_t3", "schematic_rocket_cargo", "schematic_astro_miner");
+        addPlanetVariants("item_basic_mars", "raw_desh", "desh_stick", "ingot_desh", "reinforced_plate_t2", "compressed_desh", "fluid_manip");
         addPlanetVariants("mars_machine", "terraformer", "cryogenic_chamber", "launch_controller");
         addPlanetVariants("mars_machine_t2", "gas_liquefier", "methane_synthesizer", "electrolyzer");
 
