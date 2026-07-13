@@ -21,19 +21,16 @@ import micdoodle8.mods.galacticraft.planets.asteroids.client.FluidTexturesGC;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.fx.EntityFXTeleport;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.gui.GuiShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderEntryPod;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderGrapple;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderSmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelBeamReceiver;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelBeamReflector;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelGrapple;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelRocketT3;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.tile.TileEntityBeamReceiverRenderer;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.tile.TileEntityBeamReflectorRenderer;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.tile.TileEntityShortRangeTelepadRenderer;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityEntryPod;
-import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityGrapple;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntitySmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandlerClient;
@@ -76,7 +73,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
     public void preInit(FMLPreInitializationEvent event)
     {
         RenderingRegistry.registerEntityRenderingHandler(EntitySmallAsteroid.class, (RenderManager manager) -> new RenderSmallAsteroid(manager));
-        RenderingRegistry.registerEntityRenderingHandler(EntityGrapple.class, (RenderManager manager) -> new RenderGrapple(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityEntryPod.class, (RenderManager manager) -> new RenderEntryPod(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityTier3Rocket.class, (RenderManager manager) -> new RenderTier3Rocket(manager));
         MinecraftForge.EVENT_BUS.register(this);
@@ -104,9 +100,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
         modelResourceLocation = new ModelResourceLocation("galacticraftplanets:telepad_short", "inventory");
         ModelLoader.setCustomModelResourceLocation(teleporter, 0, modelResourceLocation);
 
-        modelResourceLocation = new ModelResourceLocation("galacticraftplanets:grapple", "inventory");
-        ModelLoader.setCustomModelResourceLocation(AsteroidsItems.grapple, 0, modelResourceLocation);
-
         modelResourceLocation = new ModelResourceLocation("galacticraftplanets:rocket_t3", "inventory");
         for (int i = 0; i < 5; ++i)
         {
@@ -124,7 +117,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
             "inventory", "normal");
         replaceModelDefault(event, "telepad_short", "block/telepad_short.obj", ImmutableList.of("Top", "Bottom", "Connector"), ItemModelTelepad.class, TRSRTransformation.identity(), "inventory",
             "normal");
-        replaceModelDefault(event, "grapple", "grapple.obj", ImmutableList.of("Grapple"), ItemModelGrapple.class, TRSRTransformation.identity());
         replaceModelDefault(event, "rocket_t3", "tier3rocket.obj", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemModelRocketT3.class, TRSRTransformation.identity());
     }
 
@@ -142,7 +134,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
         registerTexture(event, "beam_receiver");
         registerTexture(event, "telepad_short");
         registerTexture(event, "telepad_short0");
-        registerTexture(event, "grapple");
         registerTexture(event, "tier3rocket");
         registerTexture(event, "space_pod");
         registerTexture(event, "fluids/argon");
