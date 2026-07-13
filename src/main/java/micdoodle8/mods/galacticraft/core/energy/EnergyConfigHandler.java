@@ -16,7 +16,7 @@ import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 
-import buildcraft.api.mj.MjAPI;
+
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 
@@ -36,8 +36,6 @@ public class EnergyConfigHandler
      * energy by this to convert to gJ.
      */
     public static float BC3_RATIO = 16F;
-    private static float BC8_MICROJOULE_RATIO = 1000000F;
-    public static float BC8_INTERNAL_RATIO = BC3_RATIO / BC8_MICROJOULE_RATIO;
 
     // Note on energy equivalence:
     //
@@ -77,7 +75,7 @@ public class EnergyConfigHandler
     /**
      * Convert gJ back to Buildcraft MJ (microJoules)
      */
-    public static float TO_BC_RATIO = 1 / EnergyConfigHandler.BC3_RATIO * BC8_MICROJOULE_RATIO;
+    
 
     /**
      * Convert gJ back to RF
@@ -102,25 +100,19 @@ public class EnergyConfigHandler
     public static Object gasOxygen = null;
     public static Object gasHydrogen = null;
 
-    public static boolean displayEnergyUnitsBC = false;
+    
     public static boolean displayEnergyUnitsIC2 = false;
     public static boolean displayEnergyUnitsMek = false;
     public static boolean displayEnergyUnitsRF = false;
-
-    private static boolean cachedBCLoaded = false;
-    private static boolean cachedBCLoadedValue = false;
-    private static int cachedBCVersion = -1;
-    private static boolean cachedBCRLoaded = false;
-    private static boolean cachedBCRLoadedValue = false;
     private static boolean cachedRFLoaded = false;
     private static boolean cachedRFLoadedValue = false;
     private static boolean cachedRF1LoadedValue = false;
     private static boolean cachedRF2LoadedValue = false;
 
-    private static boolean disableMJinterface = false;
+    
 
-    public static boolean disableBuildCraftInput = false;
-    public static boolean disableBuildCraftOutput = false;
+    
+    
     public static boolean disableRFInput = false;
     public static boolean disableRFOutput = false;
     public static boolean disableFEInput = false;
@@ -144,7 +136,6 @@ public class EnergyConfigHandler
         EnergyConfigHandler.IC2_RATIO =
             (float) EnergyConfigHandler.config.get("Compatibility", "IndustrialCraft Conversion Ratio", EnergyConfigHandler.IC2_RATIO).getDouble(EnergyConfigHandler.IC2_RATIO);
         EnergyConfigHandler.RF_RATIO = (float) EnergyConfigHandler.config.get("Compatibility", "RF Conversion Ratio", EnergyConfigHandler.RF_RATIO).getDouble(EnergyConfigHandler.RF_RATIO);
-        EnergyConfigHandler.BC3_RATIO = (float) EnergyConfigHandler.config.get("Compatibility", "BuildCraft Conversion Ratio", EnergyConfigHandler.BC3_RATIO).getDouble(EnergyConfigHandler.BC3_RATIO);
         EnergyConfigHandler.MEKANISM_RATIO =
             (float) EnergyConfigHandler.config.get("Compatibility", "Mekanism Conversion Ratio", EnergyConfigHandler.MEKANISM_RATIO).getDouble(EnergyConfigHandler.MEKANISM_RATIO);
         EnergyConfigHandler.conversionLossFactor =
@@ -161,17 +152,14 @@ public class EnergyConfigHandler
         updateRatios();
 
         EnergyConfigHandler.displayEnergyUnitsBC =
-            EnergyConfigHandler.config.get("Display", "If BuildCraft is loaded, show Galacticraft machines energy as MJ instead of gJ?", false).getBoolean(false);
         EnergyConfigHandler.displayEnergyUnitsIC2 =
             EnergyConfigHandler.config.get("Display", "If IndustrialCraft2 is loaded, show Galacticraft machines energy as EU instead of gJ?", false).getBoolean(false);
         EnergyConfigHandler.displayEnergyUnitsMek =
             EnergyConfigHandler.config.get("Display", "If Mekanism is loaded, show Galacticraft machines energy as Joules (J) instead of gJ?", false).getBoolean(false);
         EnergyConfigHandler.displayEnergyUnitsRF = EnergyConfigHandler.config.get("Display", "Show Galacticraft machines energy in RF instead of gJ?", false).getBoolean(false);
 
-        EnergyConfigHandler.disableMJinterface = EnergyConfigHandler.config.get("Compatibility", "Disable old Buildcraft API (MJ) interfacing completely?", false).getBoolean(false);
-
-        EnergyConfigHandler.disableBuildCraftInput = EnergyConfigHandler.config.get("Compatibility", "Disable INPUT of BuildCraft energy", false).getBoolean(false);
-        EnergyConfigHandler.disableBuildCraftOutput = EnergyConfigHandler.config.get("Compatibility", "Disable OUTPUT of BuildCraft energy", false).getBoolean(false);
+        
+        
         EnergyConfigHandler.disableRFInput = EnergyConfigHandler.config.get("Compatibility", "Disable INPUT of RF energy", false).getBoolean(false);
         EnergyConfigHandler.disableRFOutput = EnergyConfigHandler.config.get("Compatibility", "Disable OUTPUT of RF energy", false).getBoolean(false);
         EnergyConfigHandler.disableFEInput = EnergyConfigHandler.config.get("Compatibility", "Disable INPUT of Forge Energy to GC machines", false).getBoolean(false);
@@ -191,16 +179,17 @@ public class EnergyConfigHandler
         }
         if (EnergyConfigHandler.displayEnergyUnitsIC2)
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
+            
         }
         if (EnergyConfigHandler.displayEnergyUnitsMek)
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
+            
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
         }
         if (EnergyConfigHandler.displayEnergyUnitsRF)
         {
-            EnergyConfigHandler.displayEnergyUnitsBC = false;
+            
+            
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
             EnergyConfigHandler.displayEnergyUnitsMek = false;
         }
@@ -240,28 +229,6 @@ public class EnergyConfigHandler
     public static boolean isIndustrialCraft2Loaded()
     {
         return CompatibilityManager.isIc2Loaded();
-    }
-
-    public static boolean isBuildcraftLoaded()
-    {
-        if (!cachedBCRLoaded)
-        {
-            boolean mjAPIFound = false;
-            try
-            {
-                Class.forName("buildcraft.api.mj.MjAPI");
-                mjAPIFound = true;
-                BC8_MICROJOULE_RATIO = MjAPI.MJ;
-                BC8_INTERNAL_RATIO = BC3_RATIO / BC8_MICROJOULE_RATIO;
-                TO_BC_RATIO = conversionLossFactor / 100F / EnergyConfigHandler.BC3_RATIO * BC8_MICROJOULE_RATIO;
-            } catch (Throwable ignore)
-            {
-            }
-            cachedBCRLoaded = true;
-            cachedBCRLoadedValue = mjAPIFound && CompatibilityManager.isBCraftEnergyLoaded() && CompatibilityManager.classBCTransportPipeTile != null;
-        }
-
-        return cachedBCRLoadedValue;
     }
 
     public static boolean isRFAPILoaded()
@@ -386,7 +353,6 @@ public class EnergyConfigHandler
         }
 
         float factor = conversionLossFactor / 100F;
-        TO_BC_RATIO = factor / EnergyConfigHandler.BC3_RATIO * BC8_MICROJOULE_RATIO;
         TO_RF_RATIO = factor / EnergyConfigHandler.RF_RATIO;
         TO_IC2_RATIO = factor / EnergyConfigHandler.IC2_RATIO;
         TO_MEKANISM_RATIO = factor / EnergyConfigHandler.MEKANISM_RATIO;
