@@ -26,7 +26,6 @@ import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
-import micdoodle8.mods.galacticraft.core.wrappers.FlagData;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -39,7 +38,6 @@ public class SpaceRace
     private int spaceRaceID;
     private List<String> playerNames = Lists.newArrayList();
     public String teamName;
-    private FlagData flagData;
     private Vector3 teamColor;
     private int ticksSpent;
     private Map<CelestialBody, Integer> celestialBodyStatusList = new HashMap<>(4, 1F);
@@ -54,7 +52,6 @@ public class SpaceRace
         this.playerNames = playerNames;
         this.teamName = teamName;
         this.ticksSpent = 0;
-        this.flagData = flagData;
         this.teamColor = teamColor;
         this.spaceRaceID = ++SpaceRace.lastSpaceRaceID;
     }
@@ -69,7 +66,6 @@ public class SpaceRace
         this.spaceRaceID = nbt.getInteger("SpaceRaceID");
         this.ticksSpent = (int) nbt.getLong("TicksSpent"); // Deal with legacy
                                                            // error
-        this.flagData = FlagData.readFlagData(nbt);
         this.teamColor = new Vector3(nbt.getDouble("teamColorR"), nbt.getDouble("teamColorG"), nbt.getDouble("teamColorB"));
 
         NBTTagList tagList = nbt.getTagList("PlayerList", 10);
@@ -122,7 +118,6 @@ public class SpaceRace
         nbt.setString("TeamName", this.teamName);
         nbt.setInteger("SpaceRaceID", this.spaceRaceID);
         nbt.setLong("TicksSpent", this.ticksSpent);
-        this.flagData.saveFlagData(nbt);
         nbt.setDouble("teamColorR", this.teamColor.x);
         nbt.setDouble("teamColorG", this.teamColor.y);
         nbt.setDouble("teamColorB", this.teamColor.z);
@@ -191,16 +186,6 @@ public class SpaceRace
     public List<String> getPlayerNames()
     {
         return this.playerNames;
-    }
-
-    public FlagData getFlagData()
-    {
-        return this.flagData;
-    }
-
-    public void setFlagData(FlagData flagData)
-    {
-        this.flagData = flagData;
     }
 
     public Vector3 getTeamColor()
