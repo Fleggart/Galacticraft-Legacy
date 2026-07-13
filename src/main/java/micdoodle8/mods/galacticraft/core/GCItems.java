@@ -41,13 +41,11 @@ import micdoodle8.mods.galacticraft.core.items.ItemCanisterGeneric;
 import micdoodle8.mods.galacticraft.core.items.ItemCanisterOxygenInfinite;
 import micdoodle8.mods.galacticraft.core.items.ItemCheese;
 import micdoodle8.mods.galacticraft.core.items.ItemEmergencyKit;
-import micdoodle8.mods.galacticraft.core.items.ItemFlag;
 import micdoodle8.mods.galacticraft.core.items.ItemFood;
 import micdoodle8.mods.galacticraft.core.items.ItemFuelCanister;
 import micdoodle8.mods.galacticraft.core.items.ItemHoeGC;
 import micdoodle8.mods.galacticraft.core.items.ItemIC2Compat;
 import micdoodle8.mods.galacticraft.core.items.ItemKey;
-import micdoodle8.mods.galacticraft.core.items.ItemMeteorChunk;
 import micdoodle8.mods.galacticraft.core.items.ItemMeteoricIron;
 import micdoodle8.mods.galacticraft.core.items.ItemMoon;
 import micdoodle8.mods.galacticraft.core.items.ItemOilCanister;
@@ -59,7 +57,6 @@ import micdoodle8.mods.galacticraft.core.items.ItemPickaxeGC;
 import micdoodle8.mods.galacticraft.core.items.ItemPreLaunchChecklist;
 import micdoodle8.mods.galacticraft.core.items.ItemRocketEngineGC;
 import micdoodle8.mods.galacticraft.core.items.ItemSchematic;
-import micdoodle8.mods.galacticraft.core.items.ItemSensorGlasses;
 import micdoodle8.mods.galacticraft.core.items.ItemSpadeGC;
 import micdoodle8.mods.galacticraft.core.items.ItemSwordGC;
 import micdoodle8.mods.galacticraft.core.items.ItemTier1Rocket;
@@ -85,7 +82,6 @@ public class GCItems
 	public static Item oxTankHeavy;
 	public static Item oxMask;
 	public static Item rocketTier1;
-	public static Item sensorGlasses;
 	public static Item sensorLens;
 	public static Item steelPickaxe;
 	public static Item steelAxe;
@@ -105,7 +101,6 @@ public class GCItems
 	public static Item partNoseCone;
 	public static Item partFins;
 	public static Item buggy;
-	public static Item flag;
 	public static Item oxygenGear;
 	public static Item parachute;
 	public static Item canvas;
@@ -120,7 +115,6 @@ public class GCItems
 	public static Item foodItem;
 	public static Item battery;
 	public static Item infiniteBatery;
-	public static Item meteorChunk;
 	public static Item wrench;
 	public static Item cheeseCurd;
 	public static Item meteoricIronRaw;
@@ -133,7 +127,6 @@ public class GCItems
 	public static Item emergencyKit;
 	//@format
 
-    public static ArmorMaterial                                ARMOR_SENSOR_GLASSES = EnumHelper.addArmorMaterial("SENSORGLASSES", "", 200, new int[] {0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
     public static ArmorMaterial                                ARMOR_STEEL          = EnumHelper.addArmorMaterial("steel", "", 30, new int[] {3, 6, 8, 3}, 9, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1.0F);
     public static ToolMaterial                                 TOOL_STEEL           = EnumHelper.addToolMaterial("steel", 3, 768, 5.0F, 2, 8);
 
@@ -149,7 +142,6 @@ public class GCItems
         GCItems.oxTankHeavy = new ItemOxygenTank(3, "oxygen_tank_heavy_full");
         GCItems.oxMask = new ItemOxygenMask("oxygen_mask");
         GCItems.rocketTier1 = new ItemTier1Rocket("rocket_t1");
-        GCItems.sensorGlasses = new ItemSensorGlasses("sensor_glasses");
         GCItems.steelPickaxe = new ItemPickaxeGC("steel_pickaxe");
         GCItems.steelAxe = new ItemAxeGC("steel_axe");
         GCItems.steelHoe = new ItemHoeGC("steel_hoe");
@@ -169,7 +161,6 @@ public class GCItems
         GCItems.partNoseCone = new ItemBase("nose_cone");
         GCItems.sensorLens = new ItemBase("sensor_lens");
         GCItems.buggy = new ItemBuggy("buggy");
-        GCItems.flag = new ItemFlag("flag");
         GCItems.oxygenGear = new ItemOxygenGear("oxygen_gear");
         GCItems.parachute = new ItemParaChute("parachute");
         GCItems.canvas = new ItemBase("canvas");
@@ -184,7 +175,6 @@ public class GCItems
         GCItems.foodItem = new ItemFood("food");
         GCItems.battery = new ItemBattery("battery");
         GCItems.infiniteBatery = new ItemBatteryInfinite("infinite_battery");
-        GCItems.meteorChunk = new ItemMeteorChunk("meteor_chunk");
         GCItems.wrench = new ItemUniversalWrench("standard_wrench");
         GCItems.cheeseCurd = new ItemCheese(1, 0.1F, false);
         GCItems.meteoricIronRaw = new ItemMeteoricIron("meteoric_iron_raw");
@@ -334,7 +324,6 @@ public class GCItems
         GCItems.registerItem(GCItems.oxTankHeavy);
         GCItems.registerItem(GCItems.oxygenCanisterInfinite);
         GCItems.registerItem(GCItems.sensorLens);
-        GCItems.registerItem(GCItems.sensorGlasses);
         GCItems.registerItem(GCItems.wrench);
         GCItems.registerItem(GCItems.steelPickaxe);
         GCItems.registerItem(GCItems.steelAxe);
@@ -365,12 +354,9 @@ public class GCItems
         GCItems.registerItem(GCItems.foodItem);
         GCItems.registerItem(GCItems.battery);
         GCItems.registerItem(GCItems.infiniteBatery);
-        GCItems.registerItem(GCItems.meteorChunk);
         GCItems.registerItem(GCItems.cheeseCurd);
         GCItems.registerItem(GCItems.meteoricIronRaw);
         GCItems.registerItem(GCItems.itemBasicMoon);
-        //		GCItems.registerItem(GCItems.cheeseBlock);
-        GCItems.registerItem(GCItems.flag);
         GCItems.registerItem(GCItems.parachute);
         GCItems.registerItem(GCItems.prelaunchChecklist);
         GCItems.registerItem(GCItems.dungeonFinder);
