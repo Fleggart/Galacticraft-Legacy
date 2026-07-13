@@ -46,7 +46,6 @@ public class AsteroidsItems
     public static Item titaniumSpade;
     public static Item titaniumHoe;
     public static Item titaniumSword;
-    public static Item strangeSeed;
 
     public static Item.ToolMaterial TOOL_TITANIUM = EnumHelper.addToolMaterial("titanium", 4, 760, 14.0F, 4.0F, 16);
     public static ItemArmor.ArmorMaterial ARMOR_TITANIUM = EnumHelper.addArmorMaterial("titanium", "", 26, new int[]
@@ -76,7 +75,6 @@ public class AsteroidsItems
         AsteroidsItems.titaniumSpade = new ItemSpadeAsteroids("titanium_shovel");
         AsteroidsItems.titaniumHoe = new ItemHoeAsteroids("titanium_hoe");
         AsteroidsItems.titaniumSword = new ItemSwordAsteroids("titanium_sword");
-        AsteroidsItems.strangeSeed = new ItemStrangeSeed("strange_seed");
 
         AsteroidsItems.registerItems();
 
@@ -126,7 +124,6 @@ public class AsteroidsItems
         registerItem(AsteroidsItems.titaniumSpade);
         registerItem(AsteroidsItems.titaniumHoe);
         registerItem(AsteroidsItems.titaniumSword);
-        registerItem(AsteroidsItems.strangeSeed);
 
         ARMOR_TITANIUM.setRepairItem(new ItemStack(AsteroidsItems.basicItem, 1, 0));
 
