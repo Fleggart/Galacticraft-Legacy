@@ -167,7 +167,6 @@ public class GCItems
         GCItems.partNoseCone = new ItemBase("nose_cone");
         GCItems.sensorLens = new ItemBase("sensor_lens");
         GCItems.buggy = new ItemBuggy("buggy");
-        GCItems.flag = new ItemFlag("flag");
         GCItems.oxygenGear = new ItemOxygenGear("oxygen_gear");
         GCItems.parachute = new ItemParaChute("parachute");
         GCItems.canvas = new ItemBase("canvas");
