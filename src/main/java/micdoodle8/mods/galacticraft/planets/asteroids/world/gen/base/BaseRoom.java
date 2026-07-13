@@ -309,13 +309,10 @@ public class BaseRoom extends SizedPiece
                                 state = GCBlocks.aluminumWire.getStateFromMeta(0);
                             else if (x == maxX - 2)
                                 state = GCBlocks.aluminumWire.getStateFromMeta(2);
-                            else if ((xx == 3 || x == maxX - 1))
-                                state = AsteroidBlocks.blockMinerBase.getDefaultState();
+                  
                         } else if (z == 3 && x == maxX - 2)
                             state = GCBlocks.aluminumWire.getStateFromMeta(0);
-                        // An industrial looking frame for the whole structure
-                        else if (z == 4 && (xx == 3 || x == maxX - 1))
-                            state = AsteroidBlocks.blockMinerBase.getDefaultState();
+                            
                         break;
                     case 3:
                         // Layer 3: tier 2 storage and alu wire
@@ -327,9 +324,7 @@ public class BaseRoom extends SizedPiece
                             state = GCBlocks.aluminumWire.getStateFromMeta(1);
                         else if (z == 3 && xx >= 4 && x < maxX - 2)
                             state = GCBlocks.aluminumWire.getStateFromMeta(0);
-                        // An industrial looking frame for the whole structure
-                        else if ((z == 2 || z == 4) && (xx == 3 || x == maxX - 1))
-                            state = AsteroidBlocks.blockMinerBase.getDefaultState();
+                      
                         break;
                     case 4:
                         // Layer 4: tier 2 storage and alu wire
@@ -340,9 +335,7 @@ public class BaseRoom extends SizedPiece
                             else if (x == maxX - 1 || x == maxX - 2)
                                 state = GCBlocks.aluminumWire.getStateFromMeta(1);
                         }
-                        // An industrial looking frame for the whole structure
-                        else if ((z == 2 || z == 4) && xx >= 3 && x < maxX)
-                            state = AsteroidBlocks.blockMinerBase.getDefaultState();
+                            
                         break;
                 }
                 break;
