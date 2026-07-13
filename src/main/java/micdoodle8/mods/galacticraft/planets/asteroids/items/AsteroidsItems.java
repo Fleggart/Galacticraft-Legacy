@@ -27,7 +27,7 @@ public class AsteroidsItems
 
     public static Item grapple;
     public static Item tier3Rocket;
-    public static Item astroMiner;
+    // 删除了 astroMiner
     public static Item thermalPadding;
     public static Item basicItem;
     public static Item methaneCanister;
@@ -56,7 +56,7 @@ public class AsteroidsItems
     {
         AsteroidsItems.grapple = new ItemGrappleHook("grapple");
         AsteroidsItems.tier3Rocket = new ItemTier3Rocket("rocket_t3");
-        AsteroidsItems.astroMiner = new ItemAstroMiner("astro_miner");
+        // 删除了 AstroMiner 物品初始化
         AsteroidsItems.thermalPadding = new ItemThermalPadding("thermal_padding");
         AsteroidsItems.basicItem = new ItemBasicAsteroids("item_basic_asteroids");
         AsteroidsItems.methaneCanister = new ItemCanisterMethane("methane_canister_partial");
@@ -107,7 +107,7 @@ public class AsteroidsItems
     {
         registerItem(AsteroidsItems.grapple);
         registerItem(AsteroidsItems.tier3Rocket);
-        registerItem(AsteroidsItems.astroMiner);
+        // 删除了 AstroMiner 物品注册
         registerItem(AsteroidsItems.thermalPadding);
         registerItem(AsteroidsItems.basicItem);
         registerItem(AsteroidsItems.methaneCanister);
