@@ -118,19 +118,6 @@ public class PlayerClient implements IPlayerClient
                 }
             }
         }
-
-//        if (player.boundingBox != null && stats.boundingBoxBefore == null)
-//        {
-//            GalacticraftCore.logger.debug("Changed player BB from " + player.boundingBox.minY);
-//            stats.boundingBoxBefore = player.boundingBox;
-//            player.boundingBox.setBounds(stats.boundingBoxBefore.minX + 0.4, stats.boundingBoxBefore.minY + 0.9, stats.boundingBoxBefore.minZ + 0.4, stats.boundingBoxBefore.maxX - 0.4, stats.boundingBoxBefore.maxY - 0.9, stats.boundingBoxBefore.maxZ - 0.4);
-//            GalacticraftCore.logger.debug("Changed player BB to " + player.boundingBox.minY);
-//        }
-//        else if (player.boundingBox != null && stats.boundingBoxBefore != null)
-//        {
-//            player.boundingBox.setBB(stats.boundingBoxBefore);
-//            GalacticraftCore.logger.debug("Changed player BB to " + player.boundingBox.minY);
-//        }
     }
 
     public void cancelLimbSwing(EntityPlayerSP player)
@@ -205,21 +192,7 @@ public class PlayerClient implements IPlayerClient
                 FMLClientHandler.instance().getClient().gameSettings.thirdPersonView = 1;
         }
 
-        if (player.getRidingEntity() instanceof ICameraZoomEntity)
-        {
-            if (!ConfigManagerCore.disableVehicleCameraChanges)
-            {
-                stats.setLastZoomed(true);
-                TickHandlerClient.zoom(((ICameraZoomEntity) player.getRidingEntity()).getCameraZoom());
-            }
-        } else if (stats.isLastZoomed())
-        {
-            if (!ConfigManagerCore.disableVehicleCameraChanges)
-            {
-                stats.setLastZoomed(false);
-                TickHandlerClient.zoom(4.0F);
-            }
-        }
+        // Camera zoom functionality removed - uses entityRenderer thirdPersonDistance directly
 
         stats.setLastRidingCameraZoomEntity(ridingThirdPersonEntity);
 
@@ -273,7 +246,6 @@ public class PlayerClient implements IPlayerClient
         {
             if (player.world.getTileEntity(player.bedLocation) instanceof TileEntityAdvanced)
             {
-//                int j = player.world.getBlock(x, y, z).getBedDirection(player.world, x, y, z);
                 IBlockState state = player.world.getBlockState(player.bedLocation);
                 switch (state.getBlock().getMetaFromState(state) - 4)
                 {
