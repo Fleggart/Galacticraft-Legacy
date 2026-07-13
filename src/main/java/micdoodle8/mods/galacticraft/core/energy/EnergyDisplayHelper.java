@@ -28,9 +28,6 @@ public class EnergyDisplayHelper
         if (EnergyConfigHandler.displayEnergyUnitsIC2)
         {
             return getEnergyDisplayIC2(energyVal * EnergyConfigHandler.TO_IC2_RATIOdisp);
-        } else if (EnergyConfigHandler.displayEnergyUnitsBC)
-        {
-            return getEnergyDisplayBC(energyVal * EnergyConfigHandler.TO_BC_RATIOdisp);
         } else if (EnergyConfigHandler.displayEnergyUnitsMek)
         {
             return getEnergyDisplayMek(energyVal * EnergyConfigHandler.TO_MEKANISM_RATIOdisp);
@@ -68,13 +65,6 @@ public class EnergyDisplayHelper
         }
 
         return newVal + " EU";
-    }
-
-    public static String getEnergyDisplayBC(float energyVal)
-    {
-        String val = String.valueOf(getEnergyDisplayI(energyVal));
-
-        return val + " MJ";
     }
 
     public static String getEnergyDisplayMek(float energyVal)

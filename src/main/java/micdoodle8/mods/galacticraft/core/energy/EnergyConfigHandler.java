@@ -16,7 +16,6 @@ import micdoodle8.mods.galacticraft.core.GCFluids;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 
-
 import mekanism.api.gas.Gas;
 import mekanism.api.gas.GasRegistry;
 
@@ -73,11 +72,6 @@ public class EnergyConfigHandler
     private static int conversionLossFactor = 100;
 
     /**
-     * Convert gJ back to Buildcraft MJ (microJoules)
-     */
-    
-
-    /**
      * Convert gJ back to RF
      */
     public static float TO_RF_RATIO = 1 / EnergyConfigHandler.RF_RATIO;
@@ -100,7 +94,6 @@ public class EnergyConfigHandler
     public static Object gasOxygen = null;
     public static Object gasHydrogen = null;
 
-    
     public static boolean displayEnergyUnitsIC2 = false;
     public static boolean displayEnergyUnitsMek = false;
     public static boolean displayEnergyUnitsRF = false;
@@ -109,10 +102,6 @@ public class EnergyConfigHandler
     private static boolean cachedRF1LoadedValue = false;
     private static boolean cachedRF2LoadedValue = false;
 
-    
-
-    
-    
     public static boolean disableRFInput = false;
     public static boolean disableRFOutput = false;
     public static boolean disableFEInput = false;
@@ -151,15 +140,12 @@ public class EnergyConfigHandler
 
         updateRatios();
 
-        EnergyConfigHandler.displayEnergyUnitsBC =
         EnergyConfigHandler.displayEnergyUnitsIC2 =
             EnergyConfigHandler.config.get("Display", "If IndustrialCraft2 is loaded, show Galacticraft machines energy as EU instead of gJ?", false).getBoolean(false);
         EnergyConfigHandler.displayEnergyUnitsMek =
             EnergyConfigHandler.config.get("Display", "If Mekanism is loaded, show Galacticraft machines energy as Joules (J) instead of gJ?", false).getBoolean(false);
         EnergyConfigHandler.displayEnergyUnitsRF = EnergyConfigHandler.config.get("Display", "Show Galacticraft machines energy in RF instead of gJ?", false).getBoolean(false);
 
-        
-        
         EnergyConfigHandler.disableRFInput = EnergyConfigHandler.config.get("Compatibility", "Disable INPUT of RF energy", false).getBoolean(false);
         EnergyConfigHandler.disableRFOutput = EnergyConfigHandler.config.get("Compatibility", "Disable OUTPUT of RF energy", false).getBoolean(false);
         EnergyConfigHandler.disableFEInput = EnergyConfigHandler.config.get("Compatibility", "Disable INPUT of Forge Energy to GC machines", false).getBoolean(false);
@@ -177,19 +163,12 @@ public class EnergyConfigHandler
         {
             EnergyConfigHandler.displayEnergyUnitsMek = false;
         }
-        if (EnergyConfigHandler.displayEnergyUnitsIC2)
-        {
-            
-        }
         if (EnergyConfigHandler.displayEnergyUnitsMek)
         {
-            
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
         }
         if (EnergyConfigHandler.displayEnergyUnitsRF)
         {
-            
-            
             EnergyConfigHandler.displayEnergyUnitsIC2 = false;
             EnergyConfigHandler.displayEnergyUnitsMek = false;
         }
