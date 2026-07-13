@@ -500,7 +500,6 @@ public class GCEntityClientPlayerMP extends EntityPlayerSP
         if (!this.checkedCape)
         {
             NetworkPlayerInfo networkplayerinfo = this.getPlayerInfo();
-            this.galacticraftCape = ClientProxyCore.capeMap.get(networkplayerinfo.getGameProfile().getId().toString().replace("-", ""));
             this.checkedCape = true;
         }
 
