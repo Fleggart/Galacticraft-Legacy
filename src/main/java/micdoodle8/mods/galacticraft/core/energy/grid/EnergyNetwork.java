@@ -7,7 +7,6 @@
 
 package micdoodle8.mods.galacticraft.core.energy.grid;
 
-import buildcraft.api.mj.IMjReceiver;
 import cofh.redstoneflux.api.IEnergyReceiver;
 import ic2.api.energy.tile.IEnergySink;
 import java.util.Arrays;
@@ -35,8 +34,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-//import buildcraft.api.power.PowerHandler.Type;
-
 /**
  * A universal network that works with multiple energy systems.
  *
@@ -50,7 +47,6 @@ public class EnergyNetwork implements IElectricityNetwork
     private boolean isRF2Loaded = EnergyConfigHandler.isRFAPIv2Loaded() && !EnergyConfigHandler.disableRFOutput;
     private boolean isIC2Loaded = EnergyConfigHandler.isIndustrialCraft2Loaded() && !EnergyConfigHandler.disableIC2Output;
     private boolean isFELoaded = !EnergyConfigHandler.disableFEOutput;
-    private boolean isBCLoaded = EnergyConfigHandler.isBuildcraftLoaded() && !EnergyConfigHandler.disableBuildCraftOutput;
 
     /*
      * Re-written by radfast for better performance Imagine a 30 producer, 80
@@ -307,21 +303,6 @@ public class EnergyNetwork implements IElectricityNetwork
                         // wire, 256EU/t for heavy Alu wire
                         result = Math.min(result, this.networkTierGC * 128D);
                         e = (float) result / EnergyConfigHandler.TO_IC2_RATIO;
-                    } else if (isBCLoaded && acceptor instanceof IMjReceiver)
-                    {
-                        long bcDemand = ((IMjReceiver) acceptor).getPowerRequested();
-                        bcDemand = Math.min(bcDemand, this.networkTierGC * this.networkTierGC * 16000000L); // Capped
-                        // at
-                        // 16
-                        // MJ/tick
-                        // for
-                        // standard
-                        // Alu
-                        // wire,
-                        // 64
-                        // for
-                        // heavy.
-                        e = bcDemand / EnergyConfigHandler.TO_BC_RATIO;
                     } else if (isRF2Loaded && acceptor instanceof IEnergyReceiver)
                     {
                         e = ((IEnergyReceiver) acceptor).receiveEnergy(sideFrom, Integer.MAX_VALUE, true) / EnergyConfigHandler.TO_RF_RATIO;
@@ -467,10 +448,6 @@ public class EnergyNetwork implements IElectricityNetwork
                         {
                             sentToAcceptor = 0F;
                         }
-                    } else if (isBCLoaded && tileEntity instanceof IMjReceiver)
-                    {
-                        long toSendBC = (long) (currentSending * EnergyConfigHandler.TO_BC_RATIO);
-                        sentToAcceptor = (toSendBC - ((IMjReceiver) tileEntity).receivePower(toSendBC, false)) / EnergyConfigHandler.TO_BC_RATIO;
                     } else if (isRF2Loaded && tileEntity instanceof IEnergyReceiver)
                     {
                         final int currentSendinginRF =
@@ -776,6 +753,18 @@ public class EnergyNetwork implements IElectricityNetwork
                                         toDo[i2] = false;
                                     }
                                 }
+                            }
+
+                            // Now make the new network from partNetwork
+                            EnergyNetwork newNetwork = new EnergyNetwork();
+                            newNetwork.getTransmitters().addAll(partNetwork);
+                            newNetwork.refreshWithChecks();
+                        }
+                    }
+
+                    this.destroy();
+                }
+           }
                             }
 
                             // Now make the new network from partNetwork
