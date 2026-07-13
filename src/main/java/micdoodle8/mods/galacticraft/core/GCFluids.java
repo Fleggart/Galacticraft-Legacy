@@ -39,8 +39,7 @@ import micdoodle8.mods.galacticraft.planets.mars.items.ItemTier2Rocket;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 
-import buildcraft.api.fuels.BuildcraftFuelRegistry;
-import buildcraft.api.mj.MjAPI;
+
 
 public class GCFluids
 {
@@ -333,8 +332,5 @@ public class GCFluids
         });
     }
 
-    public static void registerBCFuel()
-    {
-        BuildcraftFuelRegistry.fuel.addFuel(GCFluids.fluidFuel, 5 * MjAPI.MJ, 9000);
-    }
+    
 }
