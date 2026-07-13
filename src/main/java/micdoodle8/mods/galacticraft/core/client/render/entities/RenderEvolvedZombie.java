@@ -8,7 +8,6 @@
 package micdoodle8.mods.galacticraft.core.client.render.entities;
 
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlaySensorGlasses;
 import micdoodle8.mods.galacticraft.core.client.model.ModelEvolvedZombie;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedZombie;
 import net.minecraft.client.model.ModelBase;
@@ -32,7 +31,6 @@ public class RenderEvolvedZombie extends RenderBiped<EntityEvolvedZombie>
     private static final ResourceLocation powerTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/model/power.png");
 
     private final ModelBase model = new ModelEvolvedZombie(0.2F, false, true);
-    private boolean texSwitch;
 
     public RenderEvolvedZombie(RenderManager manager)
     {
@@ -55,30 +53,19 @@ public class RenderEvolvedZombie extends RenderBiped<EntityEvolvedZombie>
     @Override
     protected ResourceLocation getEntityTexture(EntityEvolvedZombie par1Entity)
     {
-        return texSwitch ? OverlaySensorGlasses.altTexture : RenderEvolvedZombie.zombieTexture;
+        return RenderEvolvedZombie.zombieTexture;
     }
 
     @Override
     protected void preRenderCallback(EntityEvolvedZombie zombie, float par2)
     {
         GL11.glScalef(1.2F, 1.2F, 1.2F);
-        if (texSwitch)
-        {
-            OverlaySensorGlasses.preRenderMobs();
-        }
     }
 
     @Override
     public void doRender(EntityEvolvedZombie entity, double par2, double par4, double par6, float par8, float par9)
     {
         super.doRender(entity, par2, par4, par6, par8, par9);
-        if (OverlaySensorGlasses.overrideMobTexture())
-        {
-            texSwitch = true;
-            super.doRender(entity, par2, par4, par6, par8, par9);
-            texSwitch = false;
-            OverlaySensorGlasses.postRenderMobs();
-        }
     }
 
     @Override

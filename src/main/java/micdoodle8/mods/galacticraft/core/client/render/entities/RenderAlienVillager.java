@@ -8,7 +8,6 @@
 package micdoodle8.mods.galacticraft.core.client.render.entities;
 
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlaySensorGlasses;
 import micdoodle8.mods.galacticraft.core.client.model.ModelAlienVillager;
 import micdoodle8.mods.galacticraft.core.entities.EntityAlienVillager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -23,7 +22,6 @@ public class RenderAlienVillager extends RenderLiving<EntityAlienVillager>
 {
 
     private static final ResourceLocation villagerTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/model/villager.png");
-    private boolean texSwitch;
 
     protected ModelAlienVillager villagerModel;
 
@@ -47,30 +45,18 @@ public class RenderAlienVillager extends RenderLiving<EntityAlienVillager>
             this.shadowSize = 0.5F;
         }
 
-        if (texSwitch)
-        {
-            OverlaySensorGlasses.preRenderMobs();
-        }
-
         GL11.glScalef(f1, f1, f1);
     }
 
     @Override
     protected ResourceLocation getEntityTexture(EntityAlienVillager par1Entity)
     {
-        return texSwitch ? OverlaySensorGlasses.altTexture : RenderAlienVillager.villagerTexture;
+        return RenderAlienVillager.villagerTexture;
     }
 
     @Override
     public void doRender(EntityAlienVillager villager, double par2, double par4, double par6, float par8, float par9)
     {
         super.doRender(villager, par2, par4, par6, par8, par9);
-        if (OverlaySensorGlasses.overrideMobTexture())
-        {
-            texSwitch = true;
-            super.doRender(villager, par2, par4, par6, par8, par9);
-            texSwitch = false;
-            OverlaySensorGlasses.postRenderMobs();
-        }
     }
 }

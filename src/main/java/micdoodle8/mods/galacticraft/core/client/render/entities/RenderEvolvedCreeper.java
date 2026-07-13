@@ -8,7 +8,6 @@
 package micdoodle8.mods.galacticraft.core.client.render.entities;
 
 import micdoodle8.mods.galacticraft.core.Constants;
-import micdoodle8.mods.galacticraft.core.client.gui.overlay.OverlaySensorGlasses;
 import micdoodle8.mods.galacticraft.core.client.model.ModelEvolvedCreeper;
 import micdoodle8.mods.galacticraft.core.client.render.entities.layer.LayerEvolvedCreeperCharge;
 import micdoodle8.mods.galacticraft.core.entities.EntityEvolvedCreeper;
@@ -25,7 +24,6 @@ public class RenderEvolvedCreeper extends RenderLiving<EntityEvolvedCreeper>
 {
 
     private static final ResourceLocation creeperTexture = new ResourceLocation(Constants.ASSET_PREFIX, "textures/model/creeper.png");
-    private boolean texSwitch;
 
     public RenderEvolvedCreeper(RenderManager manager)
     {
@@ -45,11 +43,6 @@ public class RenderEvolvedCreeper extends RenderLiving<EntityEvolvedCreeper>
         float f3 = (1.0F + f * 0.1F) / f1;
         GlStateManager.scale(0.2F + f2, 0.2F + f3, 0.2F + f2);
 
-        if (this.texSwitch)
-        {
-            GlStateManager.translate(0.0F, -0.03F, 0.0F);
-            OverlaySensorGlasses.preRenderMobs();
-        }
         GlStateManager.translate(0.0F, 0.125F, 0.0F);
     }
 
@@ -72,19 +65,12 @@ public class RenderEvolvedCreeper extends RenderLiving<EntityEvolvedCreeper>
     @Override
     protected ResourceLocation getEntityTexture(EntityEvolvedCreeper entity)
     {
-        return this.texSwitch ? OverlaySensorGlasses.altTexture : RenderEvolvedCreeper.creeperTexture;
+        return RenderEvolvedCreeper.creeperTexture;
     }
 
     @Override
     public void doRender(EntityEvolvedCreeper entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
-        if (OverlaySensorGlasses.overrideMobTexture())
-        {
-            texSwitch = true;
-            super.doRender(entity, x, y, z, entityYaw, partialTicks);
-            texSwitch = false;
-            OverlaySensorGlasses.postRenderMobs();
-        }
     }
 }
