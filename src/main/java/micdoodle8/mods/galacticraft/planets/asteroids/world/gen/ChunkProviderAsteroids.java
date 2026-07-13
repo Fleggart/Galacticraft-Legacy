@@ -23,7 +23,6 @@ import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.planets.asteroids.ConfigManagerAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.WorldProviderAsteroids;
-import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.base.MapGenAbandonedBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockFlower;
@@ -138,7 +137,6 @@ public class ChunkProviderAsteroids extends ChunkProviderBase
     private static HashSet<BlockVec3> chunksDone = new HashSet<BlockVec3>();
     private int largeAsteroidsLastChunkX;
     private int largeAsteroidsLastChunkZ;
-    private final MapGenAbandonedBase dungeonGenerator = new MapGenAbandonedBase();
 
     public ChunkProviderAsteroids(World par1World, long par2, boolean par4)
     {
@@ -567,11 +565,6 @@ public class ChunkProviderAsteroids extends ChunkProviderBase
         // this.world.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration,
         // par1 * 16, par2 * 16, 16, 16);
 
-        if (this.world.provider instanceof WorldProviderAsteroids && ((WorldProviderAsteroids) this.world.provider).checkHasAsteroids())
-        {
-            this.dungeonGenerator.generate(this.world, par1, par2, primer);
-        }
-
 //        long time2 = System.nanoTime();
         final Chunk var4 = new Chunk(this.world, primer, par1, par2);
         final byte[] biomesArray = var4.getBiomeArray();
@@ -815,13 +808,13 @@ public class ChunkProviderAsteroids extends ChunkProviderBase
             }
         }
 
-        this.dungeonGenerator.generateStructure(this.world, this.rand, new ChunkPos(chunkX, chunkZ));
+        
     }
 
     @Override
     public void recreateStructures(Chunk chunk, int x, int z)
     {
-        this.dungeonGenerator.generate(this.world, x, z, null);
+        // this.dungeonGenerator.generate(this.world, x, z, null);
     }
 
     public void generateSkylightMap(Chunk chunk, int cx, int cz)
@@ -989,11 +982,6 @@ public class ChunkProviderAsteroids extends ChunkProviderBase
         }
 
         chunk.setModified(true);
-    }
-
-    public void resetBase()
-    {
-        this.dungeonGenerator.reset();
     }
 
     @Override
