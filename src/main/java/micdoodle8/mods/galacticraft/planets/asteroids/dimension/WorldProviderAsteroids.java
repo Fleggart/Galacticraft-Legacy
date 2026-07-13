@@ -22,7 +22,6 @@ import micdoodle8.mods.galacticraft.core.world.gen.dungeon.RoomTreasure;
 import micdoodle8.mods.galacticraft.planets.GCPlanetDimensions;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
-import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityAstroMiner;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.ChunkProviderAsteroids;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,12 +40,6 @@ public class WorldProviderAsteroids extends WorldProviderSpace implements ISolar
     private boolean dataNotLoaded = true;
     private AsteroidSaveData datafile;
     private double solarMultiplier = -1D;
-
-    // @Override
-//	public void registerWorldChunkManager()
-//	{
-//		this.worldChunkMgr = new WorldChunkManagerAsteroids(this.world, 0F);
-//	}
 
     @Override
     public CelestialBody getCelestialBody()
@@ -102,12 +95,6 @@ public class WorldProviderAsteroids extends WorldProviderSpace implements ISolar
     {
         return 1.0F;
     }
-
-//	@Override
-//	public IChunkProvider createChunkGenerator()
-//	{
-//		return new ChunkProviderAsteroids(this.world, this.world.getSeed(), this.world.getWorldInfo().isMapFeaturesEnabled());
-//	}
 
     @Override
     public double getHorizon()
@@ -373,7 +360,7 @@ public class WorldProviderAsteroids extends WorldProviderSpace implements ISolar
 
         ArrayList<BlockVec3> returnValues = new ArrayList<>();
         int i = 0;
-        int offset = EntityAstroMiner.MINE_LENGTH_AST / 2;
+        int offset = 12 / 2; // Replaced MINE_LENGTH_AST constant with literal value
         for (BlockVec3 target : targets.values())
         {
             BlockVec3 coords = target.clone();
