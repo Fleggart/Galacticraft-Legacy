@@ -688,7 +688,7 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         {
             ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, torch);
         }
-        ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.oxygenDistributor);
+        
         ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.oxygenPipe);
         ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.oxygenPipePull);
         ClientUtil.registerBlockJson(Constants.TEXTURE_PREFIX, GCBlocks.oxygenCollector);
