@@ -71,7 +71,7 @@ import micdoodle8.mods.galacticraft.core.blocks.BlockNasaWorkbench;
 import micdoodle8.mods.galacticraft.core.blocks.BlockOxygenCollector;
 import micdoodle8.mods.galacticraft.core.blocks.BlockOxygenCompressor;
 import micdoodle8.mods.galacticraft.core.blocks.BlockOxygenDetector;
-import micdoodle8.mods.galacticraft.core.blocks.BlockOxygenDistributor;
+
 import micdoodle8.mods.galacticraft.core.blocks.BlockOxygenSealer;
 import micdoodle8.mods.galacticraft.core.blocks.BlockPanelLighting;
 import micdoodle8.mods.galacticraft.core.blocks.BlockParaChest;
@@ -135,7 +135,7 @@ public class GCBlocks
     public static Block landingPad;
     public static Block unlitTorch;
     public static Block unlitTorchLit;
-    public static Block oxygenDistributor;
+    
     public static Block oxygenPipe;
     public static Block oxygenPipePull;
     public static Block oxygenCollector;
@@ -220,7 +220,7 @@ public class GCBlocks
         GCBlocks.landingPadFull = new BlockLandingPadFull("landing_pad_full");
         GCBlocks.unlitTorch = new BlockUnlitTorch(false, "unlit_torch");
         GCBlocks.unlitTorchLit = new BlockUnlitTorch(true, "unlit_torch_lit");
-        GCBlocks.oxygenDistributor = new BlockOxygenDistributor("distributor");
+        
         GCBlocks.oxygenPipe = new BlockFluidPipe("fluid_pipe", BlockFluidPipe.EnumPipeMode.NORMAL);
         GCBlocks.oxygenPipePull = new BlockFluidPipe("fluid_pipe_pull", BlockFluidPipe.EnumPipeMode.PULL);
         GCBlocks.oxygenCollector = new BlockOxygenCollector("collector");
@@ -598,7 +598,7 @@ public class GCBlocks
         registerBlock(GCBlocks.breatheableAir, null);
         registerBlock(GCBlocks.brightAir, null);
         registerBlock(GCBlocks.brightBreatheableAir, null);
-        registerBlock(GCBlocks.oxygenDistributor, ItemBlockDesc.class);
+        
         registerBlock(GCBlocks.oxygenCollector, ItemBlockDesc.class);
         registerBlock(GCBlocks.oxygenCompressor, ItemBlockOxygenCompressor.class);
         registerBlock(GCBlocks.oxygenSealer, ItemBlockDesc.class);
