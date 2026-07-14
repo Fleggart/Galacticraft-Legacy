@@ -16,7 +16,6 @@ import micdoodle8.mods.galacticraft.core.proxy.ClientProxyCore.EventSpecialRende
 import micdoodle8.mods.galacticraft.core.util.ClientUtil;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.SkyProviderAsteroids;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.render.NetworkRenderer;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.WorldProviderAsteroids;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -153,6 +152,6 @@ public class AsteroidsEventHandlerClient
     @SubscribeEvent
     public void onSpecialRender(EventSpecialRender event)
     {
-        NetworkRenderer.renderNetworks(FMLClientHandler.instance().getClient().world, event.partialTicks);
+        // NetworkRenderer removed - rendering disabled
     }
 }
