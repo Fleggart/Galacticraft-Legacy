@@ -42,7 +42,6 @@ import micdoodle8.mods.galacticraft.planets.venus.entities.EntityWebShot;
 import micdoodle8.mods.galacticraft.planets.venus.event.EventHandlerVenus;
 import micdoodle8.mods.galacticraft.planets.venus.inventory.ContainerCrashedProbe;
 import micdoodle8.mods.galacticraft.planets.venus.inventory.ContainerGeothermal;
-import micdoodle8.mods.galacticraft.planets.venus.inventory.ContainerLaserTurret;
 import micdoodle8.mods.galacticraft.planets.venus.inventory.ContainerSolarArrayController;
 import micdoodle8.mods.galacticraft.planets.venus.network.PacketSimpleVenus;
 import micdoodle8.mods.galacticraft.planets.venus.recipe.RecipeManagerVenus;
@@ -50,7 +49,6 @@ import micdoodle8.mods.galacticraft.planets.venus.tick.VenusTickHandlerServer;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityCrashedProbe;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityDungeonSpawnerVenus;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityGeothermalGenerator;
-import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityLaserTurret;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntitySolarArrayController;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntitySolarArrayModule;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntitySpout;
@@ -205,7 +203,7 @@ public class VenusModule implements IPlanetsModule
         register(TileEntityCrashedProbe.class, "gc_crashed_probe");
         register(TileEntitySolarArrayModule.class, "gc_solar_array_module");
         register(TileEntitySolarArrayController.class, "gc_solar_array_controller");
-        register(TileEntityLaserTurret.class, "gc_laser_turret");
+        // 删除: register(TileEntityLaserTurret.class, "gc_laser_turret");
     }
 
     public void registerCreatures()
@@ -243,10 +241,8 @@ public class VenusModule implements IPlanetsModule
             } else if (tile instanceof TileEntitySolarArrayController)
             {
                 return new ContainerSolarArrayController(player.inventory, (TileEntitySolarArrayController) tile);
-            } else if (tile instanceof TileEntityLaserTurret)
-            {
-                return new ContainerLaserTurret(player.inventory, (TileEntityLaserTurret) tile);
             }
+            
         }
 
         return null;

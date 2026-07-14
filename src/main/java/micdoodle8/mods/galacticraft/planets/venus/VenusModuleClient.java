@@ -20,13 +20,11 @@ import micdoodle8.mods.galacticraft.planets.venus.client.fx.ParticleAcidExhaust;
 import micdoodle8.mods.galacticraft.planets.venus.client.fx.ParticleAcidVapor;
 import micdoodle8.mods.galacticraft.planets.venus.client.gui.GuiCrashedProbe;
 import micdoodle8.mods.galacticraft.planets.venus.client.gui.GuiGeothermal;
-import micdoodle8.mods.galacticraft.planets.venus.client.gui.GuiLaserTurret;
 import micdoodle8.mods.galacticraft.planets.venus.client.gui.GuiSolarArrayController;
 import micdoodle8.mods.galacticraft.planets.venus.client.render.entity.RenderEntryPodVenus;
 import micdoodle8.mods.galacticraft.planets.venus.client.render.entity.RenderJuicer;
 import micdoodle8.mods.galacticraft.planets.venus.client.render.entity.RenderSpiderQueen;
 import micdoodle8.mods.galacticraft.planets.venus.client.render.entity.RenderWebShot;
-import micdoodle8.mods.galacticraft.planets.venus.client.render.tile.TileEntityLaserTurretRenderer;
 import micdoodle8.mods.galacticraft.planets.venus.client.render.tile.TileEntityTreasureChestRenderer;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityEntryPodVenus;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityJuicer;
@@ -34,7 +32,6 @@ import micdoodle8.mods.galacticraft.planets.venus.entities.EntitySpiderQueen;
 import micdoodle8.mods.galacticraft.planets.venus.entities.EntityWebShot;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityCrashedProbe;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityGeothermalGenerator;
-import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityLaserTurret;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntitySolarArrayController;
 import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityTreasureChestVenus;
 import net.minecraft.block.state.IBlockState;
@@ -127,9 +124,6 @@ public class VenusModuleClient implements IPlanetsModuleClient
     {
         registerTexture(event, "pod_flame");
         registerTexture(event, "web");
-        registerTexture(event, "laser");
-        registerTexture(event, "laser_off");
-        registerTexture(event, "orb");
     }
 
     private void registerTexture(TextureStitchEvent.Pre event, String texture)
@@ -147,7 +141,6 @@ public class VenusModuleClient implements IPlanetsModuleClient
     public void postInit(FMLPostInitializationEvent event)
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTreasureChestVenus.class, new TileEntityTreasureChestRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLaserTurret.class, new TileEntityLaserTurretRenderer());
     }
 
     public static void registerBlockRenderers()
@@ -176,7 +169,6 @@ public class VenusModuleClient implements IPlanetsModuleClient
         ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusBlocks.bossSpawner);
         ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusBlocks.solarArrayModule);
         ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusBlocks.solarArrayController, 0, "solar_array_controller");
-        ClientUtil.registerBlockJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusBlocks.laserTurret);
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusItems.thermalPaddingTier2, 0, "thermal_helm_t2");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusItems.thermalPaddingTier2, 1, "thermal_chestplate_t2");
         ClientUtil.registerItemJson(GalacticraftPlanets.TEXTURE_PREFIX, VenusItems.thermalPaddingTier2, 2, "thermal_leggings_t2");
@@ -209,10 +201,8 @@ public class VenusModuleClient implements IPlanetsModuleClient
                 } else if (tile instanceof TileEntitySolarArrayController)
                 {
                     return new GuiSolarArrayController(player.inventory, (TileEntitySolarArrayController) tile);
-                } else if (tile instanceof TileEntityLaserTurret)
-                {
-                    return new GuiLaserTurret(player.inventory, (TileEntityLaserTurret) tile);
                 }
+ 
             }
         }
 
