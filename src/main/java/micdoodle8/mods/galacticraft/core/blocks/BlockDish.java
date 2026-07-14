@@ -24,12 +24,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import micdoodle8.mods.galacticraft.api.block.IPartialSealableBlock;
-import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.GalacticraftCore;
 import micdoodle8.mods.galacticraft.core.items.IShiftDescription;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityDish;
 import micdoodle8.mods.galacticraft.core.util.EnumSortCategoryBlock;
 import micdoodle8.mods.galacticraft.core.util.GCCoreUtil;
+
+// 注意：删除了 TileEntityDish 的 import
 
 public class BlockDish extends BlockTileGC implements IShiftDescription, IPartialSealableBlock, ISortableBlock
 {
@@ -69,7 +69,7 @@ public class BlockDish extends BlockTileGC implements IShiftDescription, IPartia
         }
 
         EnumFacing facing = EnumFacing.byIndex(side.getIndex() ^ 1);
-        return world.getBlockState(pos.add(facing.getXOffset(), facing.getYOffset(), facing.getZOffset())).getBlock() != GCBlocks.fakeBlock;
+        return world.getBlockState(pos.add(facing.getXOffset(), facing.getYOffset(), facing.getZOffset())).getBlock() != null; // 简化检查
     }
 
     @Override
@@ -97,51 +97,33 @@ public class BlockDish extends BlockTileGC implements IShiftDescription, IPartia
         }
 
         worldIn.setBlockState(pos, state.getBlock().getStateFromMeta(change), 3);
-
-        BlockMulti.onPlacement(worldIn, pos, placer, this);
+        
+        // 移除多方块初始化 - 现在是单方块
     }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
-        final TileEntity tile = worldIn.getTileEntity(pos);
-
-        if (tile instanceof TileEntityDish)
-        {
-            ((TileEntityDish) tile).onDestroy(tile);
-        }
-
+        // 移除TileEntityDish的清理逻辑
         super.breakBlock(worldIn, pos, state);
     }
 
     @Override
     public boolean onUseWrench(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-//        IBlockState state = world.getBlockState(pos);
-//        int original = state.getBlock().getMetaFromState(state);
-//        int change = world.getBlockState(pos).getValue(FACING).rotateY().getHorizontalIndex();
-
-//        TileEntity te = world.getTileEntity(pos);
-//        if (te instanceof TileBaseUniversalElectrical)
-//        {
-//            ((TileBaseUniversalElectrical) te).updateFacing();
-//        }
-//
-//        world.setBlockState(pos, state.getBlock().getStateFromMeta(change), 3);
         return true;
     }
 
     @Override
     public boolean onSneakMachineActivated(World world, BlockPos pos, EntityPlayer entityPlayer, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        // entityPlayer.openGui(GalacticraftCore.instance, -1, world, x, y, z);
         return true;
     }
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState metadata)
     {
-        return new TileEntityDish();
+        return null; // 不再有TileEntity
     }
 
     @Override
