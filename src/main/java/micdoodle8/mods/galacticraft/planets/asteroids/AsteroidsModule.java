@@ -32,8 +32,8 @@ import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.player.AsteroidsPlayerHandler;
 import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandler;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
-import micdoodle8.mods.galacticraft.planets.asteroids.network.PacketSimpleAsteroids;
-import micdoodle8.mods.galacticraft.planets.asteroids.recipe.CanisterRecipes;
+// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.network.PacketSimpleAsteroids;
+// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.recipe.CanisterRecipes;
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.RecipeManagerAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.BiomeAsteroids;
@@ -92,7 +92,7 @@ public class AsteroidsModule implements IPlanetsModule
         MinecraftForge.EVENT_BUS.register(playerHandler);
         AsteroidsEventHandler eventHandler = new AsteroidsEventHandler();
         MinecraftForge.EVENT_BUS.register(eventHandler);
-        RecipeSorter.register("galacticraftplanets:canisterRecipe", CanisterRecipes.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
+        // 删除: RecipeSorter.register("galacticraftplanets:canisterRecipe", CanisterRecipes.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
 
         registerFluid("methane", 1, 11, 295, true);
         registerFluid("atmosphericgases", 1, 13, 295, true);
@@ -135,7 +135,7 @@ public class AsteroidsModule implements IPlanetsModule
         this.registerMicroBlocks();
         SchematicRegistry.registerSchematicRecipe(new SchematicTier3Rocket());
 
-        GalacticraftCore.packetPipeline.addDiscriminator(7, PacketSimpleAsteroids.class);
+        // 删除: GalacticraftCore.packetPipeline.addDiscriminator(7, PacketSimpleAsteroids.class);
 
         this.registerEntities();
 
