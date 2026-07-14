@@ -1,21 +1,5 @@
 <p align="center"><img src="https://cloud.githubusercontent.com/assets/6842258/25335525/4f21552e-28eb-11e7-91bb-de5e1ef602da.jpg"></p>
 
-<p align="center">
-  <a href="https://github.com/TeamGalacticraft/Galacticraft-Legacy/graphs/contributors/"><img src="https://img.shields.io/github/contributors/TeamGalacticraft/Galacticraft-Legacy.svg" alt="GitHub contributors"/></a>
-  <a href="https://github.com/TeamGalacticraft/Galacticraft-Legacy/commit/"><img src="https://img.shields.io/github/commits-since/TeamGalacticraft/Galacticraft-Legacy/first-commit" alt="GitHub commits"/></a>
-  <img src="https://img.shields.io/github/languages/code-size/TeamGalacticraft/Galacticraft-Legacy.svg" alt="Code size"/>
-  <img src="https://img.shields.io/github/repo-size/TeamGalacticraft/Galacticraft-Legacy.svg" alt="GitHub repo size"/>
-  <img src="https://tokei.rs/b1/github/cabaletta/baritone?category=code" alt="Lines of Code"/>
-</p>
-<p align="center">
-  <a href="https://www.curseforge.com/minecraft/mc-mods/galacticraft-legacy"><img alt="curseforge" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/curseforge_vector.svg">
-  <a href="https://modrinth.com/mod/galacticraft-legacy"><img alt="modrinth" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg">
-</p>
-<p align="center"> 
-  <a href="https://discord.galacticraft.net/"><img alt="discord-plural" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/social/discord-plural_vector.svg"></a>
-  <a href="https://patreon.com/teamgalacticraft"><img alt="patreon-plural" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/donate/patreon-plural_vector.svg"></a>
-</p>
-
 Galacticraft-Legacy
 ============
 
