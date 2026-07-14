@@ -12,7 +12,6 @@ import micdoodle8.mods.galacticraft.core.GCBlocks;
 import micdoodle8.mods.galacticraft.core.items.ItemBlockDesc;
 import micdoodle8.mods.galacticraft.core.items.ItemBlockGC;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemBlockAsteroids;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemBlockShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.ItemBlockWalkway;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
@@ -24,13 +23,9 @@ public class AsteroidBlocks
 
     public static Block blockWalkway;
     public static Block blockBasic;
-    // public static Block machineFrame;
     public static Block beamReflector;
     public static Block beamReceiver;
-    public static Block shortRangeTelepad;
-    public static Block fakeTelepad;
     public static Block blockDenseIce;
-    // 删除了 blockMinerBase 和 minerBaseFull
     public static Block spaceWart;
 
     public static void initBlocks()
@@ -39,10 +34,7 @@ public class AsteroidBlocks
         AsteroidBlocks.blockBasic = new BlockBasicAsteroids("asteroids_block");
         AsteroidBlocks.beamReflector = new BlockBeamReflector("beam_reflector");
         AsteroidBlocks.beamReceiver = new BlockBeamReceiver("beam_receiver");
-        AsteroidBlocks.shortRangeTelepad = new BlockShortRangeTelepad("telepad_short");
-        AsteroidBlocks.fakeTelepad = new BlockTelepadFake("telepad_fake");
         AsteroidBlocks.blockDenseIce = new BlockIceAsteroids("dense_ice");
-        // 删除了 BlockMinerBase 和 BlockMinerBaseFull 初始化
         AsteroidBlocks.spaceWart = new BlockSpaceWart("spacewart");
     }
 
@@ -57,10 +49,7 @@ public class AsteroidBlocks
         registerBlock(AsteroidBlocks.blockWalkway, ItemBlockWalkway.class);
         registerBlock(AsteroidBlocks.beamReflector, ItemBlockDesc.class);
         registerBlock(AsteroidBlocks.beamReceiver, ItemBlockDesc.class);
-        registerBlock(AsteroidBlocks.shortRangeTelepad, ItemBlockShortRangeTelepad.class);
-        registerBlock(AsteroidBlocks.fakeTelepad, null);
         registerBlock(AsteroidBlocks.blockDenseIce, ItemBlockGC.class);
-        // 删除了 blockMinerBase 和 minerBaseFull 注册
         registerBlock(AsteroidBlocks.spaceWart, null);
     }
 
