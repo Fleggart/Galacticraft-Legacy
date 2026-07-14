@@ -8,33 +8,16 @@
 package micdoodle8.mods.galacticraft.planets.asteroids.dimension;
 
 import java.util.Random;
-import micdoodle8.mods.galacticraft.api.entity.IRocketType;
-import micdoodle8.mods.galacticraft.api.recipe.SchematicRegistry;
 import micdoodle8.mods.galacticraft.api.vector.BlockVec3;
 import micdoodle8.mods.galacticraft.api.vector.Vector3;
 import micdoodle8.mods.galacticraft.api.world.ITeleportType;
-import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerStats;
 import micdoodle8.mods.galacticraft.core.util.CompatibilityManager;
 import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
-import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityEntryPod;
-import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
-import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
-import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.PotionTypes;
-import net.minecraft.item.ItemMonsterPlacer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtils;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -83,9 +66,6 @@ public class TeleportTypeAsteroids implements ITeleportType
 
             int attemptCount = 0;
 
-            // Small pre-generate with a chunk loading radius of 3, to make sure
-            // some asteroids get generated
-            // (if the world is already generated here, this will be very quick)
             this.preGenChunks(world, x >> 4, z >> 4);
 
             do
@@ -98,17 +78,11 @@ public class TeleportTypeAsteroids implements ITeleportType
 
                 if (bv3 != null)
                 {
-                    // Check whether the returned asteroid is too far from the
-                    // desired entry location in which case, give up
                     if (bv3.distanceSquared(new BlockVec3(x, 128, z)) > 25600)
                     {
                         break;
                     }
 
-                    if (ConfigManagerCore.enableDebug)
-                    {
-                        GalacticraftPlanets.logger.info("Testing asteroid at x" + (bv3.x) + " y" + (bv3.y) + " z" + bv3.z);
-                    }
                     this.loadChunksAround(bv3.x, bv3.z, 2, world.getChunkProvider());
                     this.loadChunksAround(bv3.x, bv3.z, -3, world.getChunkProvider());
 
@@ -133,24 +107,16 @@ public class TeleportTypeAsteroids implements ITeleportType
                         return new Vector3(bv3.x - 2, 310, bv3.z + 2);
                     }
 
-                    // Failed to find an asteroid even though there should be
-                    // one there
-                    if (ConfigManagerCore.enableDebug)
-                    {
-                        GalacticraftPlanets.logger.info("Removing drilled out asteroid at x" + (bv3.x) + " z" + (bv3.z));
-                    }
                     ((WorldProviderAsteroids) world.provider).removeAsteroid(bv3.x, bv3.y, bv3.z);
                 }
 
                 attemptCount++;
             } while (attemptCount < 5);
 
-            GalacticraftPlanets.logger.info("Failed to find good large asteroid landing spot! Falling back to making a small one.");
             this.makeSmallLandingSpot(world, x, z);
             return new Vector3(x, 310, z);
         }
 
-        GalacticraftPlanets.logger.error("Null player when teleporting to Asteroids!");
         return new Vector3(0, 310, 0);
     }
 
@@ -164,8 +130,6 @@ public class TeleportTypeAsteroids implements ITeleportType
                 {
                     continue;
                 }
-                // Clear the downward path of small asteroids and any other
-                // asteroid rock
                 for (int y = k + 2; y < 256; y++)
                 {
                     if (world.getBlockState(new BlockPos(x, y, z)).getBlock() == AsteroidBlocks.blockBasic)
@@ -184,10 +148,6 @@ public class TeleportTypeAsteroids implements ITeleportType
                     {
                         world.setBlockToAir(new BlockPos(x - 1, y, z - 1));
                     }
-                }
-                if (ConfigManagerCore.enableDebug)
-                {
-                    GalacticraftPlanets.logger.info("Found asteroid at x" + (x) + " z" + (z));
                 }
                 return true;
             }
@@ -347,6 +307,4 @@ public class TeleportTypeAsteroids implements ITeleportType
             }
         }
     }
-
-    // 注意：setupAdventureSpawn 方法已移除
 }
