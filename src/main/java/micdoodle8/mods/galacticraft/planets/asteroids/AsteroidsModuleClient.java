@@ -18,11 +18,9 @@ import micdoodle8.mods.galacticraft.planets.IPlanetsModuleClient;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.FluidTexturesGC;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderEntryPod;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderSmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelRocketT3;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityEntryPod;
-import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntitySmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandlerClient;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
@@ -57,7 +55,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
-        RenderingRegistry.registerEntityRenderingHandler(EntitySmallAsteroid.class, (RenderManager manager) -> new RenderSmallAsteroid(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityEntryPod.class, (RenderManager manager) -> new RenderEntryPod(manager));
         RenderingRegistry.registerEntityRenderingHandler(EntityTier3Rocket.class, (RenderManager manager) -> new RenderTier3Rocket(manager));
         MinecraftForge.EVENT_BUS.register(this);
