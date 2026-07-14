@@ -181,6 +181,35 @@ public class AsteroidsModule implements IPlanetsModule
     {
     }
 
+    @Override
+    public void getGuiIDs(List<Integer> idList)
+    {
+        // 删除传送台 GUI ID
+        // idList.add(GuiIdsPlanets.MACHINE_ASTEROIDS);
+    }
+
+    @Override
+    public Object getGuiElement(Side side, int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        // 删除传送台 GUI 处理
+        // if (side == Side.SERVER)
+        // {
+        //     TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
+        //
+        //     switch (ID)
+        //     {
+        //         case GuiIdsPlanets.MACHINE_ASTEROIDS:
+        //             if (tile instanceof TileEntityShortRangeTelepad)
+        //             {
+        //                 return new ContainerShortRangeTelepad(player.inventory, ((TileEntityShortRangeTelepad) tile), player);
+        //             }
+        //             break;
+        //     }
+        // }
+
+        return null;
+    }
+
     private void registerEntities()
     {
         this.registerCreatures();
@@ -232,6 +261,9 @@ public class AsteroidsModule implements IPlanetsModule
     {
         register(TileEntityBeamReflector.class, "gc_beam_reflector");
         register(TileEntityBeamReceiver.class, "gc_beam_receiver");
+        // 删除传送台 TileEntity 注册
+        // register(TileEntityShortRangeTelepad.class, "gc_short_range_telepad");
+        // register(TileEntityTelepadFake.class, "gc_fake_short_range_telepad");
     }
 
     @Override
