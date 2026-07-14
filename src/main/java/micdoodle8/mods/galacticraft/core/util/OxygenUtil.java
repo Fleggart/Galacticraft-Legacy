@@ -58,7 +58,7 @@ import micdoodle8.mods.galacticraft.core.items.ItemCanisterOxygenInfinite;
 import micdoodle8.mods.galacticraft.core.items.ItemOxygenGear;
 import micdoodle8.mods.galacticraft.core.items.ItemOxygenMask;
 import micdoodle8.mods.galacticraft.core.items.ItemOxygenTank;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenDistributor;
+
 import micdoodle8.mods.galacticraft.core.util.BlockUtil.MultiBlockStateHolder;
 
 public class OxygenUtil
@@ -538,22 +538,6 @@ public class OxygenUtil
 
     public static boolean inOxygenBubble(World worldObj, double avgX, double avgY, double avgZ)
     {
-        int dimID = GCCoreUtil.getDimensionID(worldObj);
-        for (final BlockVec3Dim blockVec : TileEntityOxygenDistributor.loadedTiles)
-        {
-            if (blockVec != null && blockVec.dim == dimID)
-            {
-                TileEntity tile = blockVec.getTileEntity();
-                if (tile instanceof TileEntityOxygenDistributor)
-                {
-                    if (((TileEntityOxygenDistributor) tile).inBubble(avgX, avgY, avgZ))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
+        return false
     }
 }
