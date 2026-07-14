@@ -25,19 +25,14 @@ import micdoodle8.mods.galacticraft.planets.mars.blocks.MarsBlocks;
 import micdoodle8.mods.galacticraft.planets.mars.dimension.WorldProviderMars;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityCryogenicChamber;
 import micdoodle8.mods.galacticraft.planets.mars.tile.TileEntityLaunchController;
-import micdoodle8.mods.galacticraft.planets.mars.world.gen.WorldGenEggs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -48,7 +43,6 @@ import org.lwjgl.opengl.GL11;
 
 public class EventHandlerMars
 {
-
 
     @SubscribeEvent
     public void onPlayerWakeUp(EventWakePlayer event)
@@ -106,22 +100,13 @@ public class EventHandlerMars
         }
     }
 
-    private WorldGenerator eggGenerator;
-
     @SubscribeEvent
     public void onPlanetDecorated(GCCoreEventPopulate.Post event)
     {
-
+        
         if (event.world.provider instanceof WorldProviderMars)
         {
-            int eggsPerChunk = 2;
-            BlockPos blockpos;
-
-            for (int eggCount = 0; eggCount < eggsPerChunk; ++eggCount)
-            {
-                blockpos = event.pos.add(event.rand.nextInt(16) + 8, event.rand.nextInt(104) + 24, event.rand.nextInt(16) + 8);
-                this.eggGenerator.generate(event.world, event.rand, blockpos);
-            }
+            
         }
     }
 
