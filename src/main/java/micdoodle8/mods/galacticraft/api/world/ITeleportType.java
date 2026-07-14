@@ -73,11 +73,5 @@ public interface ITeleportType
      */
     void onSpaceDimensionChanged(World newWorld, EntityPlayerMP player, boolean ridingAutoRocket);
 
-    /**
-     * Used by Asteroids Survival game mode to set up the initial lander
-     * inventory
-     * 
-     * @param player
-     */
-    void setupAdventureSpawn(EntityPlayerMP player);
+    // setupAdventureSpawn 方法已删除
 }
