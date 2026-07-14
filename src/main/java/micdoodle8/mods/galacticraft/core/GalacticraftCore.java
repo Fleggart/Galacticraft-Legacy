@@ -154,7 +154,7 @@ import micdoodle8.mods.galacticraft.core.tile.TileEntityCoalGenerator;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityCompactNasaWorkbench;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityCrafting;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDeconstructor;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityDish;
+
 import micdoodle8.mods.galacticraft.core.tile.TileEntityDungeonSpawner;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityElectricFurnace;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityElectricIngotCompressor;
@@ -751,7 +751,7 @@ public class GalacticraftCore
         register(TileEntityCargoUnloader.class, "gc_cargo_unloader");
         register(TileEntityParaChest.class, "gc_parachest_tile");
         register(TileEntitySolar.class, "gc_solar_panel");
-        register(TileEntityDish.class, "gc_radio_telescope");
+        
         register(TileEntityCrafting.class, "gc_magnetic_crafting_table");
         register(TileEntityEnergyStorageModule.class, "gc_energy_storage_module");
         register(TileEntityCoalGenerator.class, "gc_coal_generator");
