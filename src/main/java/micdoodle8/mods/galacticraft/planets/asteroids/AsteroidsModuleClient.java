@@ -45,6 +45,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -122,6 +123,12 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
         MinecraftForge.EVENT_BUS.register(clientEventHandler);
         FluidTexturesGC.init();
         AsteroidsModuleClient.registerBlockRenderers();
+    }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        // TileEntityBeamReceiverRenderer 已移除
     }
 
     public static void registerBlockRenderers()
