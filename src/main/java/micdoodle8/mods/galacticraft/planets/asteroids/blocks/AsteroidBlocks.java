@@ -23,7 +23,6 @@ public class AsteroidBlocks
 
     public static Block blockWalkway;
     public static Block blockBasic;
-    public static Block beamReceiver;
     public static Block blockDenseIce;
     public static Block spaceWart;
 
@@ -31,7 +30,6 @@ public class AsteroidBlocks
     {
         AsteroidBlocks.blockWalkway = new BlockWalkway("walkway");
         AsteroidBlocks.blockBasic = new BlockBasicAsteroids("asteroids_block");
-        AsteroidBlocks.beamReceiver = new BlockBeamReceiver("beam_receiver");
         AsteroidBlocks.blockDenseIce = new BlockIceAsteroids("dense_ice");
         AsteroidBlocks.spaceWart = new BlockSpaceWart("spacewart");
     }
@@ -45,7 +43,6 @@ public class AsteroidBlocks
     {
         registerBlock(AsteroidBlocks.blockBasic, ItemBlockAsteroids.class);
         registerBlock(AsteroidBlocks.blockWalkway, ItemBlockWalkway.class);
-        registerBlock(AsteroidBlocks.beamReceiver, ItemBlockDesc.class);
         registerBlock(AsteroidBlocks.blockDenseIce, ItemBlockGC.class);
         registerBlock(AsteroidBlocks.spaceWart, null);
     }
