@@ -17,7 +17,6 @@ import micdoodle8.mods.galacticraft.core.network.NetworkUtil;
 import micdoodle8.mods.galacticraft.core.network.PacketBase;
 import micdoodle8.mods.galacticraft.core.util.PlayerUtil;
 import micdoodle8.mods.galacticraft.planets.GalacticraftPlanets;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,9 +33,6 @@ public class PacketSimpleAsteroids extends PacketBase
     public static enum EnumSimplePacketAsteroids
     {
 
-        // SERVER
-        S_UPDATE_ADVANCED_GUI(Side.SERVER, Integer.class, BlockPos.class, Integer.class),
-        // CLIENT
         C_TELEPAD_SEND(Side.CLIENT, BlockVec3.class, Integer.class);
 
         private Side targetSide;
@@ -145,31 +141,31 @@ public class PacketSimpleAsteroids extends PacketBase
     {
         EntityPlayerMP playerBase = PlayerUtil.getPlayerBaseServerFromPlayer(player, false);
 
+      
         switch (this.type)
         {
-            case S_UPDATE_ADVANCED_GUI:
-                TileEntity tile = player.world.getTileEntity((BlockPos) this.data.get(1));
-
-                switch ((Integer) this.data.get(0))
-                {
-                    case 0:
-                        if (tile instanceof TileEntityShortRangeTelepad)
-                        {
-                            TileEntityShortRangeTelepad launchController = (TileEntityShortRangeTelepad) tile;
-                            launchController.setAddress((Integer) this.data.get(2));
-                        }
-                        break;
-                    case 1:
-                        if (tile instanceof TileEntityShortRangeTelepad)
-                        {
-                            TileEntityShortRangeTelepad launchController = (TileEntityShortRangeTelepad) tile;
-                            launchController.setTargetAddress((Integer) this.data.get(2));
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                break;
+            // case S_UPDATE_ADVANCED_GUI:
+            //     TileEntity tile = player.world.getTileEntity((BlockPos) this.data.get(1));
+            //     switch ((Integer) this.data.get(0))
+            //     {
+            //         case 0:
+            //             if (tile instanceof TileEntityShortRangeTelepad)
+            //             {
+            //                 TileEntityShortRangeTelepad launchController = (TileEntityShortRangeTelepad) tile;
+            //                 launchController.setAddress((Integer) this.data.get(2));
+            //             }
+            //             break;
+            //         case 1:
+            //             if (tile instanceof TileEntityShortRangeTelepad)
+            //             {
+            //                 TileEntityShortRangeTelepad launchController = (TileEntityShortRangeTelepad) tile;
+            //                 launchController.setTargetAddress((Integer) this.data.get(2));
+            //             }
+            //             break;
+            //         default:
+            //             break;
+            //     }
+            //     break;
             default:
                 break;
         }
