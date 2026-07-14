@@ -18,7 +18,6 @@ import micdoodle8.mods.galacticraft.planets.GuiIdsPlanets;
 import micdoodle8.mods.galacticraft.planets.IPlanetsModuleClient;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.FluidTexturesGC;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.fx.EntityFXTeleport;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.gui.GuiShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderEntryPod;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderSmallAsteroid;
@@ -26,10 +25,9 @@ import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.Rende
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelBeamReceiver;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelBeamReflector;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelRocketT3;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.render.item.ItemModelTelepad;
+
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.tile.TileEntityBeamReceiverRenderer;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.tile.TileEntityBeamReflectorRenderer;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.render.tile.TileEntityShortRangeTelepadRenderer;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityEntryPod;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntitySmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket;
@@ -37,7 +35,7 @@ import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandle
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReceiver;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReflector;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
+
 import micdoodle8.mods.galacticraft.planets.mars.client.fx.EntityCryoFX;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -96,10 +94,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
         modelResourceLocation = new ModelResourceLocation("galacticraftplanets:beam_reflector", "inventory");
         ModelLoader.setCustomModelResourceLocation(reflector, 0, modelResourceLocation);
 
-        Item teleporter = Item.getItemFromBlock(AsteroidBlocks.shortRangeTelepad);
-        modelResourceLocation = new ModelResourceLocation("galacticraftplanets:telepad_short", "inventory");
-        ModelLoader.setCustomModelResourceLocation(teleporter, 0, modelResourceLocation);
-
         modelResourceLocation = new ModelResourceLocation("galacticraftplanets:rocket_t3", "inventory");
         for (int i = 0; i < 5; ++i)
         {
@@ -115,8 +109,7 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
             "facing=up", "facing=down", "facing=north", "facing=west", "facing=east", "facing=south");
         replaceModelDefault(event, "beam_reflector", "block/reflector.obj", ImmutableList.of("Base", "Axle", "EnergyBlaster", "Ring"), ItemModelBeamReflector.class, TRSRTransformation.identity(),
             "inventory", "normal");
-        replaceModelDefault(event, "telepad_short", "block/telepad_short.obj", ImmutableList.of("Top", "Bottom", "Connector"), ItemModelTelepad.class, TRSRTransformation.identity(), "inventory",
-            "normal");
+
         replaceModelDefault(event, "rocket_t3", "tier3rocket.obj", ImmutableList.of("Boosters", "Cube", "NoseCone", "Rocket"), ItemModelRocketT3.class, TRSRTransformation.identity());
     }
 
@@ -132,8 +125,7 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
         registerTexture(event, "minerbase");
         registerTexture(event, "beam_reflector");
         registerTexture(event, "beam_receiver");
-        registerTexture(event, "telepad_short");
-        registerTexture(event, "telepad_short0");
+
         registerTexture(event, "tier3rocket");
         registerTexture(event, "space_pod");
         registerTexture(event, "fluids/argon");
@@ -167,7 +159,6 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBeamReflector.class, new TileEntityBeamReflectorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBeamReceiver.class, new TileEntityBeamReceiverRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShortRangeTelepad.class, new TileEntityShortRangeTelepadRenderer());
     }
 
     public static void registerBlockRenderers()
@@ -213,26 +204,19 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
     }
 
     @Override
-    public void getGuiIDs(List<Integer> idList)
-    {
-        idList.add(GuiIdsPlanets.MACHINE_ASTEROIDS);
-    }
-
-    @Override
     public Object getGuiElement(Side side, int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
 
         switch (ID)
         {
-            case GuiIdsPlanets.MACHINE_ASTEROIDS:
-
-                if (tile instanceof TileEntityShortRangeTelepad)
-                {
-                    return new GuiShortRangeTelepad(player.inventory, ((TileEntityShortRangeTelepad) tile));
-                }
-
-                break;
+            // 删除传送台 GUI
+            // case GuiIdsPlanets.MACHINE_ASTEROIDS:
+            //     if (tile instanceof TileEntityShortRangeTelepad)
+            //     {
+            //         return new GuiShortRangeTelepad(player.inventory, ((TileEntityShortRangeTelepad) tile));
+            //     }
+            //     break;
         }
 
         return null;
@@ -253,10 +237,8 @@ public class AsteroidsModuleClient implements IPlanetsModuleClient
 
             if (dX * dX + dY * dY + dZ * dZ < viewDistance * viewDistance)
             {
-                if (particleID.equals("portalBlue"))
-                {
-                    particle = new EntityFXTeleport(mc.world, position, motion, (TileEntityShortRangeTelepad) extraData[0], (Boolean) extraData[1]);
-                } else if (particleID.equals("cryoFreeze"))
+
+                if (particleID.equals("cryoFreeze"))
                 {
                     particle = new EntityCryoFX(mc.world, position, motion);
                 }
