@@ -18,8 +18,6 @@ import micdoodle8.mods.galacticraft.planets.GuiIdsPlanets;
 import micdoodle8.mods.galacticraft.planets.IPlanetsModuleClient;
 import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.FluidTexturesGC;
-// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.client.fx.EntityFXTeleport;
-import micdoodle8.mods.galacticraft.planets.asteroids.client.gui.GuiShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderEntryPod;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderSmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.client.render.entity.RenderTier3Rocket;
