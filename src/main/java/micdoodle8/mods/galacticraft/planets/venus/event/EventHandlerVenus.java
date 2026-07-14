@@ -13,7 +13,7 @@ import micdoodle8.mods.galacticraft.core.entities.player.GCPlayerHandler;
 import micdoodle8.mods.galacticraft.core.util.DamageSourceGC;
 import micdoodle8.mods.galacticraft.planets.venus.VenusItems;
 import micdoodle8.mods.galacticraft.planets.venus.VenusModule;
-import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityLaserTurret;
+// 删除: import micdoodle8.mods.galacticraft.planets.venus.tile.TileEntityLaserTurret;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
@@ -57,6 +57,8 @@ public class EventHandlerVenus
         }
     }
 
+    // 删除整个 onEntitySpawned 方法，因为它依赖 TileEntityLaserTurret
+    /*
     @SubscribeEvent
     public void onEntitySpawned(EntityJoinWorldEvent event)
     {
@@ -71,4 +73,5 @@ public class EventHandlerVenus
             }
         }
     }
+    */
 }
