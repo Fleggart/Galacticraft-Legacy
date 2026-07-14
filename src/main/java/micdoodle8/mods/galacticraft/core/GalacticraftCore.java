@@ -174,7 +174,7 @@ import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenCollector;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenCompressor;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenDecompressor;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenDetector;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenDistributor;
+
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenSealer;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenStorageModule;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityPainter;
@@ -728,7 +728,6 @@ public class GalacticraftCore
     private void registerTileEntities()
     {
         register(TileEntityTreasureChest.class, "gc_treasure_chest");
-        register(TileEntityOxygenDistributor.class, "gc_air_distributor");
         register(TileEntityOxygenCollector.class, "gc_air_collector");
         register(TileEntityFluidPipe.class, "gc_oxygen_pipe");
         register(TileEntityAirLock.class, "gc_air_lock_frame");
