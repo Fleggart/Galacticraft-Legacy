@@ -27,13 +27,10 @@ import micdoodle8.mods.galacticraft.planets.asteroids.blocks.AsteroidBlocks;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.TeleportTypeAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.dimension.WorldProviderAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityEntryPod;
-import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntitySmallAsteroid;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.player.AsteroidsPlayerHandler;
 import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandler;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
-// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.network.PacketSimpleAsteroids;
-// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.recipe.CanisterRecipes;
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.RecipeManagerAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.BiomeAsteroids;
@@ -92,13 +89,11 @@ public class AsteroidsModule implements IPlanetsModule
         MinecraftForge.EVENT_BUS.register(playerHandler);
         AsteroidsEventHandler eventHandler = new AsteroidsEventHandler();
         MinecraftForge.EVENT_BUS.register(eventHandler);
-        // 删除: RecipeSorter.register("galacticraftplanets:canisterRecipe", CanisterRecipes.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
 
         registerFluid("methane", 1, 11, 295, true);
         registerFluid("atmosphericgases", 1, 13, 295, true);
         registerFluid("liquidmethane", 450, 120, 109, false);
-        // Data source for liquid methane:
-        // http://science.nasa.gov/science-news/science-at-nasa/2005/25feb_titan2/
+
         registerFluid("liquidoxygen", 1141, 140, 90, false);
         registerFluid("liquidnitrogen", 808, 130, 90, false);
         registerFluid("nitrogen", 1, 12, 295, true);
@@ -198,7 +193,7 @@ public class AsteroidsModule implements IPlanetsModule
 
     private void registerNonMobEntities()
     {
-        MarsModule.registerGalacticraftNonMobEntity(EntitySmallAsteroid.class, "small_asteroid", 150, 3, true);
+        // 删除: MarsModule.registerGalacticraftNonMobEntity(EntitySmallAsteroid.class, "small_asteroid", 150, 3, true);
         MarsModule.registerGalacticraftNonMobEntity(EntityTier3Rocket.class, "rocket_t3", 150, 1, false);
         MarsModule.registerGalacticraftNonMobEntity(EntityEntryPod.class, "entry_pod", 150, 1, true);
     }
