@@ -121,7 +121,6 @@ import micdoodle8.mods.galacticraft.core.client.render.item.ItemModelRocket;
 import micdoodle8.mods.galacticraft.core.client.render.item.ItemModelWorkbench;
 import micdoodle8.mods.galacticraft.core.client.render.item.TextureDungeonFinder;
 import micdoodle8.mods.galacticraft.core.client.render.tile.TileEntityArclampRenderer;
-import micdoodle8.mods.galacticraft.core.client.render.tile.TileEntityDishRenderer;
 import micdoodle8.mods.galacticraft.core.client.render.tile.TileEntityEmergencyBoxRenderer;
 import micdoodle8.mods.galacticraft.core.client.render.tile.TileEntityFluidPipeRenderer;
 import micdoodle8.mods.galacticraft.core.client.render.tile.TileEntityFluidTankRenderer;
@@ -158,7 +157,7 @@ import micdoodle8.mods.galacticraft.core.network.PacketSimple;
 import micdoodle8.mods.galacticraft.core.tick.KeyHandlerClient;
 import micdoodle8.mods.galacticraft.core.tick.TickHandlerClient;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityArclamp;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityDish;
+
 import micdoodle8.mods.galacticraft.core.tile.TileEntityEmergencyBox;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityFluidPipe;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityFluidTank;
@@ -566,7 +565,6 @@ public class ClientProxyCore extends CommonProxyCore implements ISelectiveResour
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScreen.class, new TileEntityScreenRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidTank.class, new TileEntityFluidTankRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFluidPipe.class, new TileEntityFluidPipeRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDish.class, new TileEntityDishRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityArclamp.class, new TileEntityArclampRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPanelLight.class, new TileEntityPanelLightRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlatform.class, new TileEntityPlatformRenderer());
