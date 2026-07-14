@@ -538,6 +538,6 @@ public class OxygenUtil
 
     public static boolean inOxygenBubble(World worldObj, double avgX, double avgY, double avgZ)
     {
-        return false
+        return false;
     }
 }
