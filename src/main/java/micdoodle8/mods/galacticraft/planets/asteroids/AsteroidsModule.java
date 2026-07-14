@@ -32,7 +32,7 @@ import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntitySmallAstero
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.EntityTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.entities.player.AsteroidsPlayerHandler;
 import micdoodle8.mods.galacticraft.planets.asteroids.event.AsteroidsEventHandler;
-import micdoodle8.mods.galacticraft.planets.asteroids.inventory.ContainerShortRangeTelepad;
+// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.inventory.ContainerShortRangeTelepad;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.network.PacketSimpleAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.CanisterRecipes;
@@ -40,8 +40,8 @@ import micdoodle8.mods.galacticraft.planets.asteroids.recipe.RecipeManagerAstero
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReceiver;
 import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReflector;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityTelepadFake;
+// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityShortRangeTelepad;
+// 删除: import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityTelepadFake;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.BiomeAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.ChunkProviderAsteroids;
 import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
@@ -181,35 +181,6 @@ public class AsteroidsModule implements IPlanetsModule
     {
     }
 
-    @Override
-    public void getGuiIDs(List<Integer> idList)
-    {
-        idList.add(GuiIdsPlanets.MACHINE_ASTEROIDS);
-    }
-
-    @Override
-    public Object getGuiElement(Side side, int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        if (side == Side.SERVER)
-        {
-            TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
-
-            switch (ID)
-            {
-                case GuiIdsPlanets.MACHINE_ASTEROIDS:
-
-                    if (tile instanceof TileEntityShortRangeTelepad)
-                    {
-                        return new ContainerShortRangeTelepad(player.inventory, ((TileEntityShortRangeTelepad) tile), player);
-                    }
-
-                    break;
-            }
-        }
-
-        return null;
-    }
-
     private void registerEntities()
     {
         this.registerCreatures();
@@ -261,8 +232,6 @@ public class AsteroidsModule implements IPlanetsModule
     {
         register(TileEntityBeamReflector.class, "gc_beam_reflector");
         register(TileEntityBeamReceiver.class, "gc_beam_receiver");
-        register(TileEntityShortRangeTelepad.class, "gc_short_range_telepad");
-        register(TileEntityTelepadFake.class, "gc_fake_short_range_telepad");
     }
 
     @Override
