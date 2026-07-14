@@ -39,7 +39,7 @@ import micdoodle8.mods.galacticraft.core.util.ConfigManagerCore;
 import micdoodle8.mods.galacticraft.core.util.GalacticLog;
 import micdoodle8.mods.galacticraft.planets.asteroids.AsteroidsModule;
 import micdoodle8.mods.galacticraft.planets.asteroids.ConfigManagerAsteroids;
-import micdoodle8.mods.galacticraft.planets.datafix.GCPlanetsDataFixers;
+
 import micdoodle8.mods.galacticraft.planets.mars.ConfigManagerMars;
 import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
 import micdoodle8.mods.galacticraft.planets.venus.ConfigManagerVenus;
@@ -122,7 +122,7 @@ public class GalacticraftPlanets
         GalacticraftPlanets.proxy.init(event);
         NetworkRegistry.INSTANCE.registerGuiHandler(GalacticraftPlanets.instance, GalacticraftPlanets.proxy);
 
-        new GCPlanetsDataFixers().registerAll();
+        
     }
 
     @EventHandler
