@@ -1335,7 +1335,6 @@ public class GCPlayerHandler
             GalacticraftCore.logger.debug("Loading first chunk in new dimension.");
             ((WorldServer) player.world).getChunkProvider().loadChunk(pair.x, pair.z);
             player.setLocationAndAngles(spawnPos.x, spawnPos.y, spawnPos.z, player.rotationYaw, player.rotationPitch);
-            type.setupAdventureSpawn(player);
             type.onSpaceDimensionChanged(player.world, player, false);
             player.setSpawnChunk(new BlockPos(spawnPos.intX(), spawnPos.intY(), spawnPos.intZ()), true, GCCoreUtil.getDimensionID(player.world));
             stats.setNewAdventureSpawn(true);
