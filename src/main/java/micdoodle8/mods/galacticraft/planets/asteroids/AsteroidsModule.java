@@ -36,16 +36,13 @@ import micdoodle8.mods.galacticraft.planets.asteroids.network.PacketSimpleAstero
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.CanisterRecipes;
 import micdoodle8.mods.galacticraft.planets.asteroids.recipe.RecipeManagerAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.schematic.SchematicTier3Rocket;
-import micdoodle8.mods.galacticraft.planets.asteroids.tile.TileEntityBeamReceiver;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.BiomeAsteroids;
 import micdoodle8.mods.galacticraft.planets.asteroids.world.gen.ChunkProviderAsteroids;
 import micdoodle8.mods.galacticraft.planets.mars.MarsModule;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -100,8 +97,6 @@ public class AsteroidsModule implements IPlanetsModule
         registerFluid("methane", 1, 11, 295, true);
         registerFluid("atmosphericgases", 1, 13, 295, true);
         registerFluid("liquidmethane", 450, 120, 109, false);
-        // Data source for liquid methane:
-        // http://science.nasa.gov/science-news/science-at-nasa/2005/25feb_titan2/
         registerFluid("liquidoxygen", 1141, 140, 90, false);
         registerFluid("liquidnitrogen", 808, 130, 90, false);
         registerFluid("nitrogen", 1, 12, 295, true);
@@ -125,7 +120,6 @@ public class AsteroidsModule implements IPlanetsModule
         AsteroidsItems.initItems();
 
         AsteroidsModule.planetAsteroids.setBiomeInfo(BiomeAsteroids.asteroid);
-        // This enables Endermen on Asteroids in Asteroids Challenge mode
         ((BiomeAsteroids) BiomeAsteroids.asteroid).resetMonsterListByMode(ConfigManagerCore.challengeMobDropsAndSpawning);
     }
 
@@ -232,11 +226,6 @@ public class AsteroidsModule implements IPlanetsModule
         }
         catch (Exception e)
         {}
-    }
-
-    private void registerTileEntities()
-    {
-        register(TileEntityBeamReceiver.class, "gc_beam_receiver");
     }
 
     @Override
