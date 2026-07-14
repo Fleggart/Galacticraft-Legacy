@@ -27,7 +27,7 @@ import micdoodle8.mods.galacticraft.core.client.gui.container.GuiIngotCompressor
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiOxygenCollector;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiOxygenCompressor;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiOxygenDecompressor;
-import micdoodle8.mods.galacticraft.core.client.gui.container.GuiOxygenDistributor;
+
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiOxygenSealer;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiOxygenStorageModule;
 import micdoodle8.mods.galacticraft.core.client.gui.container.GuiPainter;
@@ -54,7 +54,7 @@ import micdoodle8.mods.galacticraft.core.inventory.ContainerIngotCompressor;
 import micdoodle8.mods.galacticraft.core.inventory.ContainerOxygenCollector;
 import micdoodle8.mods.galacticraft.core.inventory.ContainerOxygenCompressor;
 import micdoodle8.mods.galacticraft.core.inventory.ContainerOxygenDecompressor;
-import micdoodle8.mods.galacticraft.core.inventory.ContainerOxygenDistributor;
+
 import micdoodle8.mods.galacticraft.core.inventory.ContainerOxygenSealer;
 import micdoodle8.mods.galacticraft.core.inventory.ContainerOxygenStorageModule;
 import micdoodle8.mods.galacticraft.core.inventory.ContainerPainter;
@@ -78,7 +78,7 @@ import micdoodle8.mods.galacticraft.core.tile.TileEntityIngotCompressor;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenCollector;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenCompressor;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenDecompressor;
-import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenDistributor;
+
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenSealer;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityOxygenStorageModule;
 import micdoodle8.mods.galacticraft.core.tile.TileEntityPainter;
@@ -140,9 +140,6 @@ public class GuiHandler implements IGuiHandler
             } else if (tile instanceof TileEntityOxygenCollector)
             {
                 return new ContainerOxygenCollector(player.inventory, (TileEntityOxygenCollector) tile);
-            } else if (tile instanceof TileEntityOxygenDistributor)
-            {
-                return new ContainerOxygenDistributor(player.inventory, (TileEntityOxygenDistributor) tile);
             } else if (tile instanceof TileEntityFuelLoader)
             {
                 return new ContainerFuelLoader(player.inventory, (TileEntityFuelLoader) tile);
@@ -256,9 +253,6 @@ public class GuiHandler implements IGuiHandler
             } else if (tile instanceof TileEntityOxygenCollector)
             {
                 return new GuiOxygenCollector(player.inventory, (TileEntityOxygenCollector) tile);
-            } else if (tile instanceof TileEntityOxygenDistributor)
-            {
-                return new GuiOxygenDistributor(player.inventory, (TileEntityOxygenDistributor) tile);
             } else if (tile instanceof TileEntityFuelLoader)
             {
                 return new GuiFuelLoader(player.inventory, (TileEntityFuelLoader) tile);
